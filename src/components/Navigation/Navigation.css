@@ -1,0 +1,34 @@
+.navigation {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+}
+
+.navigation__login-navlinks {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+  gap: 0 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.navigation__navlink {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.navigation__navlink_status_activ {
+  font-weight: 500;
+}
+
+.navigation__navlink-registration {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+}
