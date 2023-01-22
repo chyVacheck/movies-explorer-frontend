@@ -1,0 +1,16 @@
+.header {
+  padding: 18px 70px;
+  background-color: var(--main-bg-color);
+  display: flex;
+  flex-direction: row;
+  gap: 0 30px;
+  justify-content: space-between;
+}
+
+.header_place_landing {
+  background-color: var(--landing-bg-color);
+}
+
+.header_user_login {
+  gap: 0 50px;
+}
