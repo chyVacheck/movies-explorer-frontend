@@ -2,7 +2,6 @@
 
 // * react
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 // ? стили
 import './Header.css';
@@ -13,7 +12,7 @@ import Navigation from './../Navigation/Navigation';
 import ButtonProfile from './../ButtonProfile/ButtonProfile';
 
 // ? constants
-import { paths, unActiveNavbarAndButtonRouters as unActiv } from './../../utils/Constants.js';
+import { activeHeaderRoutes as activ } from './../../utils/Constants.js';
 
 function Header({ loggedIn, page }) {
 
@@ -39,10 +38,10 @@ function Header({ loggedIn, page }) {
 
   // Проверка на отрисовку элемента
   useEffect(() => {
-    if (unActiv.includes(page)) {
-      setIsActive(false);
-    } else {
+    if (activ.includes(page)) {
       setIsActive(true);
+    } else {
+      setIsActive(false);
     }
   }, [page]);
 

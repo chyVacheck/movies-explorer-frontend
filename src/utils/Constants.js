@@ -2,8 +2,10 @@
 // ? год создания сайта
 export const YEAR = 2023;
 
-// ? роутеры на которых не отображается нав.панель и кнопка
-export const unActiveNavbarAndButtonRouters = ['/signin', '/signup'];
+// ? роутеры на которых отображается Header, Footer
+export const activeHeaderRoutes = ['/', '/movies', '/saved-movies', '/profile'];
+export const activeFooterRoutes = ['/', '/movies', '/saved-movies'];
+
 
 // ? все пути
 export const paths = {
@@ -13,6 +15,7 @@ export const paths = {
   movies: '/movies',
   savedMovies: '/saved-movies',
   profile: '/profile',
+  pageNotFound: '/PageNotFound',
 }
 
 // ? объекты для навигационной панели

@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import './Footer.css';
 
 // ? constants
-import { YEAR, unActiveNavbarAndButtonRouters as unActiv } from './../../utils/Constants.js';
+import { YEAR, activeFooterRoutes as activ } from './../../utils/Constants.js';
 
 function Footer({ page }) {
 
@@ -27,10 +27,10 @@ function Footer({ page }) {
 
   // Проверка на отрисовку элемента
   useEffect(() => {
-    if (unActiv.includes(page)) {
-      setIsActive(false);
-    } else {
+    if (activ.includes(page)) {
       setIsActive(true);
+    } else {
+      setIsActive(false);
     }
   }, [page]);
 

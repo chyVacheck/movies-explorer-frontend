@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 // * react
-import { useEffect, useState, useContext } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 // ? Context
@@ -11,7 +11,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import './ButtonProfile.css';
 
 // ? constants
-import { unActiveNavbarAndButtonRouters as routers, paths } from './../../utils/Constants.js';
+import { paths } from './../../utils/Constants.js';
 
 // ? иконка пользователя
 import userIcon from './../../images/UserIcon.svg';
@@ -21,20 +21,9 @@ function ButtonProfile({ loggedIn, page }) {
   const navigate = useNavigate();
 
   // * State`s
-  // ? отображение кнопки аккаунт/войти
-  const [isActive, setIsActive] = useState(false);
 
   //? Подписка на контекст
   const currentUser = useContext(CurrentUserContext);
-
-  // отображение навигационной панели и кнопки аккаунт/войти
-  useEffect(() => {
-    if ((routers.includes(page))) {
-      setIsActive(false);
-    } else {
-      setIsActive(true);
-    }
-  }, [page]);
 
   // ? к стр авторизации
   function toLogin() {
@@ -47,7 +36,7 @@ function ButtonProfile({ loggedIn, page }) {
   }
 
   return (
-    isActive && <article className={'buttonProfile'}>
+    <article className={'buttonProfile'}>
       {loggedIn ?
 
         <button
