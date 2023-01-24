@@ -1,9 +1,14 @@
+/* ? нормазайл */
 @import url(./vendor/normalize.css);
+
+/* ? шрифты */
+@import url(./vendor/fonts/fonts.css);
 
 .link {
   color: var(--main-text-color);
   text-decoration: none;
   cursor: pointer;
+  transition: opacity 0.4s;
 }
 
 .link:hover {
@@ -15,6 +20,7 @@
   border: none;
   padding: 0;
   margin: 0;
+  transition: opacity 0.4s;
 }
 
 .button:hover {
@@ -23,31 +29,44 @@
 
 #root {
   --main-bg-color: #202020;
+  --sub-main-bg-color: #272727;
+
   --landing-bg-color: #073042;
   --logo-bg-color: #3ddc84;
+  --light-bg-color: #3ddc84;
 
   --main-text-color: #ffffff;
   --sub-text-color: #8b8b8b;
   --err-text-color: #ee3465;
   --button-text-color: #000000;
 
+  --landing-title-border-color: #dadada;
+
+  --footer-border-color: #424242;
+  --portfolio-web-site-border-color: var(--footer-border-color);
+
+  --week-text-color: #000000;
+  --week-bg-light-color: #3ddc84;
+  --week-bg-dakr-color: #303030;
+
+  --texhs-bg-dakr-color: #303030;
+
   --user-icon-button-bg-color: #313131;
   --button-bg-color: #ee3465;
 
-  --bg-color: #272727;
   /* // #8B8B8B; */
   /* // #202020; */
   /* // #3DDC84; */
   /* // #313131; */
-  /* #424242; */
+  /* // #424242; */
   /* #222222; */
-  /* #303030; */
+  /* // #303030; */
   /* #4285F4; */
   /* #2F2F2F; */
   /* // EE3465 */
   /* #000000; */
   /* #A0A0A0; */
-  /* #DADADA; */
+  /* // #DADADA; */
   /* // #073042; */
   /* #272727; */
   /* #C4C4C4; */
@@ -55,4 +74,16 @@
   /* #505050; */
   /* #959595; */
   /* #F8F8F8; */
+}
+
+/* ? скролбар  */
+body::-webkit-scrollbar {
+  width: 8px;
+}
+body::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: #8b8b8b;
+  border-radius: 5px;
 }
