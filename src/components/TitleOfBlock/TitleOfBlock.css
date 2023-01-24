@@ -1,0 +1,14 @@
+.titleOfBlock {
+  width: 100%;
+  padding: 0 0 23px;
+  border-bottom: 1px solid var(--landing-title-border-color);
+}
+
+.titleOfBlock__title {
+  max-width: 52.6315789%;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 27px;
+  margin: 0;
+  letter-spacing: -0.04em;
+}

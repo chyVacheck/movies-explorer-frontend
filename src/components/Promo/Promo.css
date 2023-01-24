@@ -1,0 +1,30 @@
+.promo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-position-y: 82px;
+  background-position-x: center;
+
+  background-size: 320px;
+  background-repeat: no-repeat;
+  background-image: url(./../../images/YandexIcon.svg);
+  background-color: var(--landing-bg-color);
+  color: var(--main-text-color);
+  min-width: 100%;
+  min-height: 320px;
+
+  padding: 82px 0 122px;
+}
+
+.promo__title {
+  margin: 0;
+  max-width: 730px;
+
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+  text-align: center;
+  letter-spacing: -0.04em;
+}

@@ -1,0 +1,14 @@
+.landingBlock {
+  margin: 0;
+  padding: 100px 70px;
+  background-color: var(--main-bg-color);
+  color: var(--main-text-color);
+}
+
+.landingBlock_size_big {
+  padding: 110px 70px;
+}
+
+.landingBlock_bg-color_grey {
+  background-color: var(--sub-main-bg-color);
+}
