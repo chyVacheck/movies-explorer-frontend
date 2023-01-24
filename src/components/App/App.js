@@ -12,8 +12,13 @@ import { CurrentUserContext } from './../../contexts/CurrentUserContext.js';
 // ? компоненты
 import Header from './../Header/Header';
 
+import Main from '../Main/Main';
+
+import Footer from '../Footer/Footer';
+
 // ? константы
 import { paths } from './../../utils/Constants';
+
 
 function App() {
 
@@ -38,11 +43,11 @@ function App() {
 
           {/* //? О проекте */}
           <Route
-            
+
             path={paths.aboutProject}
             element={
 
-              <p>'false'</p>
+              <Main />
 
             }>
           </Route>
@@ -73,6 +78,10 @@ function App() {
           </Route>
 
         </Routes>
+
+
+        <Footer />
+
       </section>
     </CurrentUserContext.Provider>
   );
