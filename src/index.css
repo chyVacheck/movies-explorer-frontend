@@ -24,7 +24,7 @@
 }
 
 .button:hover {
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 #root {
@@ -54,14 +54,18 @@
   --user-icon-button-bg-color: #313131;
   --button-bg-color: #ee3465;
 
+  --submit-button-bg-color: #4285f4;
+  --link-color: #4285f4;
+  --input-bg-color: #2f2f2f;
+
   /* // #8B8B8B; */
   /* // #202020; */
   /* // #3DDC84; */
   /* // #313131; */
   /* // #424242; */
-  /* #222222; */
+  /* // #222222; */
   /* // #303030; */
-  /* #4285F4; */
+  /* // #4285F4; */
   /* #2F2F2F; */
   /* // EE3465 */
   /* #000000; */
