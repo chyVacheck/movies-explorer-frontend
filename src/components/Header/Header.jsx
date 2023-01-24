@@ -13,7 +13,7 @@ import Navigation from './../Navigation/Navigation';
 import ButtonProfile from './../ButtonProfile/ButtonProfile';
 
 // ? constants
-import { paths, unActiveNavbarAndButtonRouters as routers } from './../../utils/Constants.js';
+import { paths } from './../../utils/Constants.js';
 
 function Header({ loggedIn, page }) {
 
@@ -23,10 +23,6 @@ function Header({ loggedIn, page }) {
 
   // ? className
   const [className, setClassName] = useState('header');
-  // ? отображение навигационной панели
-  const [isNavigationActive, setIsNavigationActive] = useState(true);
-  // ? отображение кнопки аккаунт/войти
-  const [isButtonActive, setIsButtonActive] = useState(true);
 
   // добавление модификаторов в зависимости от пути и loggedIn
   useEffect(() => {
@@ -37,20 +33,7 @@ function Header({ loggedIn, page }) {
     } else if ((loggedIn)) {
       setClassName('header header_user_login');
     }
-
-
   }, [page, loggedIn]);
-
-  // отображение навигационной панели и кнопки аккаунт/войти
-  useEffect(() => {
-    if ((routers.includes(page))) {
-      setIsNavigationActive(false);
-      setIsButtonActive(false);
-    } else {
-      setIsNavigationActive(true);
-      setIsButtonActive(true);
-    }
-  }, [page]);
 
   function toAboutProject() {
     navigate(paths.aboutProject);
