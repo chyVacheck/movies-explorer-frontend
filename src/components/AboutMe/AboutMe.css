@@ -1,0 +1,103 @@
+.aboutMe {
+  display: flex;
+  flex-direction: column;
+}
+
+.aboutMe__info-img {
+  padding: 66px 0 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.aboutMe__info {
+  margin: 0;
+  width: 52.6315789%;
+  display: flex;
+  flex-direction: column;
+}
+
+.aboutMe__title {
+  margin: 0 0 18px;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+  letter-spacing: -0.04em;
+}
+
+.aboutMe__sub-title {
+  margin: 0 0 26px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.aboutMe__text {
+  margin: 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.aboutMe__link {
+  margin: auto 0 0;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.aboutMe__img {
+  /* max-width: calc(100% - 52.6315789% - 270px); */
+  max-width: 270px;
+  max-height: 327px;
+  border-radius: 10px;
+}
+
+.aboutMe__portfolio {
+  display: flex;
+  flex-direction: column;
+  gap: 50px 0;
+}
+
+.aboutMe__portfolio-title {
+  width: 21.9298246%;
+  margin: 0;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+  color: var(--sub-text-color);
+}
+
+.aboutMe__portfolio-list-web-sites {
+  display: flex;
+  flex-direction: column;
+  gap: 20px 0;
+}
+
+.aboutMe__portfolio-web-site {
+  padding: 0 0 9px;
+  border-bottom: 1px solid var(--portfolio-web-site-border-color);
+  display: flex;
+  justify-content: space-between;
+}
+
+.aboutMe__portfolio-web-site_border_no-border {
+  border: none;
+}
+
+.aboutMe__portfolio-web-site-name {
+  width: 77.1929825%;
+  margin: 0 0 10px;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 50px;
+  letter-spacing: -0.04em;
+}
+
+.aboutMe__portfolio-web-site-arrow {
+  margin: 0;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 60px;
+  letter-spacing: -0.04em;
+}
