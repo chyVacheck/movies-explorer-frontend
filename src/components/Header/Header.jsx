@@ -13,16 +13,16 @@ import Navigation from './../Navigation/Navigation';
 import ButtonProfile from './../ButtonProfile/ButtonProfile';
 
 // ? constants
-import { paths } from './../../utils/Constants.js';
+import { paths, unActiveNavbarAndButtonRouters as unActiv } from './../../utils/Constants.js';
 
 function Header({ loggedIn, page }) {
-
-  const navigate = useNavigate();
 
   // * State`s
 
   // ? className
   const [className, setClassName] = useState('header');
+  // ? отрисовка элемента 
+  const [isActive, setIsActive] = useState(false);
 
   // добавление модификаторов в зависимости от пути и loggedIn
   useEffect(() => {
@@ -32,17 +32,25 @@ function Header({ loggedIn, page }) {
       setClassName('header header_place_landing');
     } else if ((loggedIn)) {
       setClassName('header header_user_login');
+    } else {
+      setClassName('header');
     }
   }, [page, loggedIn]);
 
-  function toAboutProject() {
-    navigate(paths.aboutProject);
-  }
+  // Проверка на отрисовку элемента
+  useEffect(() => {
+    if (unActiv.includes(page)) {
+      setIsActive(false);
+    } else {
+      setIsActive(true);
+    }
+  }, [page]);
+
 
   return (
-    <header className={className}>
+    isActive && <header className={className}>
 
-      <Logo onClick={toAboutProject} />
+      <Logo />
 
       <Navigation loggedIn={loggedIn} page={page} />
 
