@@ -1,4 +1,7 @@
 
+// ? год создания сайта
+export const YEAR = 2023;
+
 // ? роутеры на которых не отображается нав.панель и кнопка
 export const unActiveNavbarAndButtonRouters = ['/signin', '/signup'];
 
@@ -13,7 +16,7 @@ export const paths = {
 }
 
 // ? объекты для навигационной панели
-export const navigationRouters = [
+export const headerNavigationRouters = [
   {
     context: 'Фильмы',
     router: paths.movies
@@ -22,4 +25,20 @@ export const navigationRouters = [
     context: 'Сохранённые фильмы',
     router: paths.savedMovies
   },
-]
+];
+
+export const mainNavigationRouters = [
+  {
+    context: 'О проекте',
+    router: ''
+  },
+  {
+    context: 'Технологии',
+    router: ''
+  },
+  {
+    context: 'Студент',
+    router: ''
+  },
+
+];
