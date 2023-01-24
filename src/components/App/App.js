@@ -11,7 +11,8 @@ import { CurrentUserContext } from './../../contexts/CurrentUserContext.js';
 
 // ? компоненты
 import Header from './../Header/Header';
-
+import Register from './../Register/Register';
+import Login from './../Login/Login';
 import Main from '../Main/Main';
 
 import Footer from '../Footer/Footer';
@@ -31,7 +32,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
 
   //? авторизованость
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -68,19 +69,35 @@ function App() {
           </Route>
 
           {/* //? Авторизация */}
-          <Route exact path={paths.login}>
+          <Route
+            exact
+            path={paths.login}
+            element={
+
+              <Login />
+
+            }
+          >
 
           </Route>
 
           {/* //? Регистрация */}
-          <Route exact path={paths.registration}>
+          <Route
+            exact
+            path={paths.registration}
+            element={
+
+              <Register />
+
+            }
+          >
 
           </Route>
 
         </Routes>
 
 
-        <Footer />
+        <Footer page={page} />
 
       </section>
     </CurrentUserContext.Provider>
