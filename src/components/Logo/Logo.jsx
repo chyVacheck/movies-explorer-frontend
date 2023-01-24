@@ -2,6 +2,7 @@
 // ? стили
 import './Logo.css';
 
+// ? иконки
 import logo from './../../images/Logo.svg';
 
 function Logo({onClick}) {
