@@ -1,10 +1,11 @@
+/* eslint-disable no-unused-vars */
 
 // ? стили
 import './App.css';
 
 // * react
 import { useState } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 
 // ? Context
 import { CurrentUserContext } from './../../contexts/CurrentUserContext.js';
@@ -13,9 +14,11 @@ import { CurrentUserContext } from './../../contexts/CurrentUserContext.js';
 import Header from './../Header/Header';
 import Register from './../Register/Register';
 import Login from './../Login/Login';
-import Main from '../Main/Main';
+import Main from './../Main/Main';
 
-import Footer from '../Footer/Footer';
+import Footer from './../Footer/Footer';
+
+import PageNotFound from './../PageNotFound/PageNotFound';
 
 // ? константы
 import { paths } from './../../utils/Constants';
@@ -32,7 +35,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
 
   //? авторизованость
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -90,6 +93,27 @@ function App() {
               <Register />
 
             }
+          >
+
+          </Route>
+
+          {/* // * не основные страницы */}
+
+          {/* // * PageNotFound */}
+          <Route
+            exact
+            path={paths.pageNotFound}
+            element={
+              <PageNotFound />
+            }
+          >
+
+          </Route>
+
+          {/* // * все остальные страницы */}
+          <Route
+            path={'*'}
+            element={<Navigate to={paths.pageNotFound} replace />}
           >
 
           </Route>
