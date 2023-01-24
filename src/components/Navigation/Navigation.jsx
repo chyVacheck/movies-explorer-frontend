@@ -10,7 +10,7 @@ import './Navigation.css';
 // ? constants
 import {
   unActiveNavbarAndButtonRouters as disabledRouters,
-  navigationRouters as allRoutes
+  headerNavigationRouters as allRoutes
 } from './../../utils/Constants.js';
 
 function Navigation({ loggedIn, page }) {
@@ -37,6 +37,7 @@ function Navigation({ loggedIn, page }) {
               return (
                 <li key={index}>
                   <NavLink
+                    key={index}
                     className={({ isActive }) => 'navigation__navlink link' + (isActive ? ' navigation__navlink_status_activ' : '')}
                     to={item.router}>
                     {item.context}
