@@ -5,13 +5,16 @@ import { useEffect, useState } from 'react';
 // ? стили
 import './Footer.css';
 
-// ? константы
-import { YEAR } from './../../utils/Constants';
+// ? constants
+import { YEAR, unActiveNavbarAndButtonRouters as unActiv } from './../../utils/Constants.js';
 
-function Footer() {
+function Footer({ page }) {
 
   const [year, setYear] = useState(`${YEAR}`);
   const currentYear = new Date().getFullYear();
+
+  // ? отрисовка элемента 
+  const [isActive, setIsActive] = useState(false);
 
   // отображение года
   useEffect(() => {
@@ -22,8 +25,17 @@ function Footer() {
     }
   }, [currentYear]);
 
+  // Проверка на отрисовку элемента
+  useEffect(() => {
+    if (unActiv.includes(page)) {
+      setIsActive(false);
+    } else {
+      setIsActive(true);
+    }
+  }, [page]);
+
   return (
-    <footer className={'footer'}>
+    isActive && <footer className={'footer'}>
       <h6 className='footer__title'>
         Учебный проект Яндекс.Практикум х BeatFilm.
       </h6>
