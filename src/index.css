@@ -41,6 +41,7 @@
   --button-text-color: #000000;
 
   --landing-title-border-color: #dadada;
+  --landing-title-black-border-color: #000;
 
   --footer-border-color: #424242;
   --portfolio-web-site-border-color: var(--footer-border-color);
