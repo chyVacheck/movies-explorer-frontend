@@ -3,22 +3,18 @@
 // * react
 
 // ? стили
-import './Main.css';
+import "./Main.css";
 
 // ? компоненты
-import Promo from './../Promo/Promo';
-import NavTab from './../NavTab/NavTab';
-import AboutProject from './../AboutProject/AboutProject';
-import Techs from './../Techs/Techs';
-import AboutMe from './../AboutMe/AboutMe';
-
+import Promo from "./../Promo/Promo";
+import NavTab from "./../NavTab/NavTab";
+import AboutProject from "./../AboutProject/AboutProject";
+import Techs from "./../Techs/Techs";
+import AboutMe from "./../AboutMe/AboutMe";
 
 function Main() {
-
-
   return (
-    <section className={'main'}>
-
+    <main className={"main"}>
       <Promo />
 
       <NavTab />
@@ -28,8 +24,7 @@ function Main() {
       <Techs />
 
       <AboutMe />
-
-    </section>
+    </main>
   );
 }
 
