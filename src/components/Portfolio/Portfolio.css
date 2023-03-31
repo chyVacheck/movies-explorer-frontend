@@ -26,7 +26,8 @@
   justify-content: space-between;
 }
 
-.portfolio-web-site_border_no-border {
+.portfolio-web-site:last-child {
+  padding: 0;
   border: none;
 }
 
@@ -41,8 +42,39 @@
 
 .portfolio-web-site-arrow {
   margin: 0;
+  width: max-content;
   font-weight: 400;
   font-size: 30px;
   line-height: 60px;
   letter-spacing: -0.04em;
+}
+
+@media screen and (min-width: 320px) and (max-width: 544px) {
+  .portfolio__title {
+    width: 100%;
+  }
+  .portfolio-web-site-name {
+    width: 85.61643835616438%;
+    font-size: 18px;
+    line-height: 28px;
+  }
+  .portfolio-web-site-arrow {
+    font-size: 18px;
+    line-height: 28px;
+  }
+}
+
+@media screen and (min-width: 544px) and (max-width: 1024px) {
+  .portfolio__title {
+    width: 37.4251598006998%;
+  }
+  .portfolio-web-site-name {
+    font-size: 28px;
+  }
+  .portfolio-web-site-arrow {
+    font-size: 28px;
+  }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1280px) {
 }
