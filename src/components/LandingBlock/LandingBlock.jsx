@@ -9,7 +9,7 @@ import './LandingBlock.css';
 // ? компоненты
 import TitleOfBlock from '../TitleOfBlock/TitleOfBlock';
 
-function LandingBlock({ children = null, title = '', setting = { big: false, grey: false }, nameOfClass = '' }) {
+function LandingBlock({ children = null, title = '', setting = { big: false, grey: false }, nameOfClass = '', nameOfClassTitle = '' }) {
 
   const [className, setClassName] = useState('landingBlock');
 
@@ -26,7 +26,7 @@ function LandingBlock({ children = null, title = '', setting = { big: false, gre
   return (
     <article className={className}>
 
-      <TitleOfBlock>
+      <TitleOfBlock className={nameOfClassTitle}>
         {title}
       </TitleOfBlock>
 
