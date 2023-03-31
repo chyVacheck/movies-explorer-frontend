@@ -1,33 +1,29 @@
-/* eslint-disable no-unused-vars */
+// * react
+import { useState } from "react";
+import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 
 // ? стили
-import './App.css';
-
-// * react
-import { useState } from 'react';
-import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import "./App.css";
 
 // ? Context
-import { CurrentUserContext } from './../../contexts/CurrentUserContext.js';
+import { CurrentUserContext } from "./../../contexts/CurrentUserContext.js";
 
 // ? компоненты
-import Header from './../Header/Header';
-import Register from './../Register/Register';
-import Login from './../Login/Login';
-import Main from './../Main/Main';
+import Header from "./../Header/Header";
+import Register from "./../Register/Register";
+import Login from "./../Login/Login";
+import Main from "./../Main/Main";
+import Movies from "../Movies/Movies";
+import Footer from "./../Footer/Footer";
 
-import Footer from './../Footer/Footer';
-
-import PageNotFound from './../PageNotFound/PageNotFound';
+import PageNotFound from "./../PageNotFound/PageNotFound";
 
 // ? константы
-import { paths } from './../../utils/Constants';
-
+import { paths } from "./../../utils/Constants";
 
 function App() {
-
   // * для отслеживания пути в адресной строке
-  let location = useLocation();
+  const location = useLocation();
   const page = location.pathname;
 
   // * State`s
@@ -35,94 +31,49 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
 
   //? авторизованость
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <section className="App">
-
         <Header loggedIn={loggedIn} page={page} />
 
         <Routes>
-
           {/* //? О проекте */}
-          <Route
-
-            path={paths.aboutProject}
-            element={
-
-              <Main />
-
-            }>
-          </Route>
+          <Route path={paths.aboutProject} element={<Main />}></Route>
 
           {/* //? Фильмы */}
-          <Route exact path={paths.movies}>
-
-          </Route>
+          <Route exact path={paths.movies} element={<Movies />}></Route>
 
           {/* //? Сохранённые фильмы */}
-          <Route exact path={paths.savedMovies}>
-
-          </Route>
+          <Route exact path={paths.savedMovies}></Route>
 
           {/* //? Аккаунт */}
-          <Route exact path={paths.profile}>
-
-          </Route>
+          <Route exact path={paths.profile}></Route>
 
           {/* //? Авторизация */}
-          <Route
-            exact
-            path={paths.login}
-            element={
-
-              <Login />
-
-            }
-          >
-
-          </Route>
+          <Route exact path={paths.login} element={<Login />}></Route>
 
           {/* //? Регистрация */}
-          <Route
-            exact
-            path={paths.registration}
-            element={
-
-              <Register />
-
-            }
-          >
-
-          </Route>
+          <Route exact path={paths.registration} element={<Register />}></Route>
 
           {/* // * не основные страницы */}
 
-          {/* // * PageNotFound */}
+          {/* // ? PageNotFound */}
           <Route
             exact
             path={paths.pageNotFound}
-            element={
-              <PageNotFound />
-            }
-          >
+            element={<PageNotFound />}
+          ></Route>
 
-          </Route>
-
-          {/* // * все остальные страницы */}
+          {/* // ? все остальные страницы */}
           <Route
-            path={'*'}
+            path={"*"}
             element={<Navigate to={paths.pageNotFound} replace />}
-          >
-
-          </Route>
-
+          ></Route>
         </Routes>
 
-
         <Footer page={page} />
-
       </section>
     </CurrentUserContext.Provider>
   );
