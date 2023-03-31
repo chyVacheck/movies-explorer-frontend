@@ -1,7 +1,7 @@
 .navTab {
   margin: 0;
   background-color: var(--sub-main-bg-color);
-  padding: 24px 0;
+  padding: 25px 0;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -15,4 +15,14 @@
   font-size: 13px;
   line-height: 16px;
   color: var(--main-text-color);
+}
+
+@media screen and (min-width: 320px) and (max-width: 544px) {
+  .navTab {
+    gap: 0 7.5%;
+
+  }
+  .navTab__link {
+    font-size: 11px;
+  }
 }
