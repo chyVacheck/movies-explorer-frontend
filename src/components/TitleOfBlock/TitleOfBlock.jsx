@@ -5,12 +5,12 @@
 // ? стили
 import './TitleOfBlock.css';
 
-function TitleOfBlock({ children }) {
+function TitleOfBlock({ children, className }) {
 
 
   return (
-    <div className={'titleOfBlock'}>
-      <h2 className='titleOfBlock__title'>
+    <div className={`titleOfBlock ${className}`}>
+      <h2 className={`titleOfBlock__title`}>
         {children}
       </h2>
     </div>
