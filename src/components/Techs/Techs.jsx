@@ -13,6 +13,7 @@ function Techs() {
 
   return (
     <LandingBlock
+      nameOfClassTitle={'techs__lending-title'}
       nameOfClass={'techs'}
       setting={{
         big: false,
