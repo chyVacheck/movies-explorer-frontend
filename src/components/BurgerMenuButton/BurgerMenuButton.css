@@ -1,0 +1,42 @@
+.BurgerMenuButton {
+  width: 44px;
+  height: 44px;
+  padding: 11px 8px;
+  display: flex;
+  flex-direction: column;
+  background: none;
+  justify-content: space-between;
+  outline: none;
+}
+
+.BurgerMenuButton__strip {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: var(--burger-menu-color);
+  transition: all 0.4s ease;
+}
+
+.BurgerMenuButton.BurgerMenuButton_active_active {
+  padding: 11px 8px;
+}
+
+.BurgerMenuButton_active_active .BurgerMenuButton__strip:nth-child(1) {
+  transform: translateY(315%) rotate(45deg);
+}
+
+.BurgerMenuButton_active_active .BurgerMenuButton__strip:nth-child(2) {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.BurgerMenuButton_active_active .BurgerMenuButton__strip:nth-child(3) {
+  transform: translateY(-315%) rotate(-45deg);
+}
+
+/* ? если находиться в шапке то выключаем */
+@media screen and (min-width: 1025px) {
+  .BurgerMenuButton_place_header.BurgerMenuButton_loged_login {
+    display: none;
+  }
+}
