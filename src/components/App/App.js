@@ -15,7 +15,7 @@ import Login from "./../Login/Login";
 import Main from "./../Main/Main";
 import Movies from "../Movies/Movies";
 import Footer from "./../Footer/Footer";
-
+import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import PageNotFound from "./../PageNotFound/PageNotFound";
 
 // ? константы
@@ -31,12 +31,20 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
 
   //? авторизованость
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
+
+  //? активно ли бургерное меню
+  const [isActiveBurgerMenu, setIsActiveBurgerMenu] = useState(false);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <section className="App">
-        <Header loggedIn={loggedIn} page={page} />
+        <Header
+          isActiveBurgerMenu={isActiveBurgerMenu}
+          setIsActiveBurgerMenu={setIsActiveBurgerMenu}
+          loggedIn={loggedIn}
+          page={page}
+        />
 
         <Routes>
           {/* //? О проекте */}
@@ -74,6 +82,14 @@ function App() {
         </Routes>
 
         <Footer page={page} />
+
+        {loggedIn && (
+          <BurgerMenu
+            setIsActive={setIsActiveBurgerMenu}
+            isActive={isActiveBurgerMenu}
+            loggedIn={loggedIn}
+          />
+        )}
       </section>
     </CurrentUserContext.Provider>
   );
