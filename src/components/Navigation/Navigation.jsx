@@ -1,39 +1,49 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-
 // * react
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 // ? стили
-import './Navigation.css';
+import "./Navigation.css";
 
 // ? constants
-import {
-  headerNavigationRouters as allRoutes
-} from './../../utils/Constants.js';
+import { headerNavigationRouters as allRoutes } from "./../../utils/Constants.js";
 
-function Navigation({ loggedIn, page }) {
+function Navigation({ loggedIn, place }) {
+  const className = `${
+    loggedIn ? "navigation navigation_loged_login" : "navigation"
+  }${place ? ` navigation_place_${place}` : ""}`;
 
   return (
-    <article className={'navigation'}>
-      {loggedIn ?
-        <ul className={'navigation__login-navlinks'}>
+    <article className={className}>
+      {loggedIn ? (
+        <ul className={"navigation__navlinks"}>
           {allRoutes.map((item, index) => {
             return (
-              <li key={index}>
-                <NavLink
-                  key={index}
-                  className={({ isActive }) => 'navigation__navlink link' + (isActive ? ' navigation__navlink_status_activ' : '')}
-                  to={item.router}>
-                  {item.context}
-                </NavLink>
-              </li>
-            )
+              item.place.includes(place) && (
+                <li key={index} className="navigation__navlink-container">
+                  <NavLink
+                    key={index}
+                    className={({ isActive }) =>
+                      "navigation__navlink link" +
+                      (isActive ? " navigation__navlink_status_activ" : "")
+                    }
+                    to={item.router}
+                  >
+                    {item.context}
+                  </NavLink>
+                </li>
+              )
+            );
           })}
         </ul>
-        :
-        <NavLink to='/signup' className={'navigation__navlink-registration link'} >Регистрация</NavLink>
-      }
-
+      ) : (
+        <NavLink
+          to="/signup"
+          className={"navigation__navlink-registration link"}
+        >
+          Регистрация
+        </NavLink>
+      )}
     </article>
   );
 }
