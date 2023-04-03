@@ -1,0 +1,33 @@
+.BurgerMenu {
+  position: fixed;
+  top: -100vh;
+  right: 0;
+  width: 67.7083333%;
+  height: 100vh;
+  background-color: var(--main-bg-color);
+  transition: all 0.4s ease;
+  overflow-y: hidden;
+
+  display: flex;
+  flex-direction: column;
+  padding: 22px 22px 90px;
+  box-sizing: border-box;
+}
+
+.BurgerMenu__button {
+  display: flex;
+  flex-direction: row-reverse;
+  margin: 0 0 93px;
+}
+
+.BurgerMenu_active_active {
+  top: 0%;
+  overflow-y: hidden;
+}
+
+@media screen and (min-width: 320px) and (max-width: 544px) {
+  .BurgerMenu {
+    padding: 13px 13px 46px;
+    width: 100%;
+  }
+}
