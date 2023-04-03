@@ -1,6 +1,11 @@
 .buttonProfile {
   display: flex;
   align-items: center;
+  justify-content: center;
+}
+
+.buttonProfile_place_BurgerMenu.buttonProfile {
+  margin: auto 0 0;
 }
 
 .buttonProfile__enter-profile {
@@ -47,4 +52,11 @@
   background-color: var(--user-icon-button-bg-color);
   border-radius: 50px;
   padding: 7.75px 7.81px 7.58px;
+}
+
+/* ? если находиться в шапке то выключаем */
+@media screen and (min-width: 320px) and (max-width: 1024px) {
+  .buttonProfile_loged_login.buttonProfile_place_header {
+    display: none;
+  }
 }
