@@ -35,7 +35,7 @@
   --logo-bg-color: #3ddc84;
   --light-bg-color: #3ddc84;
 
-  --main-text-color: #ffffff;
+  --main-text-color: #fff;
   --sub-text-color: #8b8b8b;
   --err-text-color: #ee3465;
   --button-text-color: #000000;
@@ -45,6 +45,8 @@
 
   --footer-border-color: #424242;
   --portfolio-web-site-border-color: var(--footer-border-color);
+
+  --burger-menu-color: #fff;
 
   --week-text-color: #000000;
   --week-bg-light-color: #3ddc84;
