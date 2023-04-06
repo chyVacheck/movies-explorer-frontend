@@ -1,7 +1,7 @@
 // * react
 
 // ? стили
-import "./BurgerMenuButton.css";
+import './BurgerMenuButton.css';
 
 // ? компоненты
 
@@ -10,9 +10,9 @@ import "./BurgerMenuButton.css";
 function BurgerMenuButton({ loggedIn, isActive, place, setIsActive }) {
   // ? className
   const className = `button BurgerMenuButton${
-    place ? ` BurgerMenuButton_place_${place}` : ""
-  } ${loggedIn ? "BurgerMenuButton_loged_login" : ""} ${
-    isActive ? "BurgerMenuButton_active_active" : ""
+    place ? ` BurgerMenuButton_place_${place}` : ''
+  } ${loggedIn ? 'BurgerMenuButton_loged_login' : ''} ${
+    isActive ? 'BurgerMenuButton_active_active' : ''
   }`;
 
   return (

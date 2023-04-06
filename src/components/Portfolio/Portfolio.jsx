@@ -1,15 +1,13 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-
 // * react
 
 // ? стили
-import "./Portfolio.css";
+import './Portfolio.css';
 
 // ? компоненты
 
 function Portfolio() {
   return (
-    <article className={"portfolio"}>
+    <article className={'portfolio'}>
       <h3 className="portfolio__title">Портфолио</h3>
 
       <div className="portfolio__list-projects">

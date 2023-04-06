@@ -1,11 +1,11 @@
 // * react
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 // ? стили
-import "./Footer.css";
+import './Footer.css';
 
 // ? constants
-import { YEAR, activeFooterRoutes as activ } from "./../../utils/Constants.js";
+import { YEAR, activeFooterRoutes as activ } from './../../utils/Constants.js';
 
 function Footer({ page }) {
   const [year, setYear] = useState(`${YEAR}`);
@@ -51,7 +51,7 @@ function Footer({ page }) {
             <a
               href="https://github.com/chyVacheck"
               className="footer__info-text link"
-              target={"_blank"}
+              target={'_blank'}
               rel="noreferrer"
             >
               Github

@@ -1,22 +1,21 @@
 // * react
-import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 
 // ? стили
-import "./Navigation.css";
+import './Navigation.css';
 
 // ? constants
-import { headerNavigationRouters as allRoutes } from "./../../utils/Constants.js";
+import { headerNavigationRouters as allRoutes } from './../../utils/Constants.js';
 
 function Navigation({ loggedIn, place }) {
   const className = `${
-    loggedIn ? "navigation navigation_loged_login" : "navigation"
-  }${place ? ` navigation_place_${place}` : ""}`;
+    loggedIn ? 'navigation navigation_loged_login' : 'navigation'
+  }${place ? ` navigation_place_${place}` : ''}`;
 
   return (
     <article className={className}>
       {loggedIn ? (
-        <ul className={"navigation__navlinks"}>
+        <ul className={'navigation__navlinks'}>
           {allRoutes.map((item, index) => {
             return (
               item.place.includes(place) && (
@@ -24,8 +23,8 @@ function Navigation({ loggedIn, place }) {
                   <NavLink
                     key={index}
                     className={({ isActive }) =>
-                      "navigation__navlink link" +
-                      (isActive ? " navigation__navlink_status_activ" : "")
+                      'navigation__navlink link' +
+                      (isActive ? ' navigation__navlink_status_activ' : '')
                     }
                     to={item.router}
                   >
@@ -39,7 +38,7 @@ function Navigation({ loggedIn, place }) {
       ) : (
         <NavLink
           to="/signup"
-          className={"navigation__navlink-registration link"}
+          className={'navigation__navlink-registration link'}
         >
           Регистрация
         </NavLink>

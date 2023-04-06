@@ -1,20 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 // * react
-import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // ? Context
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 // ? стили
-import "./ButtonProfile.css";
+import './ButtonProfile.css';
 
 // ? constants
-import { paths } from "./../../utils/Constants.js";
+import { paths } from './../../utils/Constants.js';
 
 // ? иконка пользователя
-import userIcon from "./../../images/UserIcon.svg";
+import userIcon from './../../images/UserIcon.svg';
 
 function ButtonProfile({ place, loggedIn }) {
   const navigate = useNavigate();
@@ -36,8 +36,8 @@ function ButtonProfile({ place, loggedIn }) {
 
   // ? className
   const className = `button buttonProfile${
-    loggedIn ? " buttonProfile_loged_login" : ""
-  } ${place ? ` buttonProfile_place_${place}` : ""}`;
+    loggedIn ? ' buttonProfile_loged_login' : ''
+  } ${place ? ` buttonProfile_place_${place}` : ''}`;
 
   return (
     <article className={className}>

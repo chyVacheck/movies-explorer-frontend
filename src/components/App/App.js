@@ -1,25 +1,25 @@
 // * react
-import { useState } from "react";
-import { Routes, Route, useLocation, Navigate } from "react-router-dom";
+import { useState } from 'react';
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 
 // ? стили
-import "./App.css";
+import './App.css';
 
 // ? Context
-import { CurrentUserContext } from "./../../contexts/CurrentUserContext.js";
+import { CurrentUserContext } from './../../contexts/CurrentUserContext.js';
 
 // ? компоненты
-import Header from "./../Header/Header";
-import Register from "./../Register/Register";
-import Login from "./../Login/Login";
-import Main from "./../Main/Main";
-import Movies from "../Movies/Movies";
-import Footer from "./../Footer/Footer";
-import BurgerMenu from "../BurgerMenu/BurgerMenu";
-import PageNotFound from "./../PageNotFound/PageNotFound";
+import Header from './../Header/Header';
+import Register from './../Register/Register';
+import Login from './../Login/Login';
+import Main from './../Main/Main';
+import Movies from '../Movies/Movies';
+import Footer from './../Footer/Footer';
+import BurgerMenu from '../BurgerMenu/BurgerMenu';
+import PageNotFound from './../PageNotFound/PageNotFound';
 
 // ? константы
-import { paths } from "./../../utils/Constants";
+import { paths } from './../../utils/Constants';
 
 function App() {
   // * для отслеживания пути в адресной строке
@@ -76,7 +76,7 @@ function App() {
 
           {/* // ? все остальные страницы */}
           <Route
-            path={"*"}
+            path={'*'}
             element={<Navigate to={paths.pageNotFound} replace />}
           ></Route>
         </Routes>

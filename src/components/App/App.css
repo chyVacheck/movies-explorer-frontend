@@ -1,6 +1,6 @@
 .App {
   position: relative;
-  font-family: "Inter";
+  font-family: 'Inter';
   font-style: normal;
   color: var(--main-text-color);
 }

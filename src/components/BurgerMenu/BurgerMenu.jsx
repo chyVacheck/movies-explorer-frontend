@@ -1,23 +1,23 @@
 // * react
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 // ? стили
-import "./BurgerMenu.css";
+import './BurgerMenu.css';
 
 // ? компоненты
-import BurgerMenuButton from "../BurgerMenuButton/BurgerMenuButton";
-import ButtonProfile from "./../ButtonProfile/ButtonProfile";
-import Navigation from "./../Navigation/Navigation";
+import BurgerMenuButton from '../BurgerMenuButton/BurgerMenuButton';
+import ButtonProfile from './../ButtonProfile/ButtonProfile';
+import Navigation from './../Navigation/Navigation';
 
 // ? constants
 
 function BurgerMenu({ isActive, setIsActive, loggedIn }) {
   // ? отрисовка элемента
-  const [className, setClassName] = useState("");
+  const [className, setClassName] = useState('');
 
   // className
   useEffect(() => {
-    setClassName(`BurgerMenu ${isActive ? "BurgerMenu_active_active" : ""}`);
+    setClassName(`BurgerMenu ${isActive ? 'BurgerMenu_active_active' : ''}`);
   }, [isActive]);
 
   return (
@@ -30,9 +30,9 @@ function BurgerMenu({ isActive, setIsActive, loggedIn }) {
         />
       </div>
 
-      <Navigation place={"BurgerMenu"} loggedIn={loggedIn} />
+      <Navigation place={'BurgerMenu'} loggedIn={loggedIn} />
 
-      <ButtonProfile place={"BurgerMenu"} loggedIn={loggedIn} />
+      <ButtonProfile place={'BurgerMenu'} loggedIn={loggedIn} />
     </article>
   );
 }

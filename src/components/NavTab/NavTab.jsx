@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-
 // * react
 import { Link } from 'react-router-dom';
 
@@ -10,27 +8,15 @@ import './NavTab.css';
 import { mainNavigationRouters as routers } from './../../utils/Constants';
 
 function NavTab() {
-
-
   return (
     <section className={'navTab'}>
-
-      {
-        routers.map((item, index) => {
-
-          return (
-            <Link
-              key={index}
-              to={item.router}
-              className={'link navTab__link'}
-            >
-              {item.context}
-            </Link>
-          )
-        })
-
-      }
-
+      {routers.map((item, index) => {
+        return (
+          <Link key={index} to={item.router} className={'link navTab__link'}>
+            {item.context}
+          </Link>
+        );
+      })}
     </section>
   );
 }

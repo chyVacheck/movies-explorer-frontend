@@ -1,4 +1,3 @@
-
 // * react
 import { useNavigate } from 'react-router-dom';
 
@@ -12,7 +11,6 @@ import logo from './../../images/Logo.svg';
 import { paths } from './../../utils/Constants.js';
 
 function Logo() {
-
   const navigate = useNavigate();
 
   function toAboutProject() {
@@ -20,7 +18,12 @@ function Logo() {
   }
 
   return (
-    <img onClick={toAboutProject} className={'logo link'} src={logo} alt="logo" />
+    <img
+      onClick={toAboutProject}
+      className={'logo link'}
+      src={logo}
+      alt="logo"
+    />
   );
 }
 

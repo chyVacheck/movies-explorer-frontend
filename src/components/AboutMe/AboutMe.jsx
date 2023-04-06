@@ -1,22 +1,22 @@
 // * react
 
 // ? стили
-import "./AboutMe.css";
+import './AboutMe.css';
 
 // ? фото
-import photo from "./../../images/photo_Dmytro.jpg";
+import photo from './../../images/photo_Dmytro.jpg';
 
 // ? из констант
-import { mainNavigationRouters as routers } from "./../../utils/Constants";
+import { mainNavigationRouters as routers } from './../../utils/Constants';
 
 // ? компоненты
-import LandingBlock from "../LandingBlock/LandingBlock";
-import Portfolio from "./../Portfolio/Portfolio";
+import LandingBlock from '../LandingBlock/LandingBlock';
+import Portfolio from './../Portfolio/Portfolio';
 
 function AboutMe() {
   return (
     <LandingBlock
-      nameOfClass={"aboutMe"}
+      nameOfClass={'aboutMe'}
       setting={{
         big: true,
         grey: false,

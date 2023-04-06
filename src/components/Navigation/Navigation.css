@@ -2,7 +2,7 @@
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: center;
 }
 
@@ -13,7 +13,7 @@
 .navigation__navlinks {
   display: flex;
   flex-direction: row;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: center;
   gap: 0 20px;
   margin: 0;

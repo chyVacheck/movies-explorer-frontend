@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-
 // * react
 
 // ? стили
@@ -11,17 +9,13 @@ import SignForm from './../SignForm/SignForm';
 import { paths } from './../../utils/Constants';
 
 function Login() {
-
   return (
     <section className={'login'}>
-
       <SignForm
-        title='Рады видеть!'
-        submitButton={
-          {
-            text: 'Войти'
-          }
-        }
+        title="Рады видеть!"
+        submitButton={{
+          text: 'Войти',
+        }}
         inputs={[
           {
             name: 'E-mail',
@@ -39,14 +33,11 @@ function Login() {
         ]}
         error={'Что-то пошло не так...'}
         textUnderSubmit={'Ещё не зарегистрированы?'}
-        link={
-          {
-            text: 'Регистрация',
-            to: paths.registration,
-          }
-        }
+        link={{
+          text: 'Регистрация',
+          to: paths.registration,
+        }}
       />
-
     </section>
   );
 }
