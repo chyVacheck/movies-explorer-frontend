@@ -21,7 +21,7 @@
 
 .portfolio-web-site {
   padding: 0 0 9px;
-  border-bottom: 1px solid var(--portfolio-web-site-border-color);
+  border-bottom: 1px solid var(--border-color);
   display: flex;
   justify-content: space-between;
 }
