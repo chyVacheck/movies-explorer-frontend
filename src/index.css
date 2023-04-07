@@ -46,10 +46,12 @@
   --border-color: #424242;
 
   --burger-menu-color: #fff;
+  --button-component-color: #fff;
 
   --week-text-color: #000000;
-  --week-bg-light-color: #3ddc84;
+  --week-bg-light-color: var(--light-bg-color);
   --week-bg-dakr-color: #303030;
+  --button-bg-dakr-color: #303030;
 
   --texhs-bg-dakr-color: #303030;
 
@@ -68,7 +70,7 @@
   /* // #222222; */
   /* // #303030; */
   /* // #4285F4; */
-  /* #2F2F2F; */
+  /* // #2F2F2F; */
   /* // EE3465 */
   /* #000000; */
   /* #A0A0A0; */
