@@ -15,6 +15,7 @@ import Login from '../Login/Login';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
+import Profile from '../Profile/Profile';
 import Footer from '../Footer/Footer';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import PageNotFound from '../PageNotFound/PageNotFound';
@@ -58,7 +59,7 @@ function App() {
           <Route exact path={paths.savedMovies} element={<SavedMovies />} />
 
           {/* //? Аккаунт */}
-          <Route exact path={paths.profile} />
+          <Route exact path={paths.profile} element={<Profile />} />
 
           {/* //? Авторизация */}
           <Route exact path={paths.login} element={<Login />} />
