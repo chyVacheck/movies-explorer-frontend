@@ -1,13 +1,13 @@
 // * react
-import { NavLink } from 'react-router-dom';
+import React, { NavLink } from 'react-router-dom';
 
 // ? стили
 import './Navigation.css';
 
 // ? constants
-import { headerNavigationRouters as allRoutes } from './../../utils/Constants.js';
+import { headerNavigationRouters as allRoutes } from './../../utils/Constants';
 
-function Navigation({ loggedIn, place }) {
+function Navigation({ loggedIn, place, closeBurgerMenu }) {
   const className = `${
     loggedIn ? 'navigation navigation_loged_login' : 'navigation'
   }${place ? ` navigation_place_${place}` : ''}`;
@@ -15,11 +15,15 @@ function Navigation({ loggedIn, place }) {
   return (
     <article className={className}>
       {loggedIn ? (
-        <ul className={'navigation__navlinks'}>
+        <ul className='navigation__navlinks'>
           {allRoutes.map((item, index) => {
             return (
               item.place.includes(place) && (
-                <li key={index} className="navigation__navlink-container">
+                <li
+                  onClick={closeBurgerMenu}
+                  key={index}
+                  className='navigation__navlink-container'
+                >
                   <NavLink
                     key={index}
                     className={({ isActive }) =>
@@ -36,10 +40,7 @@ function Navigation({ loggedIn, place }) {
           })}
         </ul>
       ) : (
-        <NavLink
-          to="/signup"
-          className={'navigation__navlink-registration link'}
-        >
+        <NavLink to='/signup' className='navigation__navlink-registration link'>
           Регистрация
         </NavLink>
       )}

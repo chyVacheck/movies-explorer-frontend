@@ -1,7 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-
 // * react
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // ? Context
@@ -16,7 +14,7 @@ import { paths } from './../../utils/Constants.js';
 // ? иконка пользователя
 import userIcon from './../../images/UserIcon.svg';
 
-function ButtonProfile({ place, loggedIn }) {
+function ButtonProfile({ place, loggedIn, closeBurgerMenu }) {
   const navigate = useNavigate();
 
   // * State`s
@@ -32,6 +30,7 @@ function ButtonProfile({ place, loggedIn }) {
   // ? к стр профиля
   function toProfile() {
     navigate(paths.profile);
+    closeBurgerMenu();
   }
 
   // ? className
@@ -43,18 +42,18 @@ function ButtonProfile({ place, loggedIn }) {
     <article className={className}>
       {loggedIn ? (
         <button
-          className="buttonProfile__enter-profile button"
+          className='buttonProfile__enter-profile button'
           onClick={toProfile}
         >
-          <p className="buttonProfile__text">Аккаунт</p>
+          <p className='buttonProfile__text'>Аккаунт</p>
           <img
-            className="buttonProfile__user-icon"
+            className='buttonProfile__user-icon'
             src={userIcon}
-            alt="profile"
+            alt='profile'
           />
         </button>
       ) : (
-        <button className="buttonProfile__enter-login button" onClick={toLogin}>
+        <button className='buttonProfile__enter-login button' onClick={toLogin}>
           Войти
         </button>
       )}

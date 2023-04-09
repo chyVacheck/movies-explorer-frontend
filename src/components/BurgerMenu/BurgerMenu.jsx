@@ -1,5 +1,5 @@
 // * react
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // ? стили
 import './BurgerMenu.css';
@@ -20,9 +20,13 @@ function BurgerMenu({ isActive, setIsActive, loggedIn }) {
     setClassName(`BurgerMenu ${isActive ? 'BurgerMenu_active_active' : ''}`);
   }, [isActive]);
 
+  function closeBurgerMenu() {
+    setIsActive(false);
+  }
+
   return (
     <article className={className}>
-      <div className="BurgerMenu__button">
+      <div className='BurgerMenu__button'>
         <BurgerMenuButton
           isActive={isActive}
           setIsActive={setIsActive}
@@ -30,9 +34,17 @@ function BurgerMenu({ isActive, setIsActive, loggedIn }) {
         />
       </div>
 
-      <Navigation place={'BurgerMenu'} loggedIn={loggedIn} />
+      <Navigation
+        place={'BurgerMenu'}
+        loggedIn={loggedIn}
+        closeBurgerMenu={closeBurgerMenu}
+      />
 
-      <ButtonProfile place={'BurgerMenu'} loggedIn={loggedIn} />
+      <ButtonProfile
+        place={'BurgerMenu'}
+        loggedIn={loggedIn}
+        closeBurgerMenu={closeBurgerMenu}
+      />
     </article>
   );
 }
