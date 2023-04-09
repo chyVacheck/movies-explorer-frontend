@@ -39,6 +39,7 @@
   --sub-text-color: #8b8b8b;
   --err-text-color: #ee3465;
   --button-text-color: #000000;
+  --movies-card-bg-color: #222222;
 
   --landing-title-border-color: #dadada;
   --landing-title-black-border-color: #000;
@@ -57,6 +58,7 @@
 
   --user-icon-button-bg-color: #313131;
   --button-bg-color: #ee3465;
+  --button-bg-color-no-added: #313131;
 
   --submit-button-bg-color: #4285f4;
   --link-color: #4285f4;

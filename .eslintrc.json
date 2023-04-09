@@ -16,9 +16,17 @@
     "jsx-quotes": ["error", "prefer-single"],
     "object-curly-newline": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "comma-dangle": ["error", "never"],
+    "comma-dangle": ["off"],
     "no-console": "off",
     "import/no-useless-path-segments": ["off"],
-    "no-unused-vars": ["off"]
+    "no-unused-vars": ["off"],
+    "no-nested-ternary": ["off"],
+    "react/no-array-index-key": ["off"],
+    "react/jsx-no-bind": [
+      "enabled",
+      {
+        "allowFunctions": true
+      }
+    ]
   }
 }
