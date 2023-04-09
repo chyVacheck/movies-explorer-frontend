@@ -1,7 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-
 // * react
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // ? стили
 import './Header.css';
@@ -13,7 +11,7 @@ import ButtonProfile from './../ButtonProfile/ButtonProfile';
 import BurgerMenuButton from '../BurgerMenuButton/BurgerMenuButton';
 
 // ? constants
-import { activeHeaderRoutes as activ } from './../../utils/Constants.js';
+import { activeHeaderRoutes as activ } from './../../utils/Constants';
 
 function Header({ loggedIn, page, isActiveBurgerMenu, setIsActiveBurgerMenu }) {
   // * State`s
@@ -50,15 +48,15 @@ function Header({ loggedIn, page, isActiveBurgerMenu, setIsActiveBurgerMenu }) {
       <header className={className}>
         <Logo />
 
-        <Navigation place={'header'} loggedIn={loggedIn} />
+        <Navigation place='header' loggedIn={loggedIn} />
 
-        <ButtonProfile place={'header'} loggedIn={loggedIn} />
+        <ButtonProfile place='header' loggedIn={loggedIn} />
 
         {loggedIn && (
           <BurgerMenuButton
             isActive={isActiveBurgerMenu}
             setIsActive={setIsActiveBurgerMenu}
-            place={'header'}
+            place='header'
             loggedIn={loggedIn}
           />
         )}
