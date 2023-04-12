@@ -47,12 +47,13 @@
   --border-color: #424242;
 
   --burger-menu-color: #fff;
-  --button-component-color: #fff;
+  --button-component-color-active: #fff;
+  --button-component-color-unactive: #a0a0a0;
 
   --week-text-color: #000000;
   --week-bg-light-color: var(--light-bg-color);
   --week-bg-dakr-color: #303030;
-  --button-bg-dakr-color: #303030;
+  --button-bg-dakr-color: #343434;
 
   --texhs-bg-dakr-color: #303030;
 
@@ -65,6 +66,9 @@
   --link-color: #4285f4;
   --input-bg-color: #2f2f2f;
 
+  --preloader-bg-color: #4285f4;
+  --preloader-color: #3ddc84;
+
   /* // #8B8B8B; */
   /* // #202020; */
   /* // #3DDC84; */
@@ -75,8 +79,8 @@
   /* // #4285F4; */
   /* // #2F2F2F; */
   /* // EE3465 */
-  /* #000000; */
-  /* #A0A0A0; */
+  /* // #000000; */
+  /* // #A0A0A0; */
   /* // #DADADA; */
   /* // #073042; */
   /* #272727; */

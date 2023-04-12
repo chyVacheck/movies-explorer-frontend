@@ -1,5 +1,5 @@
 // * react
-import React from 'react';
+import React, { useState } from 'react';
 // ? стили
 import './Movies.css';
 
@@ -7,6 +7,7 @@ import './Movies.css';
 import SearchForm from './../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import MoreButton from '../MoreButton/MoreButton';
+import Preloader from '../Preloader/Preloader';
 
 // ? image
 import defaultPhoto from './../../images/default_movie-card.png';
@@ -14,8 +15,17 @@ import defaultPhoto from './../../images/default_movie-card.png';
 // ? constants
 
 function Movies() {
+  // ? состояние прелоадера
+  const [isPreloaderActive, setIsPreloaderActive] = useState(false);
+
+  // заглушка переключающая прелоадер
   function moreCards() {
-    console.log('+1 фильм');
+    if (isPreloaderActive) {
+      console.log('Выключили загрузку карточек');
+    } else {
+      console.log('Включили загрузку карточек');
+    }
+    setIsPreloaderActive(!isPreloaderActive);
   }
 
   return (
@@ -53,6 +63,7 @@ function Movies() {
         ]}
         place='movies'
       />
+      {isPreloaderActive && <Preloader />}
       <MoreButton onClick={moreCards} />
     </section>
   );
