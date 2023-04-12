@@ -6,26 +6,31 @@ import './Profile.css';
 
 // ? компоненты
 
-function Profile({
-  user = 'Дмитрий',
-  email = 'dima@yandex.ru',
-  onSubmit = () => console.log('Данные измененны'),
-}) {
+// ? Context
+import { CurrentUserContext } from './../../contexts/CurrentUserContext';
+
+function Profile({ onSubmit = () => console.log('Данные измененны') }) {
+  const user = React.useContext(CurrentUserContext);
+
   return (
     <section className='profile'>
       {/* // ? Заглавие */}
-      <h1 className='profile__title'>{`Привет, ${user}!`}</h1>
+      <h1 className='profile__title'>{`Привет, ${user.name}!`}</h1>
       {/* // ? форма */}
       <form onSubmit={onSubmit} className='profile__form'>
         <div className='profile__field'>
           <h2 className='profile__field-name'>Имя</h2>
-          <input value={user} className='profile__field-input' />
+          <input value={user.name} className='profile__field-input' />
         </div>
         <div className='profile__field'>
           <h2 lang='en' className='profile__field-name'>
             E-mail
           </h2>
-          <input value={email} type='email' className='profile__field-input' />
+          <input
+            value={user.email}
+            type='email'
+            className='profile__field-input'
+          />
         </div>
       </form>
       {/* // ? управление */}
