@@ -98,7 +98,7 @@
 }
 
 .SearchForm__button-short-film::before {
-  background-color: var(--button-component-color);
+  background-color: var(--button-component-color-unactive);
   display: block;
   border-radius: 8px;
   content: '';
@@ -109,6 +109,7 @@
 
 .SearchForm__button-short-film_active_active.SearchForm__button-short-film::before {
   margin: 0 0 0 calc(100% - 16px);
+  background-color: var(--button-component-color-active);
 }
 
 .SearchForm__text {

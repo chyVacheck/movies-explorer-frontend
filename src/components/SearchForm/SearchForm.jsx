@@ -1,5 +1,5 @@
 // * react
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // ? стили
 import './SearchForm.css';
 
@@ -12,6 +12,15 @@ function SearchForm() {
   // * State`s
   // ? пользователь данные
   const [isActiveShortFilm, setIsActiveShortFilm] = useState(false);
+
+  useEffect(() => {
+    setIsActiveShortFilm(JSON.parse(localStorage.getItem('shortFilm')));
+  }, []);
+
+  function toogleShortFilm() {
+    setIsActiveShortFilm(!isActiveShortFilm);
+    localStorage.setItem('shortFilm', !isActiveShortFilm);
+  }
 
   return (
     <article className='SearchForm'>
@@ -36,7 +45,7 @@ function SearchForm() {
               <button
                 aria-label='short films'
                 type='button'
-                onClick={() => setIsActiveShortFilm(!isActiveShortFilm)}
+                onClick={toogleShortFilm}
                 className={`button SearchForm__button-short-film ${
                   isActiveShortFilm
                     ? 'SearchForm__button-short-film_active_active'
@@ -51,7 +60,7 @@ function SearchForm() {
           <button
             aria-label='short films'
             type='button'
-            onClick={() => setIsActiveShortFilm(!isActiveShortFilm)}
+            onClick={toogleShortFilm}
             className={`button SearchForm__button-short-film ${
               isActiveShortFilm
                 ? 'SearchForm__button-short-film_active_active'
