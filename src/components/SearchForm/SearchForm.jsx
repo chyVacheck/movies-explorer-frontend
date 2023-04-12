@@ -14,7 +14,9 @@ function SearchForm() {
   const [isActiveShortFilm, setIsActiveShortFilm] = useState(false);
 
   useEffect(() => {
-    setIsActiveShortFilm(JSON.parse(localStorage.getItem('shortFilm')));
+    if (['true', 'false'].includes(localStorage.getItem('shortFilm'))) {
+      setIsActiveShortFilm(JSON.parse(localStorage.getItem('shortFilm')));
+    }
   }, []);
 
   function toogleShortFilm() {
