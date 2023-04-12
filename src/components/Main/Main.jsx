@@ -1,4 +1,5 @@
 // * react
+import React from 'react';
 
 // ? стили
 import './Main.css';

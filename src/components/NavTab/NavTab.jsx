@@ -1,5 +1,6 @@
 // * react
-import { Link } from 'react-router-dom';
+import React, { Link } from 'react-router-dom';
+import AnchorLink from 'react-anchor-link-smooth-scroll';
 
 // ? стили
 import './NavTab.css';
@@ -9,15 +10,19 @@ import { mainNavigationRouters as routers } from './../../utils/Constants';
 
 function NavTab() {
   return (
-    <section className={'navTab'}>
+    <nav className={'navTab'}>
       {routers.map((item, index) => {
         return (
-          <Link key={index} to={item.router} className={'link navTab__link'}>
+          <AnchorLink
+            key={index}
+            href={`#${item.id}`}
+            className='link navTab__link'
+          >
             {item.context}
-          </Link>
+          </AnchorLink>
         );
       })}
-    </section>
+    </nav>
   );
 }
 
