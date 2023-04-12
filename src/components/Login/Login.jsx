@@ -1,4 +1,5 @@
 // * react
+import React from 'react';
 
 // ? стили
 import './Login.css';
@@ -12,7 +13,7 @@ function Login() {
   return (
     <section className={'login'}>
       <SignForm
-        title="Рады видеть!"
+        title='Рады видеть!'
         submitButton={{
           text: 'Войти',
         }}

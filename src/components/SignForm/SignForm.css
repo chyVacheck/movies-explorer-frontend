@@ -81,6 +81,7 @@
   border: none;
   background-color: var(--submit-button-bg-color);
   margin-top: auto;
+  color: var(--main-text-color);
 }
 
 .signForm__text-under-submit {
@@ -94,7 +95,28 @@
 
 .signForm__link {
   color: var(--link-color);
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 544px) {
+  .signForm {
+    width: 100%;
+    align-items: center;
+    gap: 50px 0;
+    padding: 56px 0 30px;
+    height: 100vh;
+  }
+  .signForm__title {
+    text-align: center;
+    margin: 0 0 30px;
+  }
+  .signForm__form {
+    width: 81.25%;
+    height: 100%;
+  }
+  .signForm__text-under-submit {
+    margin: 14px 0 0;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+  }
 }

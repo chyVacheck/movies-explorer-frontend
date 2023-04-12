@@ -30,7 +30,10 @@ function App() {
 
   // * State`s
   // ? пользователь данные
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState({
+    name: 'Дмитрий',
+    email: 'dima@yandex.ru',
+  });
 
   // ? авторизованость
   const [loggedIn, setLoggedIn] = useState(true);

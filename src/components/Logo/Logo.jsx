@@ -1,5 +1,5 @@
 // * react
-import { useNavigate } from 'react-router-dom';
+import React, { useNavigate } from 'react-router-dom';
 
 // ? стили
 import './Logo.css';
@@ -22,7 +22,7 @@ function Logo() {
       onClick={toAboutProject}
       className={'logo link'}
       src={logo}
-      alt="logo"
+      alt='logo'
     />
   );
 }
