@@ -27,6 +27,11 @@
   opacity: 0.8;
 }
 
+.button_enabled_disabled:hover {
+  cursor: default;
+  opacity: 1;
+}
+
 #root {
   --main-bg-color: #202020;
   --sub-main-bg-color: #272727;
@@ -61,6 +66,8 @@
   --user-icon-button-bg-color: #313131;
   --button-bg-color: #ee3465;
   --button-bg-color-no-added: #313131;
+  --disabled-button-bg-color: #f8f8f8;
+  --disabled-button-text-color: #c4c4c4;
 
   --submit-button-bg-color: #4285f4;
   --link-color: #4285f4;
@@ -84,11 +91,11 @@
   /* // #DADADA; */
   /* // #073042; */
   /* #272727; */
-  /* #C4C4C4; */
+  /* // #C4C4C4; */
   /* #E6E6E6; */
   /* #505050; */
   /* #959595; */
-  /* #F8F8F8; */
+  /* // #F8F8F8; */
 }
 
 /* ? скролбар  */

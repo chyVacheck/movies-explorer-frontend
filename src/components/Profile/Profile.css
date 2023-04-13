@@ -74,6 +74,37 @@
   color: var(--button-out-color);
 }
 
+.profile__error-button-save {
+  margin: auto 0 0;
+  width: 410px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.profile__error {
+  text-align: center;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  margin: 0;
+  color: var(--err-text-color);
+  min-height: 13px;
+}
+
+.profile__button-save {
+  color: var(--main-text-color);
+  padding: 14px 0;
+  background-color: var(--submit-button-bg-color);
+  border-radius: 3px;
+  width: 100%;
+}
+
+.profile__button-save_enabled_disabled {
+  color: var(--disabled-button-text-color);
+  background-color: var(--disabled-button-bg-color);
+}
+
 @media screen and (min-width: 544px) and (max-width: 1024px) {
   .profile {
     padding: 30.7291667% 0 35.0260417%;
@@ -105,5 +136,8 @@
   .profile__management-button {
     font-size: 12px;
     line-height: 15px;
+  }
+  .profile__error-button-save {
+    width: 300px;
   }
 }
