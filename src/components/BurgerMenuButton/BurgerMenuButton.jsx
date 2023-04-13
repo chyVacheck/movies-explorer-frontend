@@ -1,4 +1,5 @@
 // * react
+import React from 'react';
 
 // ? стили
 import './BurgerMenuButton.css';
@@ -22,9 +23,9 @@ function BurgerMenuButton({ loggedIn, isActive, place, setIsActive }) {
       }}
       className={className}
     >
-      <span className="BurgerMenuButton__strip"></span>
-      <span className="BurgerMenuButton__strip"></span>
-      <span className="BurgerMenuButton__strip"></span>
+      <span className='BurgerMenuButton__strip'></span>
+      <span className='BurgerMenuButton__strip'></span>
+      <span className='BurgerMenuButton__strip'></span>
     </button>
   );
 }

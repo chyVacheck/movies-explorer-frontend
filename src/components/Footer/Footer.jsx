@@ -1,5 +1,5 @@
 // * react
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // ? стили
 import './Footer.css';
@@ -34,25 +34,25 @@ function Footer({ page }) {
 
   return (
     isActive && (
-      <footer className="footer">
-        <h6 className="footer__title">
+      <footer className='footer'>
+        <h6 className='footer__title'>
           Учебный проект Яндекс.Практикум х BeatFilm.
         </h6>
 
-        <div className="footer__info">
+        <div className='footer__info'>
           {/* © */}
-          <p className="footer__info-text footer__info-text_type_copyright">
+          <p className='footer__info-text footer__info-text_type_copyright'>
             © {year}
           </p>
 
-          <div className="footer__info-texts">
-            <p className="footer__info-text">Яндекс.Практикум</p>
+          <div className='footer__info-texts'>
+            <p className='footer__info-text'>Яндекс.Практикум</p>
 
             <a
-              href="https://github.com/chyVacheck"
-              className="footer__info-text link"
+              href='https://github.com/chyVacheck'
+              className='footer__info-text link'
               target={'_blank'}
-              rel="noreferrer"
+              rel='noreferrer'
             >
               Github
             </a>

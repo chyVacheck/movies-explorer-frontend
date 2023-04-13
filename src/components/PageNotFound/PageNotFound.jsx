@@ -1,5 +1,6 @@
 // * react
 import React, { NavLink, useNavigate } from 'react-router-dom';
+
 // ? стили
 import './PageNotFound.css';
 
@@ -8,9 +9,9 @@ function PageNotFound() {
 
   return (
     <section className={'pageNotFound'}>
-      <div className="pageNotFound__status">
-        <h1 className="pageNotFound__status-code">404</h1>
-        <p className="pageNotFound__status-message">Страница не найдена</p>
+      <div className='pageNotFound__status'>
+        <h1 className='pageNotFound__status-code'>404</h1>
+        <p className='pageNotFound__status-message'>Страница не найдена</p>
       </div>
 
       <NavLink

@@ -1,5 +1,6 @@
 // * react
 import React from 'react';
+
 // ? стили
 import './MoreButton.css';
 

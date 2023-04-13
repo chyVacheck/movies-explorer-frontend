@@ -1,14 +1,12 @@
 // * react
 import React from 'react';
+
 // ? стили
 import './SavedMovies.css';
 
 // ? компоненты
 import SearchForm from './../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-
-// ? image
-import defaultPhoto from './../../images/default_movie-card.png';
 
 // ? constants
 
