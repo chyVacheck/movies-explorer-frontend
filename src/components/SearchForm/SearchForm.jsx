@@ -25,12 +25,18 @@ function SearchForm() {
     localStorage.setItem('shortFilm', !isActiveShortFilm);
   }
 
+  function onSubmit(e) {
+    e.preventDefault();
+    console.log('Поиск фильмов');
+  }
+
   return (
     <article className='SearchForm'>
       <div className='SearchForm__container'>
-        <div className='SearchForm__field-input'>
+        <form onSubmit={onSubmit} className='SearchForm__field-input'>
           <img src={icon} alt='search' />
           <input
+            required
             type='text'
             placeholder='Фильм'
             className='SearchForm__input'
@@ -39,7 +45,6 @@ function SearchForm() {
             <button
               aria-label='search'
               type='submit'
-              onClick={() => console.log(123)}
               className='button SearchForm__button-search'
             >
               Найти
@@ -58,7 +63,7 @@ function SearchForm() {
               <p className='SearchForm__text'>Короткометражки</p>
             </div>
           </div>
-        </div>
+        </form>
         <div className='SearchForm__settings SearchForm__settings_place_container'>
           <button
             aria-label='short films'

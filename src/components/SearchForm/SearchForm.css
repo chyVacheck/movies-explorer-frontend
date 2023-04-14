@@ -28,8 +28,7 @@
 .SearchForm__input {
   border: none;
   background: none;
-  height: 100%;
-  width: calc(100% - 34px - 16px - 16px - 285px);
+  height: 47.2222%;
   width: 100%;
   padding: 0;
   outline: none;
@@ -38,6 +37,11 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 20px;
+  border-bottom: 1px solid var(--input-bg-color);
+}
+
+.SearchForm__input:focus-visible {
+  border-bottom: 1px solid var(--input-focus-border-color);
 }
 
 .SearchForm__settings-and-button-search {
