@@ -12,8 +12,8 @@ function Techs() {
   return (
     <LandingBlock
       id='techs'
-      nameOfClassTitle={'techs__lending-title'}
-      nameOfClass={'techs'}
+      nameOfClassTitle='techs__lending-title'
+      nameOfClass='techs'
       setting={{
         big: false,
         grey: true,

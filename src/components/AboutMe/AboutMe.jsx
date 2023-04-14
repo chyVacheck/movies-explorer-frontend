@@ -18,7 +18,7 @@ function AboutMe() {
   return (
     <LandingBlock
       id='about-me'
-      nameOfClass={'aboutMe'}
+      nameOfClass='aboutMe'
       setting={{
         big: true,
         grey: false,

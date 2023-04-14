@@ -12,6 +12,7 @@ function AboutProject() {
   return (
     <LandingBlock
       id='about-project'
+      nameOfClass='aboutProject'
       setting={{
         big: true,
         grey: false,

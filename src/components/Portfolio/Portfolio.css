@@ -13,25 +13,28 @@
   color: var(--sub-text-color);
 }
 
-.portfolio__list-projects {
+.portfolio__list-web-sites {
+  margin: 0;
+  padding: 0;
+  list-style: none;
   display: flex;
   flex-direction: column;
   gap: 20px 0;
 }
 
-.portfolio-web-site {
+.portfolio__web-site {
   padding: 0 0 9px;
   border-bottom: 1px solid var(--border-color);
   display: flex;
   justify-content: space-between;
 }
 
-.portfolio-web-site:last-child {
+.portfolio__web-site_last_last {
   padding: 0;
   border: none;
 }
 
-.portfolio-web-site-name {
+.portfolio__web-site-name {
   width: 77.1929825%;
   margin: 0 0 10px;
   font-weight: 400;
@@ -40,7 +43,7 @@
   letter-spacing: -0.04em;
 }
 
-.portfolio-web-site-arrow {
+.portfolio__web-site-arrow {
   margin: 0;
   width: max-content;
   font-weight: 400;
@@ -53,12 +56,12 @@
   .portfolio__title {
     width: 100%;
   }
-  .portfolio-web-site-name {
+  .portfolio__web-site-name {
     width: 85.61643835616438%;
     font-size: 18px;
     line-height: 28px;
   }
-  .portfolio-web-site-arrow {
+  .portfolio__web-site-arrow {
     font-size: 18px;
     line-height: 28px;
   }
@@ -68,10 +71,10 @@
   .portfolio__title {
     width: 37.4251598006998%;
   }
-  .portfolio-web-site-name {
+  .portfolio__web-site-name {
     font-size: 28px;
   }
-  .portfolio-web-site-arrow {
+  .portfolio__web-site-arrow {
     font-size: 28px;
   }
 }

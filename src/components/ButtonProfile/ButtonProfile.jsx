@@ -30,11 +30,11 @@ function ButtonProfile({ place, loggedIn, closeBurgerMenu }) {
   // ? к стр профиля
   function toProfile() {
     navigate(paths.profile);
-    closeBurgerMenu();
+    closeBurgerMenu && closeBurgerMenu();
   }
 
   // ? className
-  const className = `button buttonProfile${
+  const className = `buttonProfile${
     loggedIn ? ' buttonProfile_loged_login' : ''
   } ${place ? ` buttonProfile_place_${place}` : ''}`;
 
