@@ -1,7 +1,15 @@
 .App {
   position: relative;
-  font-family: 'Inter';
+  font-family: var(--main-font-family);
   font-style: normal;
   color: var(--main-text-color);
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.App__container {
+  width: 100%;
+  max-width: var(--max-width-app);
 }

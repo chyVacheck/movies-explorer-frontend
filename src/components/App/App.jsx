@@ -20,7 +20,8 @@ import Footer from '../Footer/Footer';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import PageNotFound from '../PageNotFound/PageNotFound';
 
-// ? константы
+// ? utils
+// * константы
 import { paths } from '../../utils/Constants';
 
 function App() {
@@ -29,7 +30,7 @@ function App() {
   const page = location.pathname;
 
   // * State`s
-  // ? пользователь данные
+  // ? пользовательские данные
   const [currentUser, setCurrentUser] = useState({
     name: 'Дмитрий',
     email: 'dima@yandex.ru',
@@ -51,36 +52,38 @@ function App() {
           page={page}
         />
 
-        <Routes>
-          {/* //? О проекте */}
-          <Route path={paths.aboutProject} element={<Main />} />
+        <main className='App__container'>
+          <Routes>
+            {/* //? О проекте */}
+            <Route path={paths.aboutProject} element={<Main />} />
 
-          {/* //? Фильмы */}
-          <Route exact path={paths.movies} element={<Movies />} />
+            {/* //? Фильмы */}
+            <Route exact path={paths.movies} element={<Movies />} />
 
-          {/* //? Сохранённые фильмы */}
-          <Route exact path={paths.savedMovies} element={<SavedMovies />} />
+            {/* //? Сохранённые фильмы */}
+            <Route exact path={paths.savedMovies} element={<SavedMovies />} />
 
-          {/* //? Аккаунт */}
-          <Route exact path={paths.profile} element={<Profile />} />
+            {/* //? Аккаунт */}
+            <Route exact path={paths.profile} element={<Profile />} />
 
-          {/* //? Авторизация */}
-          <Route exact path={paths.login} element={<Login />} />
+            {/* //? Авторизация */}
+            <Route exact path={paths.login} element={<Login />} />
 
-          {/* //? Регистрация */}
-          <Route exact path={paths.registration} element={<Register />} />
+            {/* //? Регистрация */}
+            <Route exact path={paths.registration} element={<Register />} />
 
-          {/* // * не основные страницы */}
+            {/* // * не основные страницы */}
 
-          {/* // ? PageNotFound */}
-          <Route exact path={paths.pageNotFound} element={<PageNotFound />} />
+            {/* // ? PageNotFound */}
+            <Route exact path={paths.pageNotFound} element={<PageNotFound />} />
 
-          {/* // ? все остальные страницы */}
-          <Route
-            path='*'
-            element={<Navigate to={paths.pageNotFound} replace />}
-          />
-        </Routes>
+            {/* // ? все остальные страницы */}
+            <Route
+              path='*'
+              element={<Navigate to={paths.pageNotFound} replace />}
+            />
+          </Routes>
+        </main>
 
         <Footer page={page} />
 
