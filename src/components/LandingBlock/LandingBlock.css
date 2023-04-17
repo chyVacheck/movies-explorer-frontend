@@ -1,0 +1,41 @@
+.landingBlock {
+  margin: 0;
+  padding: 100px 70px;
+  background-color: var(--main-bg-color);
+  color: var(--main-text-color);
+}
+
+.landingBlock_size_big {
+  padding: 110px 70px;
+}
+
+.landingBlock_bg-color_grey {
+  background-color: var(--sub-main-bg-color);
+}
+
+@media screen and (min-width: 320px) and (max-width: 544px) {
+  .landingBlock {
+    padding: 21.875% 4.375%;
+  }
+  .landingBlock_size_big {
+    padding: 21.875% 4.375%;
+  }
+}
+
+@media screen and (min-width: 544px) and (max-width: 1024px) {
+  .landingBlock {
+    padding: 11.71875% 6.51041667%;
+  }
+  .landingBlock_size_big {
+    padding: 11.71875% 6.51041667%;
+  }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1280px) {
+  .landingBlock {
+    padding: 7.8125% 5.46875%;
+  }
+  .landingBlock_size_big {
+    padding: 8.59375% 5.46875%;
+  }
+}

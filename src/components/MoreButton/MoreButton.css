@@ -1,0 +1,31 @@
+.MoreButton {
+  width: 100%;
+  margin: 0;
+  padding: 50px 0 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.MoreButton__button {
+  max-width: 320px;
+  width: 320px;
+  height: 36px;
+  padding: 0 60px 0;
+  box-sizing: border-box;
+  border: 1px solid var(--border-color);
+  color: var(--main-text-color);
+  background: none;
+  border-radius: 5px;
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 544px) {
+  .MoreButton__button {
+    width: 75%;
+    padding: 0 20px 0;
+  }
+}

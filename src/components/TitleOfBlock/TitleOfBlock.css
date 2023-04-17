@@ -1,0 +1,32 @@
+.titleOfBlock {
+  width: 100%;
+  padding: 0 0 23px;
+  border-bottom: 1px solid var(--landing-title-border-color);
+}
+
+.titleOfBlock__title {
+  max-width: 600px;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 27px;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+
+@media screen and (min-width: 320px) and (max-width: 544px) {
+  .titleOfBlock {
+    padding: 0 0 28px;
+  }
+
+  .titleOfBlock__title {
+    max-width: 88.75%;
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+
+@media screen and (min-width: 544px) and (max-width: 1024px) {
+  .titleOfBlock__title {
+    max-width: 100%;
+  }
+}

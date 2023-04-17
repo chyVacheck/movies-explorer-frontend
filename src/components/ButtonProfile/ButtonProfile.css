@@ -1,0 +1,62 @@
+.buttonProfile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttonProfile_place_BurgerMenu.buttonProfile {
+  margin: auto 0 0;
+}
+
+.buttonProfile__enter-profile {
+  box-shadow: 0px 3px 14px rgba(0, 0, 0, 0.08);
+  height: 32px;
+  border-radius: 40px;
+  padding: 3px 3px 3px 11px;
+
+  background-color: var(--main-bg-color);
+
+  display: flex;
+  flex-direction: row;
+  gap: 0 7px;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.buttonProfile__enter-login {
+  width: 76px;
+  margin: 0;
+  padding: 8px 20px;
+  background-color: var(--logo-bg-color);
+  border-radius: 3px;
+
+  border: none;
+
+  color: var(--button-text-color);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.buttonProfile__text {
+  margin: 0;
+  color: var(--main-text-color);
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 12px;
+}
+
+.buttonProfile__user-icon {
+  background-color: var(--user-icon-button-bg-color);
+  border-radius: 50px;
+  padding: 7.75px 7.81px 7.58px;
+}
+
+/* ? если находиться в шапке то выключаем */
+@media screen and (min-width: 320px) and (max-width: 1024px) {
+  .buttonProfile_loged_login.buttonProfile_place_header {
+    display: none;
+  }
+}

@@ -1,0 +1,61 @@
+.promo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-position-y: 82px;
+  background-position-x: center;
+
+  background-size: 320px;
+  background-repeat: no-repeat;
+  background-image: url(./../../images/YandexIcon.svg);
+  background-color: var(--landing-bg-color);
+  color: var(--main-text-color);
+  min-width: 100%;
+  min-height: 320px;
+
+  padding: 82px 0 122px;
+}
+
+.promo__title {
+  margin: 0;
+  max-width: 730px;
+
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+  text-align: center;
+  letter-spacing: -0.04em;
+}
+
+@media screen and (min-width: 320px) and (max-width: 544px) {
+  .promo__title {
+    max-width: 93.75%;
+    font-size: 31px;
+    line-height: 39px;
+  }
+  .promo {
+    min-height: 248px;
+    background-position-y: 142px;
+    padding: 142px 0 180px;
+    background-size: 248px;
+  }
+}
+
+@media screen and (min-width: 544px) and (max-width: 1024px) {
+  .promo__title {
+    width: 95.0520833%;
+  }
+  .promo {
+    background-position-y: 224px;
+    /* padding: 29.166666% 0 31.25%; */
+    padding: 224px 0 240px;
+  }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1280px) {
+  .promo__title {
+    width: 57.03125%;
+  }
+}

@@ -1,13 +1,121 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* ? нормазайл */
+@import url(./vendor/normalize.css);
+
+/* ? шрифты */
+@import url(./vendor/fonts/fonts.css);
+
+.link {
+  color: var(--main-text-color);
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.4s;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.link:hover {
+  opacity: 0.7;
+}
+
+.button {
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  margin: 0;
+  transition: opacity 0.4s;
+}
+
+.button:hover {
+  opacity: 0.8;
+}
+
+.button_enabled_disabled:hover {
+  cursor: default;
+  opacity: 1;
+}
+
+#root {
+  /* ? font */
+  --main-font-family: 'Inter', Arial, Helvetica, sans-serif;
+
+  /* ? max-width */
+  --max-width-header: 1280px;
+  --max-width-app: 1280px;
+  --max-width-footer: 1280px;
+
+  /* ? bg-colors */
+  --main-bg-color: #202020;
+  --sub-main-bg-color: #272727;
+
+  --landing-bg-color: #073042;
+  --logo-bg-color: #3ddc84;
+  --light-bg-color: #3ddc84;
+
+  --main-text-color: #fff;
+  --sub-text-color: #8b8b8b;
+  --err-text-color: #ee3465;
+  --button-text-color: #000000;
+  --movies-card-bg-color: #222222;
+
+  --landing-title-border-color: #dadada;
+  --landing-title-black-border-color: #000;
+
+  --border-color: #424242;
+
+  --burger-menu-color: #fff;
+  --button-component-color-active: #fff;
+  --button-component-color-unactive: #a0a0a0;
+
+  --week-text-color: #000000;
+  --week-bg-light-color: var(--light-bg-color);
+  --week-bg-dakr-color: #303030;
+  --button-bg-dakr-color: #343434;
+
+  --texhs-bg-dakr-color: #303030;
+
+  --button-out-color: #ee3465;
+  --user-icon-button-bg-color: #313131;
+  --button-bg-color: #ee3465;
+  --button-bg-color-no-added: #313131;
+  --disabled-button-bg-color: #f8f8f8;
+  --disabled-button-text-color: #c4c4c4;
+
+  --submit-button-bg-color: #4285f4;
+  --link-color: #4285f4;
+  --input-bg-color: #2f2f2f;
+  --input-focus-border-color: #4285f4;
+
+  --preloader-bg-color: #4285f4;
+  --preloader-color: #3ddc84;
+
+  /* // #8B8B8B; */
+  /* // #202020; */
+  /* // #3DDC84; */
+  /* // #313131; */
+  /* // #424242; */
+  /* // #222222; */
+  /* // #303030; */
+  /* // #4285F4; */
+  /* // #2F2F2F; */
+  /* // EE3465 */
+  /* // #000000; */
+  /* // #A0A0A0; */
+  /* // #DADADA; */
+  /* // #073042; */
+  /* #272727; */
+  /* // #C4C4C4; */
+  /* #E6E6E6; */
+  /* #505050; */
+  /* #959595; */
+  /* // #F8F8F8; */
+}
+
+/* ? скролбар  */
+body::-webkit-scrollbar {
+  width: 8px;
+}
+body::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: #8b8b8b;
+  border-radius: 5px;
 }
