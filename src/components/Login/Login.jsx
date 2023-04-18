@@ -1,5 +1,5 @@
 // * react
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // ? стили
@@ -7,10 +7,13 @@ import './Login.css';
 
 // ? компоненты
 import SignForm from './../SignForm/SignForm';
-// ? константы
-import { paths, VALIDATION } from './../../utils/Constants';
+
 // ? utils
+// * константы
+import { paths, VALIDATION } from './../../utils/Constants';
+// * utils
 import { checkValidity, checkAnswerFromServer } from './../../utils/Utils';
+// * Api
 import mainApi from '../../utils/MainApi';
 
 function Login({ setCurrentUser, setLoggedIn }) {

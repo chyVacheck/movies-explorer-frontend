@@ -9,6 +9,9 @@ import './Profile.css';
 
 // ? Context
 import { CurrentUserContext } from './../../contexts/CurrentUserContext';
+
+// ? utils
+// * Api
 import mainApi from '../../utils/MainApi';
 
 function Profile({

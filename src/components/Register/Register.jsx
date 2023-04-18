@@ -7,10 +7,13 @@ import './Register.css';
 
 // ? компоненты
 import SignForm from './../SignForm/SignForm';
-// ? константы
-import { paths, VALIDATION } from './../../utils/Constants';
+
 // ? utils
+// * константы
+import { paths, VALIDATION } from './../../utils/Constants';
+// * utils
 import { checkValidity, checkAnswerFromServer } from './../../utils/Utils';
+// * Api
 import mainApi from '../../utils/MainApi';
 
 function Register({ setCurrentUser, setLoggedIn }) {
