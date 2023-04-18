@@ -61,3 +61,8 @@ export const VALIDATION = {
     MAX: 50,
   },
 };
+
+export const status = {
+  dev: 'dev',
+  prod: 'prod',
+};
