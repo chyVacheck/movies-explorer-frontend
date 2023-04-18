@@ -1,5 +1,6 @@
 // * react
 import React, { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // ? стили
 import './Register.css';
@@ -9,11 +10,17 @@ import SignForm from './../SignForm/SignForm';
 // ? константы
 import { paths, VALIDATION } from './../../utils/Constants';
 // ? utils
-import { checkValidity } from './../../utils/Utils';
+import { checkValidity, checkAnswerFromServer } from './../../utils/Utils';
+import mainApi from '../../utils/MainApi';
 
-function Register() {
-  // * текст ошибки
+function Register({ setCurrentUser, setLoggedIn }) {
+  // ? текст ошибки
   const [currentError, setCurrentError] = useState('');
+  // ? текст кнопки submit
+  const [currentTextSubmitButton, setCurrentTextSubmitButton] =
+    useState('Зарегистрироваться');
+
+  const navigate = useNavigate();
 
   // * валидация полей
   const [validatedFields, setValidatedFields] = useState({
@@ -47,8 +54,41 @@ function Register() {
   // регистрация
   function handleSubmit(event) {
     event.preventDefault();
-    // todo убрать потом
-    console.log('Отправка запроса на сервер');
+    setCurrentTextSubmitButton('Регистрируем...');
+    const user = {
+      name: nameRef.current.value,
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+    };
+    // отправляем запрос на регистрацию
+    mainApi
+      .registration(user)
+      .then((res) => {
+        // отправляем запрос на авторизацию
+        mainApi
+          .authorization({
+            email: user.email,
+            password: user.password,
+          })
+          .then(() => {
+            // устанавливаем значения
+            setCurrentUser({
+              name: res.data.name,
+              email: res.data.email,
+            });
+            // устанавливаем "вход" в систему
+            setLoggedIn(true);
+            navigate(paths.movies);
+          });
+      })
+      .catch((err) => {
+        // устанавливаем ошибку
+        setCurrentError(checkAnswerFromServer(err.status, 'register'));
+        setIsFormValid(false);
+      })
+      .finally(() => {
+        setCurrentTextSubmitButton('Зарегистрироваться');
+      });
   }
 
   return (
@@ -56,7 +96,7 @@ function Register() {
       <SignForm
         title='Добро пожаловать!'
         submitButton={{
-          text: 'Зарегистрироваться',
+          text: currentTextSubmitButton,
         }}
         onSubmit={handleSubmit}
         onChange={handleFieldChange}

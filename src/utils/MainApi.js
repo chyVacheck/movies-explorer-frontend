@@ -56,17 +56,14 @@ class MainApi {
       email: email,
       password: password,
   }*/
-  authorization(email, password) {
+  authorization(user) {
     return this._request(
       `${this._adress}/signin`,
       {
         method: 'POST',
         credentials: this._credentials,
         headers: this._headers,
-        body: JSON.stringify({
-          password: password,
-          email: email,
-        }),
+        body: JSON.stringify(user),
       },
       'авторизации',
     );
@@ -88,6 +85,31 @@ class MainApi {
         body: JSON.stringify(user),
       },
       'регистрации',
+    );
+  }
+
+  logOut() {
+    return this._request(
+      `${this._adress}/signout`,
+      {
+        method: 'POST',
+        credentials: this._credentials,
+        headers: this._headers,
+      },
+      'выхода из системы',
+    );
+  }
+
+  // проверка токена
+  validationCookie() {
+    return this._request(
+      `${this._adress}/users/me`,
+      {
+        method: 'GET',
+        credentials: this._credentials,
+        headers: this._headers,
+      },
+      'проверки токена',
     );
   }
 }

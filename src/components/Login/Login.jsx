@@ -1,5 +1,6 @@
 // * react
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // ? стили
 import './Login.css';
@@ -9,11 +10,17 @@ import SignForm from './../SignForm/SignForm';
 // ? константы
 import { paths, VALIDATION } from './../../utils/Constants';
 // ? utils
-import { checkValidity } from './../../utils/Utils';
+import { checkValidity, checkAnswerFromServer } from './../../utils/Utils';
+import mainApi from '../../utils/MainApi';
 
-function Login() {
-  // * текст ошибки
+function Login({ setCurrentUser, setLoggedIn }) {
+  // ? текст ошибки
   const [currentError, setCurrentError] = useState('');
+  // ? текст кнопки submit
+  const [currentTextSubmitButton, setCurrentTextSubmitButton] =
+    useState('Войти');
+
+  const navigate = useNavigate();
 
   // * валидация полей
   const [validatedFields, setValidatedFields] = useState({
@@ -45,8 +52,27 @@ function Login() {
   // авторизация
   function handleSubmit(event) {
     event.preventDefault();
-    // todo убрать потом
-    console.log('Отправка запроса на сервер');
+    setCurrentTextSubmitButton('Входим...');
+    const user = {
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+    };
+    // отправляем запрос на авторизацию
+    mainApi
+      .authorization(user)
+      .then((res) => {
+        // устанавливаем "вход" в систему
+        setLoggedIn(true);
+        navigate(paths.movies);
+      })
+      .catch((err) => {
+        // устанавливаем ошибку
+        setCurrentError(checkAnswerFromServer(err.status, 'login'));
+        setIsFormValid(false);
+      })
+      .finally(() => {
+        setCurrentTextSubmitButton('Войти');
+      });
   }
 
   return (
@@ -54,7 +80,7 @@ function Login() {
       <SignForm
         title='Рады видеть!'
         submitButton={{
-          text: 'Войти',
+          text: currentTextSubmitButton,
         }}
         onSubmit={handleSubmit}
         onChange={handleFieldChange}
