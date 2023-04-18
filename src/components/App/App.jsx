@@ -1,5 +1,5 @@
 // * react
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 
 // ? стили
@@ -23,6 +23,8 @@ import PageNotFound from '../PageNotFound/PageNotFound';
 // ? utils
 // * константы
 import { paths } from '../../utils/Constants';
+// * Api
+import mainApi from './../../utils/MainApi';
 
 function App() {
   // * для отслеживания пути в адресной строке
@@ -32,15 +34,34 @@ function App() {
   // * State`s
   // ? пользовательские данные
   const [currentUser, setCurrentUser] = useState({
-    name: 'Дмитрий',
-    email: 'dima@yandex.ru',
+    name: '',
+    email: '',
   });
 
   // ? авторизованость
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   // ? активно ли бургерное меню
   const [isActiveBurgerMenu, setIsActiveBurgerMenu] = useState(false);
+
+  // проверяем токен jwt
+  useEffect(() => {
+    mainApi
+      .validationCookie('проверки токена')
+      .then((res) => {
+        if (res) {
+          setLoggedIn(true);
+          const user = {
+            name: res.data.name,
+            email: res.data.email,
+          };
+          setCurrentUser(user);
+        }
+      })
+      .catch((err) => {
+        console.log(`Запрос на сервер с целью проверки токена выдал: ${err}`);
+      });
+  }, []);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -64,13 +85,40 @@ function App() {
             <Route exact path={paths.savedMovies} element={<SavedMovies />} />
 
             {/* //? Аккаунт */}
-            <Route exact path={paths.profile} element={<Profile />} />
+            <Route
+              exact
+              path={paths.profile}
+              element={
+                <Profile
+                  setLoggedIn={setLoggedIn}
+                  setCurrentUser={setCurrentUser}
+                />
+              }
+            />
 
             {/* //? Авторизация */}
-            <Route exact path={paths.login} element={<Login />} />
+            <Route
+              exact
+              path={paths.login}
+              element={
+                <Login
+                  setLoggedIn={setLoggedIn}
+                  setCurrentUser={setCurrentUser}
+                />
+              }
+            />
 
             {/* //? Регистрация */}
-            <Route exact path={paths.registration} element={<Register />} />
+            <Route
+              exact
+              path={paths.registration}
+              element={
+                <Register
+                  setLoggedIn={setLoggedIn}
+                  setCurrentUser={setCurrentUser}
+                />
+              }
+            />
 
             {/* // * не основные страницы */}
 

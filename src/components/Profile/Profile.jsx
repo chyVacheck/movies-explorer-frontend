@@ -1,5 +1,6 @@
 // * react
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // ? стили
 import './Profile.css';
@@ -8,8 +9,13 @@ import './Profile.css';
 
 // ? Context
 import { CurrentUserContext } from './../../contexts/CurrentUserContext';
+import mainApi from '../../utils/MainApi';
 
-function Profile({ onSubmit = () => console.log('Данные измененны') }) {
+function Profile({
+  onSubmit = () => console.log('Данные измененны'),
+  setLoggedIn,
+  setCurrentUser,
+}) {
   // ? сontext
   const user = React.useContext(CurrentUserContext);
 
@@ -18,6 +24,27 @@ function Profile({ onSubmit = () => console.log('Данные измененны
   const [isActiveError, setIsActiveError] = useState(true);
   const [isActiveManagement, setIsActiveManagement] = useState(true);
   const [isButtonSaveDisabled, setIsButtonSaveDisabled] = useState(false);
+
+  const navigate = useNavigate();
+
+  function logOut() {
+    mainApi
+      .logOut()
+      .then((ans) => {
+        // очищаем профиль
+        setCurrentUser({
+          name: '',
+          email: '',
+        });
+        // выходим из системы
+        setLoggedIn(false);
+        // переходим на главную страницу
+        navigate('/');
+      })
+      .catch((err) =>
+        console.log(`Запрос на сервер с целью выхода из системы выдал: ${err}`),
+      );
+  }
 
   return (
     <section className='profile'>
@@ -59,7 +86,7 @@ function Profile({ onSubmit = () => console.log('Данные измененны
           <button
             type='button'
             className='button profile__management-button profile__management-button_type_out'
-            onClick={() => console.log(123)}
+            onClick={logOut}
           >
             Выйти из аккаунта
           </button>
