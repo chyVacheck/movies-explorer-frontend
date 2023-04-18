@@ -13,7 +13,10 @@ function SignForm({
   submitButton,
   error,
   textUnderSubmit,
+  isValid,
   link,
+  onChange,
+  onSubmit,
 }) {
   return (
     <article className='signForm'>
@@ -21,7 +24,7 @@ function SignForm({
 
       <h1 className='signForm__title'>{title}</h1>
 
-      <form className='signForm__form'>
+      <form onSubmit={onSubmit} className='signForm__form'>
         {/* // ? инпут поля */}
         <div className='signForm__fields'>
           {inputs.map((item, index) => {
@@ -32,14 +35,20 @@ function SignForm({
                 </h6>
 
                 <input
-                  required
-                  className='signForm__field-input'
+                  required={item.required}
+                  className={`signForm__field-input${
+                    !item.isValid
+                      ? ' signForm__field-input_validity_invalid'
+                      : ''
+                  }`}
                   placeholder={item.placeholder}
-                  value={item.value}
-                  onChange={() => {
-                    console.log();
-                  }}
+                  id={item.id}
                   type={item.type}
+                  minLength={item.minLength}
+                  maxLength={item.maxLength}
+                  ref={item.ref}
+                  onChange={onChange}
+                  pattern={item.pattern}
                 ></input>
               </div>
             );
@@ -50,7 +59,13 @@ function SignForm({
         <p className='signForm__error-message'>{error}</p>
 
         {/* // ? кнопка submit */}
-        <button className='signForm__submit button' type='submit'>
+        <button
+          disabled={!isValid}
+          className={`signForm__submit ${
+            !isValid ? 'signForm__submit_validity_invalid' : 'button'
+          }`}
+          type='submit'
+        >
           {submitButton.text}
         </button>
 

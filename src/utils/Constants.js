@@ -49,3 +49,15 @@ export const mainNavigationRouters = [
     id: 'about-me',
   },
 ];
+
+export const VALIDATION = {
+  NAME: {
+    MIN: 2,
+    MAX: 30,
+  },
+  EMAIL: { pattern: '[a-zd!#$%&*+-\\/=?.^_`{}|~0-9]+@([a-z-.d]+.)+[a-z]{2,}' },
+  PASSWORD: {
+    MIN: 4,
+    MAX: 50,
+  },
+};
