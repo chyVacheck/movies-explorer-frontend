@@ -19,6 +19,10 @@ import Profile from '../Profile/Profile';
 import Footer from '../Footer/Footer';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import PageNotFound from '../PageNotFound/PageNotFound';
+import ProtectedRoute from '../ProtectedRouter/ProtectedRouter';
+
+// ? configs
+import configSite from './../../config/configSite.json';
 
 // ? utils
 // * константы
@@ -59,7 +63,10 @@ function App() {
         }
       })
       .catch((err) => {
-        console.log(`Запрос на сервер с целью проверки токена выдал: ${err}`);
+        if (configSite.status === 'dev')
+          console.log(
+            `Запрос на сервер с целью проверки токена выдал: [${err.message}]`,
+          );
       });
   }, []);
 
@@ -79,20 +86,38 @@ function App() {
             <Route path={paths.aboutProject} element={<Main />} />
 
             {/* //? Фильмы */}
-            <Route exact path={paths.movies} element={<Movies />} />
+            <Route
+              exact
+              path={paths.movies}
+              element={
+                <ProtectedRoute loggedIn={loggedIn} page={page}>
+                  <Movies />
+                </ProtectedRoute>
+              }
+            />
 
             {/* //? Сохранённые фильмы */}
-            <Route exact path={paths.savedMovies} element={<SavedMovies />} />
+            <Route
+              exact
+              path={paths.savedMovies}
+              element={
+                <ProtectedRoute loggedIn={loggedIn} page={page}>
+                  <SavedMovies />
+                </ProtectedRoute>
+              }
+            />
 
             {/* //? Аккаунт */}
             <Route
               exact
               path={paths.profile}
               element={
-                <Profile
-                  setLoggedIn={setLoggedIn}
-                  setCurrentUser={setCurrentUser}
-                />
+                <ProtectedRoute loggedIn={loggedIn} page={page}>
+                  <Profile
+                    setLoggedIn={setLoggedIn}
+                    setCurrentUser={setCurrentUser}
+                  />
+                </ProtectedRoute>
               }
             />
 
