@@ -63,10 +63,25 @@ function Login({ setCurrentUser, setLoggedIn }) {
     // отправляем запрос на авторизацию
     mainApi
       .authorization(user)
-      .then((res) => {
+      .then(() => {
         // устанавливаем "вход" в систему
         setLoggedIn(true);
-        navigate(paths.movies);
+        // делаем запрос на данные о пользователе
+        mainApi
+          .getUserInfo()
+          .then((res) => {
+            // устанавливаем данные
+            setCurrentUser({
+              name: res.data.name,
+              email: res.data.email,
+            }),
+              navigate(paths.movies);
+          })
+          .catch((err) => {
+            // устанавливаем ошибку
+            setCurrentError(checkAnswerFromServer(err.status, 'login'));
+            setIsFormValid(false);
+          });
       })
       .catch((err) => {
         // устанавливаем ошибку

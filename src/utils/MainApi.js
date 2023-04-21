@@ -88,6 +88,40 @@ class MainApi {
     );
   }
 
+  // получаем данные о пользователе
+  getUserInfo() {
+    return this._request(
+      `${this._adress}/users/me`,
+      {
+        method: 'GET',
+        credentials: this._credentials,
+        headers: this._headers,
+      },
+      'получения данных о пользователе',
+    );
+  }
+
+  /* обновление данных о пользователе
+    user = {
+      name: name,
+      email: email
+  }*/
+  setUserInfo(user) {
+    return this._request(
+      `${this._adress}/users/me`,
+      {
+        method: 'PATCH',
+        credentials: this._credentials,
+        headers: this._headers,
+        body: JSON.stringify({
+          name: user.name,
+          email: user.email,
+        }),
+      },
+      'обновления данных о пользователе',
+    );
+  }
+
   logOut() {
     return this._request(
       `${this._adress}/signout`,

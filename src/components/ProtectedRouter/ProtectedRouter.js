@@ -19,12 +19,12 @@ import { paths, status } from '../../utils/Constants';
 function ProtectedRoute({ loggedIn, children, page }) {
   // возвращает на стр авторизации + уведомляет в консоли
   // todo сделать вывод информации в поп-ап
-  function toLogin(page) {
+  function toLogin() {
     configSite.status === status.dev &&
       console.log(`Попытка зайти на страницу [${page}] не авторизовавшись`);
     return <Navigate to={paths.login} />;
   }
 
-  return loggedIn ? children : toLogin(page);
+  return loggedIn ? children : toLogin();
 }
 export default ProtectedRoute;

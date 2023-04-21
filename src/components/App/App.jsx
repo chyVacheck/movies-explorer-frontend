@@ -42,6 +42,9 @@ function App() {
     email: '',
   });
 
+  // отправлен ли запрос на полученя токена
+  const [isRequestProcessed, setRequestProcessed] = useState(false);
+
   // ? авторизованость
   const [loggedIn, setLoggedIn] = useState(false);
 
@@ -67,108 +70,115 @@ function App() {
           console.log(
             `Запрос на сервер с целью проверки токена выдал: [${err.message}]`,
           );
-      });
+      })
+      .finally(() => setRequestProcessed(true));
   }, []);
 
   return (
-    <CurrentUserContext.Provider value={currentUser}>
-      <section className='App'>
-        <Header
-          isActiveBurgerMenu={isActiveBurgerMenu}
-          setIsActiveBurgerMenu={setIsActiveBurgerMenu}
-          loggedIn={loggedIn}
-          page={page}
-        />
+    isRequestProcessed && (
+      <CurrentUserContext.Provider value={currentUser}>
+        <section className='App'>
+          <Header
+            isActiveBurgerMenu={isActiveBurgerMenu}
+            setIsActiveBurgerMenu={setIsActiveBurgerMenu}
+            loggedIn={loggedIn}
+            page={page}
+          />
 
-        <main className='App__container'>
-          <Routes>
-            {/* //? О проекте */}
-            <Route path={paths.aboutProject} element={<Main />} />
+          <main className='App__container'>
+            <Routes>
+              {/* //? О проекте */}
+              <Route path={paths.aboutProject} element={<Main />} />
 
-            {/* //? Фильмы */}
-            <Route
-              exact
-              path={paths.movies}
-              element={
-                <ProtectedRoute loggedIn={loggedIn} page={page}>
-                  <Movies />
-                </ProtectedRoute>
-              }
-            />
+              {/* //? Фильмы */}
+              <Route
+                exact
+                path={paths.movies}
+                element={
+                  <ProtectedRoute loggedIn={loggedIn} page={page}>
+                    <Movies />
+                  </ProtectedRoute>
+                }
+              />
 
-            {/* //? Сохранённые фильмы */}
-            <Route
-              exact
-              path={paths.savedMovies}
-              element={
-                <ProtectedRoute loggedIn={loggedIn} page={page}>
-                  <SavedMovies />
-                </ProtectedRoute>
-              }
-            />
+              {/* //? Сохранённые фильмы */}
+              <Route
+                exact
+                path={paths.savedMovies}
+                element={
+                  <ProtectedRoute loggedIn={loggedIn} page={page}>
+                    <SavedMovies />
+                  </ProtectedRoute>
+                }
+              />
 
-            {/* //? Аккаунт */}
-            <Route
-              exact
-              path={paths.profile}
-              element={
-                <ProtectedRoute loggedIn={loggedIn} page={page}>
-                  <Profile
+              {/* //? Аккаунт */}
+              <Route
+                exact
+                path={paths.profile}
+                element={
+                  <ProtectedRoute loggedIn={loggedIn} page={page}>
+                    <Profile
+                      setLoggedIn={setLoggedIn}
+                      setCurrentUser={setCurrentUser}
+                    />
+                  </ProtectedRoute>
+                }
+              />
+
+              {/* //? Авторизация */}
+              <Route
+                exact
+                path={paths.login}
+                element={
+                  <Login
                     setLoggedIn={setLoggedIn}
                     setCurrentUser={setCurrentUser}
                   />
-                </ProtectedRoute>
-              }
+                }
+              />
+
+              {/* //? Регистрация */}
+              <Route
+                exact
+                path={paths.registration}
+                element={
+                  <Register
+                    setLoggedIn={setLoggedIn}
+                    setCurrentUser={setCurrentUser}
+                  />
+                }
+              />
+
+              {/* // * не основные страницы */}
+
+              {/* // ? PageNotFound */}
+              <Route
+                exact
+                path={paths.pageNotFound}
+                element={<PageNotFound />}
+              />
+
+              {/* // ? все остальные страницы */}
+              <Route
+                path='*'
+                element={<Navigate to={paths.pageNotFound} replace />}
+              />
+            </Routes>
+          </main>
+
+          <Footer page={page} />
+
+          {loggedIn && (
+            <BurgerMenu
+              setIsActive={setIsActiveBurgerMenu}
+              isActive={isActiveBurgerMenu}
+              loggedIn={loggedIn}
             />
-
-            {/* //? Авторизация */}
-            <Route
-              exact
-              path={paths.login}
-              element={
-                <Login
-                  setLoggedIn={setLoggedIn}
-                  setCurrentUser={setCurrentUser}
-                />
-              }
-            />
-
-            {/* //? Регистрация */}
-            <Route
-              exact
-              path={paths.registration}
-              element={
-                <Register
-                  setLoggedIn={setLoggedIn}
-                  setCurrentUser={setCurrentUser}
-                />
-              }
-            />
-
-            {/* // * не основные страницы */}
-
-            {/* // ? PageNotFound */}
-            <Route exact path={paths.pageNotFound} element={<PageNotFound />} />
-
-            {/* // ? все остальные страницы */}
-            <Route
-              path='*'
-              element={<Navigate to={paths.pageNotFound} replace />}
-            />
-          </Routes>
-        </main>
-
-        <Footer page={page} />
-
-        {loggedIn && (
-          <BurgerMenu
-            setIsActive={setIsActiveBurgerMenu}
-            isActive={isActiveBurgerMenu}
-            loggedIn={loggedIn}
-          />
-        )}
-      </section>
-    </CurrentUserContext.Provider>
+          )}
+        </section>
+      </CurrentUserContext.Provider>
+    )
   );
 }
 

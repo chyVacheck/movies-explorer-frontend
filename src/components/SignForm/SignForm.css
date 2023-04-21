@@ -88,7 +88,7 @@
   background-color: var(--submit-button-bg-color);
   margin-top: auto;
   color: var(--main-text-color);
-  transition: all 0.5s linear;
+  transition: all 0.15s linear;
 }
 
 /* ? форма невалдина */

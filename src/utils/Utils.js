@@ -15,5 +15,5 @@ export function checkValidity(validity) {
 }
 
 export function checkAnswerFromServer(status, type) {
-  typeOfErrorFromServer[type][status];
+  return typeOfErrorFromServer[type][status];
 }
