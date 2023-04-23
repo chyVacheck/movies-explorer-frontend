@@ -4,12 +4,12 @@
   font-style: normal;
   color: var(--main-text-color);
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-rows: min-content auto min-content;
+  grid-template-columns: minmax(auto, var(--max-width-app));
+  justify-content: center;
 }
 
 .App__container {
   width: 100%;
-  max-width: var(--max-width-app);
 }

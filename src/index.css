@@ -36,10 +36,11 @@
   /* ? font */
   --main-font-family: 'Inter', Arial, Helvetica, sans-serif;
 
+  /* ? height */
+  --height-header: 74px;
+
   /* ? max-width */
-  --max-width-header: 1280px;
   --max-width-app: 1280px;
-  --max-width-footer: 1280px;
 
   /* ? bg-colors */
   --main-bg-color: #202020;
@@ -110,12 +111,11 @@
 
 /* ? скролбар  */
 body::-webkit-scrollbar {
-  width: 8px;
+  width: 2px;
 }
 body::-webkit-scrollbar-track {
   background-color: transparent;
 }
 body::-webkit-scrollbar-thumb {
   background-color: #8b8b8b;
-  border-radius: 5px;
 }
