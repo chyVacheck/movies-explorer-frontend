@@ -16,7 +16,7 @@ import { checkValidity, checkAnswerFromServer } from './../../utils/Utils';
 // * Api
 import mainApi from '../../utils/MainApi';
 
-function Register({ setCurrentUser, setLoggedIn }) {
+function Register({ addNotification, setCurrentUser, setLoggedIn }) {
   // ? текст ошибки
   const [currentError, setCurrentError] = useState('');
   // ? текст кнопки submit
@@ -79,6 +79,11 @@ function Register({ setCurrentUser, setLoggedIn }) {
               name: res.data.name,
               email: res.data.email,
             });
+            addNotification({
+              name: 'Регистрация',
+              type: 'successfully',
+              text: 'Вы успешно зарегистрировались',
+            });
             // устанавливаем "вход" в систему
             setLoggedIn(true);
             navigate(paths.movies);
@@ -86,7 +91,9 @@ function Register({ setCurrentUser, setLoggedIn }) {
       })
       .catch((err) => {
         // устанавливаем ошибку
-        setCurrentError(checkAnswerFromServer(err.status, 'register'));
+        if (err.status)
+          setCurrentError(checkAnswerFromServer(err.status, 'register'));
+        else setCurrentError(checkAnswerFromServer('all', 'failFetch'));
         setIsFormValid(false);
       })
       .finally(() => {

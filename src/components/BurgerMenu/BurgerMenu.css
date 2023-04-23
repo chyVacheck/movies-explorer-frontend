@@ -12,6 +12,7 @@
   flex-direction: column;
   padding: 22px 22px 90px;
   box-sizing: border-box;
+  z-index: 1;
 }
 
 .BurgerMenu__button {

@@ -7,18 +7,26 @@ import './Profile.css';
 
 // ? компоненты
 
+// ? configs
+import configSite from './../../config/configSite.json';
+
 // ? Context
 import { CurrentUserContext } from './../../contexts/CurrentUserContext';
 
 // ? utils
 // * constants
-import { VALIDATION } from '../../utils/Constants';
+import { VALIDATION, status } from '../../utils/Constants';
 // * utils
 import { checkValidity, checkAnswerFromServer } from './../../utils/Utils';
 // * Api
 import mainApi from '../../utils/MainApi';
 
-function Profile({ setLoggedIn, setCurrentUser }) {
+function Profile({ addNotification, setLoggedIn, setCurrentUser }) {
+  const forNotification = {
+    patch: 'Профиль',
+    logOut: 'Выход из сети',
+  };
+
   // ? сontext
   const user = React.useContext(CurrentUserContext);
 
@@ -90,10 +98,24 @@ function Profile({ setLoggedIn, setCurrentUser }) {
         setLoggedIn(false);
         // переходим на главную страницу
         navigate('/');
+        // показываем пользователю уведомление
+        addNotification({
+          name: forNotification.logOut,
+          type: 'successfully',
+          text: 'Вы вышли из сети',
+        });
       })
-      .catch((err) =>
-        console.log(`Запрос на сервер с целью выхода из системы выдал: ${err}`),
-      );
+      .catch((err) => {
+        addNotification({
+          name: forNotification.logOut,
+          type: 'error',
+          text: 'Не удалось выйти из аккаунта',
+        });
+        if (configSite.status === status.dev)
+          console.log(
+            `Запрос на сервер с целью выхода из системы выдал: ${err}`,
+          );
+      });
   }
 
   function submit(event) {
@@ -107,17 +129,32 @@ function Profile({ setLoggedIn, setCurrentUser }) {
     mainApi
       .setUserInfo(user)
       .then((res) => {
-        console.log(res);
+        if (configSite.status === status.dev)
+          console.log(
+            'Запрос на сервер с целью редактирования профиля вернул обьект:,',
+            res,
+          );
         setCurrentUser({
           name: res.data.name,
           email: res.data.email,
         });
         setIsActiveManagement(true);
+        // показываем пользователю уведомление
+        addNotification({
+          name: forNotification.patch,
+          type: 'successfully',
+          text: 'Вы отредактировали профиль',
+        });
       })
       .catch((err) => {
-        console.log(err);
+        if (configSite.status === status.dev)
+          console.log(
+            `Запрос на сервер с целью редактирования профиля выдал: ${err}`,
+          );
         // устанавливаем ошибку
-        setCurrentError(checkAnswerFromServer(err.status, 'setNewInfo'));
+        if (err.status)
+          setCurrentError(checkAnswerFromServer(err.status, 'register'));
+        else setCurrentError(checkAnswerFromServer('all', 'failFetch'));
         setIsFormValid(false);
       })
       .finally(() => {

@@ -20,13 +20,16 @@ import Footer from '../Footer/Footer';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import ProtectedRoute from '../ProtectedRouter/ProtectedRouter';
+import Notifications from '../Notifications/Notifications';
 
 // ? configs
 import configSite from './../../config/configSite.json';
 
 // ? utils
 // * константы
-import { paths } from '../../utils/Constants';
+import { paths, status } from '../../utils/Constants';
+// * utils
+import { checkAnswerFromServer } from './../../utils/Utils';
 // * Api
 import mainApi from './../../utils/MainApi';
 
@@ -51,6 +54,22 @@ function App() {
   // ? активно ли бургерное меню
   const [isActiveBurgerMenu, setIsActiveBurgerMenu] = useState(false);
 
+  // ? уведомления
+  const [notifications, setNotifications] = useState([
+    // {
+    //   name: 'Тест', // any text
+    //   type: 'successfully', // successfully, error
+    //   text: 'Вы протестированы', // any text
+    // },
+  ]);
+
+  // * function`s
+  //
+  function addNotification(notif) {
+    setNotifications([notif, ...notifications]);
+  }
+
+  // * useEffect`s
   // проверяем токен jwt
   useEffect(() => {
     mainApi
@@ -66,10 +85,17 @@ function App() {
         }
       })
       .catch((err) => {
-        if (configSite.status === 'dev')
+        if (configSite.status === status.dev)
           console.log(
             `Запрос на сервер с целью проверки токена выдал: [${err.message}]`,
           );
+        if (err.message === 'Failed to fetch')
+          // показываем пользователю уведомление
+          addNotification({
+            name: 'Сервер 500',
+            type: 'error',
+            text: checkAnswerFromServer('all', 'failFetch'),
+          });
       })
       .finally(() => setRequestProcessed(true));
   }, []);
@@ -119,6 +145,7 @@ function App() {
                 element={
                   <ProtectedRoute loggedIn={loggedIn} page={page}>
                     <Profile
+                      addNotification={addNotification}
                       setLoggedIn={setLoggedIn}
                       setCurrentUser={setCurrentUser}
                     />
@@ -132,6 +159,7 @@ function App() {
                 path={paths.login}
                 element={
                   <Login
+                    addNotification={addNotification}
                     setLoggedIn={setLoggedIn}
                     setCurrentUser={setCurrentUser}
                   />
@@ -144,6 +172,7 @@ function App() {
                 path={paths.registration}
                 element={
                   <Register
+                    addNotification={addNotification}
                     setLoggedIn={setLoggedIn}
                     setCurrentUser={setCurrentUser}
                   />
@@ -174,6 +203,13 @@ function App() {
               setIsActive={setIsActiveBurgerMenu}
               isActive={isActiveBurgerMenu}
               loggedIn={loggedIn}
+            />
+          )}
+
+          {notifications.length > 0 && (
+            <Notifications
+              notifications={notifications}
+              setNotifications={setNotifications}
             />
           )}
         </section>

@@ -16,7 +16,7 @@ import { checkValidity, checkAnswerFromServer } from './../../utils/Utils';
 // * Api
 import mainApi from '../../utils/MainApi';
 
-function Login({ setCurrentUser, setLoggedIn }) {
+function Login({ addNotification, setCurrentUser, setLoggedIn }) {
   // ? текст ошибки
   const [currentError, setCurrentError] = useState('');
   // ? текст кнопки submit
@@ -74,8 +74,13 @@ function Login({ setCurrentUser, setLoggedIn }) {
             setCurrentUser({
               name: res.data.name,
               email: res.data.email,
-            }),
-              navigate(paths.movies);
+            });
+            addNotification({
+              name: 'Авторизация',
+              type: 'successfully',
+              text: 'Вы успешно авторизовались',
+            });
+            navigate(paths.movies);
           })
           .catch((err) => {
             // устанавливаем ошибку
@@ -85,7 +90,9 @@ function Login({ setCurrentUser, setLoggedIn }) {
       })
       .catch((err) => {
         // устанавливаем ошибку
-        setCurrentError(checkAnswerFromServer(err.status, 'login'));
+        if (err.status)
+          setCurrentError(checkAnswerFromServer(err.status, 'login'));
+        else setCurrentError(checkAnswerFromServer('all', 'failFetch'));
         setIsFormValid(false);
       })
       .finally(() => {

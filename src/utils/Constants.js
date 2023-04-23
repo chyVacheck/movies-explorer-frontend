@@ -68,6 +68,9 @@ export const status = {
 };
 
 export const typeOfErrorFromServer = {
+  failFetch: {
+    all: 'Нет связи с сервером',
+  },
   login: {
     400: 'Вы ввели неправильный логин или пароль',
     401: null,
@@ -91,5 +94,14 @@ export const typeOfErrorFromServer = {
     404: null,
     409: 'Пользователь с таким email уже существует',
     429: 'Слишком большое количество запросов, на смену данных попробуйте позже',
+  },
+};
+
+export const shortFilmDuration = 40;
+
+export const localStorageNames = {
+  shortFilm: {
+    'saved-movies': 'shortFilm-saved-movies',
+    movies: 'shortFilm-movies',
   },
 };
