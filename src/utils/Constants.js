@@ -97,11 +97,15 @@ export const typeOfErrorFromServer = {
   },
 };
 
-export const shortFilmDuration = 40;
+export const SHORT_MOVIE_DURATION = 40;
 
 export const localStorageNames = {
   shortFilm: {
     'saved-movies': 'shortFilm-saved-movies',
     movies: 'shortFilm-movies',
+  },
+  searchWordName: {
+    'saved-movies': 'searchWord-saved-movies',
+    movies: 'searchWord-movies',
   },
 };

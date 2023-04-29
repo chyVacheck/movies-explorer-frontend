@@ -1,5 +1,5 @@
 // * react
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 // ? стили
 import './SearchForm.css';
@@ -9,37 +9,26 @@ import './SearchForm.css';
 // ? images
 import icon from '../../images/searchIcon.svg';
 
-function SearchForm() {
-  // * State`s
-  // ? пользователь данные
-  const [isActiveShortFilm, setIsActiveShortFilm] = useState(false);
-
-  useEffect(() => {
-    if (['true', 'false'].includes(localStorage.getItem('shortFilm'))) {
-      setIsActiveShortFilm(JSON.parse(localStorage.getItem('shortFilm')));
-    }
-  }, []);
-
-  function toogleShortFilm() {
-    setIsActiveShortFilm(!isActiveShortFilm);
-    localStorage.setItem('shortFilm', !isActiveShortFilm);
-  }
-
-  function onSubmit(e) {
-    e.preventDefault();
-    console.log('Поиск фильмов');
-  }
-
+function SearchForm({ shortFilm, onSubmit, input }) {
   return (
     <article className='SearchForm'>
       <div className='SearchForm__container'>
-        <form onSubmit={onSubmit} className='SearchForm__field-input'>
+        <form
+          onSubmit={(event) => {
+            event.preventDefault();
+            onSubmit(shortFilm.isActive);
+          }}
+          className='SearchForm__field-input'
+        >
           <img src={icon} alt='search' />
           <input
             required
             type='text'
             placeholder='Фильм'
             className='SearchForm__input'
+            id={input.id}
+            ref={input.ref}
+            readOnly={input.readOnly}
           />
           <div className='SearchForm__settings-and-button-search'>
             <button
@@ -53,9 +42,9 @@ function SearchForm() {
               <button
                 aria-label='short films'
                 type='button'
-                onClick={toogleShortFilm}
+                onClick={shortFilm.toogle}
                 className={`button SearchForm__button-short-film ${
-                  isActiveShortFilm
+                  shortFilm.isActive
                     ? 'SearchForm__button-short-film_active_active'
                     : ''
                 }`}
@@ -68,9 +57,9 @@ function SearchForm() {
           <button
             aria-label='short films'
             type='button'
-            onClick={toogleShortFilm}
+            onClick={shortFilm.toogle}
             className={`button SearchForm__button-short-film ${
-              isActiveShortFilm
+              shortFilm.isActive
                 ? 'SearchForm__button-short-film_active_active'
                 : ''
             }`}

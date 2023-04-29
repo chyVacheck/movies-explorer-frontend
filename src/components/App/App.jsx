@@ -122,7 +122,7 @@ function App() {
                 path={paths.movies}
                 element={
                   <ProtectedRoute loggedIn={loggedIn} page={page}>
-                    <Movies />
+                    <Movies addNotification={addNotification} />
                   </ProtectedRoute>
                 }
               />

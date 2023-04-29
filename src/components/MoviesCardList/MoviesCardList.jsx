@@ -9,20 +9,32 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 
 // ? компоненты
 
-function MoviesCardList({ cardList = [], place, shortFilm }) {
+function MoviesCardList({ isPressedSubmit, setMovies, cardList, place }) {
   return (
     <article className='MoviesCardList'>
-      {cardList.map((item, index) => (
-        <MoviesCard
-          key={index}
-          lang={item.lang}
-          title={item.title}
-          img={item.img}
-          time={item.time}
-          added={item.added}
-          place={place}
-        />
-      ))}
+      {cardList.length > 0 ? (
+        cardList.map((item, index) => (
+          <MoviesCard
+            key={index}
+            lang={
+              item.nameRU && item.nameEN
+                ? item.nameRU.toLowerCase() === item.nameEN.toLowerCase()
+                  ? 'en'
+                  : 'ru'
+                : 'ru'
+            }
+            setMovies={setMovies}
+            movie={item}
+            place={place}
+          />
+        ))
+      ) : (
+        <p className='MoviesCardList__not-found'>
+          {isPressedSubmit
+            ? 'К сожалению по вашему запросу ничего не нашлось'
+            : 'Введите название фильма и нажмите кнопку "Найти"'}
+        </p>
+      )}
     </article>
   );
 }
