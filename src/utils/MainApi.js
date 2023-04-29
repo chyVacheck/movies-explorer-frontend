@@ -122,6 +122,7 @@ class MainApi {
     );
   }
 
+  // выход из системы
   logOut() {
     return this._request(
       `${this._adress}/signout`,
@@ -144,6 +145,58 @@ class MainApi {
         headers: this._headers,
       },
       'проверки токена',
+    );
+  }
+
+  // получение сохраненных фильмов
+  getMovies() {
+    return this._request(
+      `${this._adress}/movies`,
+      {
+        method: 'GET',
+        credentials: this._credentials,
+        headers: this._headers,
+      },
+      'получить сохраненные фильмы',
+    );
+  }
+
+  // возвращает все карточки
+  saveMovie(movie) {
+    return this._request(
+      `${this._adress}/movies`,
+      {
+        method: 'POST',
+        credentials: this._credentials,
+        headers: this._headers,
+        body: JSON.stringify({
+          country: movie.country,
+          director: movie.director,
+          duration: movie.duration,
+          year: movie.year,
+          description: movie.description,
+          image: movie.image,
+          trailerLink: movie.trailerLink,
+          thumbnail: movie.thumbnail,
+          movieId: movie.movieId,
+          nameRU: movie.nameRU,
+          nameEN: movie.nameEN,
+        }),
+      },
+      'сохранить фильм',
+    );
+  }
+
+  // удаляет фильм из сохраненных
+  deleteMovie(id) {
+    return this._request(
+      `${this._adress}/movies/${id}`,
+      {
+        method: 'DELETE',
+        credentials: this._credentials,
+        headers: this._headers,
+      },
+      'убрать фильм из сохраненных',
     );
   }
 }
