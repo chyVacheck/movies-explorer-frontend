@@ -43,20 +43,26 @@ function Movies({ addNotification }) {
   const [isPreloaderActive, setIsPreloaderActive] = useState(false);
   // ? вкл выкл инпут
   const [isInputReadOnly, setInputReadOnly] = useState(false);
-  // ? сохраненные фильмы
-  const [savedMovies, setSavedMovies] = useState([]);
-  // ? отфильтрованные фильмы
-  const [filteredMovies, setFilteredMovieds] = useState([]);
-  // отправлен ли запрос на сервер
-  const [isRequestProcessed, setRequestProcessed] = useState(true);
   // все фильмы
   const [allMovies, setAllMovies] = useState([]);
+  // сохраненные фильмы
+  const [savedMovies, setSavedMovies] = useState([]);
+  // отфильтрованные фильмы
+  const [filteredMovies, setFilteredMovieds] = useState([]);
+  // отрисованные фильмы
+  const [renderMovies, setRenderMovies] = useState([]);
+  // ? отправлен ли запрос на сервер
+  const [isRequestProcessed, setRequestProcessed] = useState(true);
   // получили ли сохраненные фильмы
   const [isRequestSavedMovies, setRequestSavedMovies] = useState(false);
   // поисковое слово
-  const [searchWord, setSearchWord] = useState('');
+  const [searchWord, setSearchWord] = useState(null);
   // нажат ли кнопка поиска
-  const [isPressedSubmit, serPressedSubmit] = useState(false);
+  const [isPressedSubmit, setPressedSubmit] = useState(false);
+  // сколько карточек отрисовывать
+  const [numberOfMovies, setNumberOfMovies] = useState({});
+  // нажат ли кнопка поиска
+  const [isMoreButtonAcctive, setMoreButtonAcctive] = useState(true);
 
   // * useRef`s
   const searchRef = useRef();
@@ -72,13 +78,45 @@ function Movies({ addNotification }) {
   // достаем поисковое слово из // ? localstorage
   useEffect(() => {
     // достаем из localstorage
-    const _searchWord = localStorage.getItem(searchWordName) || ' ';
+    const _searchWord = localStorage.getItem(searchWordName) || null;
 
-    // устанавливаем в нижнем регистре
-    setSearchWord(_searchWord.toLowerCase());
-    // устанавливаем в поисковую строку в том виде как было
-    searchRef.current.value = _searchWord;
+    // если не пустая
+    if (_searchWord !== null) {
+      // устанавливаем в нижнем регистре
+      setSearchWord(_searchWord.toLowerCase());
+
+      // устанавливаем в поисковую строку в том виде как было
+      searchRef.current.value = _searchWord;
+    }
   }, []);
+
+  // в зависимости от ширины экрана устанавливаем количество карточек к отрисовке
+  useEffect(() => {
+    handlerResize();
+  }, []);
+
+  // фильтруем карточки если строка поиска не пустая
+  useEffect(() => {
+    if (searchWord !== null) {
+      setPressedSubmit(true);
+      setIsPreloaderActive(true);
+      setInputReadOnly(true);
+      // устанавливаем фильтрованные фильмы
+      filteredAndSetMovies(isActiveShortFilm, searchWord.toLowerCase());
+    }
+  }, [isRequestProcessed]);
+
+  // устанавливаем карточки
+  useEffect(() => {
+    const array = [];
+    for (let i = 0; i < numberOfMovies.start; i++) {
+      array[i] = filteredMovies[i];
+    }
+
+    setRenderMovies(array);
+    setIsPreloaderActive(false);
+    setInputReadOnly(false);
+  }, [filteredMovies]);
 
   // запрос на сохраненные фильмы
   useEffect(() => {
@@ -115,6 +153,8 @@ function Movies({ addNotification }) {
 
   // получаем и устанавливаем фильмы
   useEffect(() => {
+    setIsPreloaderActive(true);
+    setInputReadOnly(true);
     // запрос на все фильмы
     const fetch = async () =>
       await moviesApi
@@ -190,12 +230,23 @@ function Movies({ addNotification }) {
   // * function`s
   // todo заглушка переключающая прелоадер
   function moreCards() {
-    if (isPreloaderActive) {
-      console.log('Выключили загрузку карточек');
-    } else {
-      console.log('Включили загрузку карточек');
+    setIsPreloaderActive(true);
+
+    const start = renderMovies.length;
+    let end = start + numberOfMovies.more;
+
+    if (end >= filteredMovies.length - 1) {
+      end = filteredMovies.length - 1;
+      setMoreButtonAcctive(false);
     }
-    setIsPreloaderActive(!isPreloaderActive);
+
+    const array = [];
+    for (let i = 0; i < end - start; i++) {
+      array[i] = filteredMovies[start + i];
+    }
+
+    setRenderMovies([...renderMovies, ...array]);
+    setIsPreloaderActive(false);
   }
 
   // возвращает короткометражные фильмы
@@ -245,14 +296,11 @@ function Movies({ addNotification }) {
       // устанавливаем в localStorage новое значение
       localStorage.setItem(searchWordName, _searchWord);
 
-      serPressedSubmit(true);
+      setPressedSubmit(true);
       setIsPreloaderActive(true);
       setInputReadOnly(true);
       // устанавливаем фильтрованные фильмы
       filteredAndSetMovies(isActive, _searchWord.toLowerCase());
-
-      setIsPreloaderActive(false);
-      setInputReadOnly(false);
 
       // ! dev
       if (configSite.status === status.dev)
@@ -272,6 +320,31 @@ function Movies({ addNotification }) {
     );
   }
 
+  // в зависимости от ширины экрана устанавливаем количество карточек к отрисовке
+  function handlerResize() {
+    const _width = window.innerWidth;
+
+    if (_width >= 1282) {
+      setNumberOfMovies({
+        start: 12,
+        more: 3,
+      });
+    } else if (1282 > _width && _width >= 762) {
+      setNumberOfMovies({
+        start: 8,
+        more: 2,
+      });
+    } else if (762 > _width) {
+      setNumberOfMovies({
+        start: 5,
+        more: 2,
+      });
+    }
+  }
+
+  // вешаем слушатель
+  window.addEventListener('resize', handlerResize);
+
   // * return
   return (
     <section className='Movies'>
@@ -289,13 +362,16 @@ function Movies({ addNotification }) {
       />
 
       <MoviesCardList
-        isPressedSubmit={isPressedSubmit}
-        cardList={!isRequestProcessed && filteredMovies}
+        isPreloaderActive={isPreloaderActive}
+        cardList={!isRequestProcessed && renderMovies}
         place='movies'
       />
 
-      {isPreloaderActive && <Preloader />}
-      <MoreButton onClick={moreCards} />
+      {isPreloaderActive ? (
+        <Preloader />
+      ) : (
+        isMoreButtonAcctive && <MoreButton onClick={moreCards} />
+      )}
     </section>
   );
 }

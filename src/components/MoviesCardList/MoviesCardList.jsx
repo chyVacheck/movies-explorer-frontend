@@ -9,7 +9,7 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 
 // ? компоненты
 
-function MoviesCardList({ isPressedSubmit, setMovies, cardList, place }) {
+function MoviesCardList({ isPreloaderActive, setMovies, cardList, place }) {
   return (
     <article className='MoviesCardList'>
       {cardList.length > 0 ? (
@@ -30,9 +30,8 @@ function MoviesCardList({ isPressedSubmit, setMovies, cardList, place }) {
         ))
       ) : (
         <p className='MoviesCardList__not-found'>
-          {isPressedSubmit
-            ? 'К сожалению по вашему запросу ничего не нашлось'
-            : 'Введите название фильма и нажмите кнопку "Найти"'}
+          {!isPreloaderActive &&
+            'К сожалению по вашему запросу ничего не нашлось'}
         </p>
       )}
     </article>

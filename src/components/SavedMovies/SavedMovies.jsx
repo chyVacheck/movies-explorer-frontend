@@ -46,7 +46,7 @@ function SavedMovies() {
   // отправлен ли запрос на сервер
   const [isRequestProcessed, setRequestProcessed] = useState(true);
   // поисковое слово
-  const [searchWord, setSearchWord] = useState('');
+  const [searchWord, setSearchWord] = useState(null);
   // нажат ли кнопка поиска
   const [isPressedSubmit, setPressedSubmit] = useState(false);
 
@@ -113,15 +113,34 @@ function SavedMovies() {
   // достаем поисковое слово из // ? localstorage
   useEffect(() => {
     // достаем из localstorage
-    const _searchWord = localStorage.getItem(searchWordName) || ' ';
+    const _searchWord = localStorage.getItem(searchWordName) || null;
 
-    // устанавливаем в нижнем регистре
-    setSearchWord(_searchWord.toLowerCase());
-    // устанавливаем в поисковую строку в том виде как было
-    searchRef.current.value = _searchWord;
+    // если не пустая
+    if (_searchWord !== null) {
+      // устанавливаем в нижнем регистре
+      setSearchWord(_searchWord.toLowerCase());
+
+      // устанавливаем в поисковую строку в том виде как было
+      searchRef.current.value = _searchWord;
+    }
   }, []);
 
-  // todo
+  // отрисовываем карточки если строка поиска не пустая
+  useEffect(() => {
+    if (searchWord !== null) {
+      setPressedSubmit(true);
+      setIsPreloaderActive(true);
+      setInputReadOnly(true);
+      // устанавливаем фильтрованные фильмы
+      filteredAndSetMovies(isActiveShortFilm, searchWord.toLowerCase());
+
+      setIsPreloaderActive(false);
+      setInputReadOnly(false);
+    }
+  }, [savedMovies]);
+
+  // отрисовка при изменении сохраненных фильмов
+  // нужно для удаления фильмов (что бы удаленный фильм не отрисовывался)
   useEffect(() => {
     isPressedSubmit && filteredAndSetMovies(isActiveShortFilm, searchWord);
   }, [savedMovies]);
@@ -217,7 +236,7 @@ function SavedMovies() {
       />
       {!isRequestProcessed || !isPreloaderActive ? (
         <MoviesCardList
-          isPressedSubmit={isPressedSubmit}
+          isPreloaderActive={isPreloaderActive}
           setMovies={setSavedMovies}
           cardList={filteredMovies}
           place='saved-movies'
