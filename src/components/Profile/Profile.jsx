@@ -94,6 +94,8 @@ function Profile({ addNotification, setLoggedIn, setCurrentUser }) {
           name: '',
           email: '',
         });
+        // очищаем localstorage
+        localStorage.clear();
         // выходим из системы
         setLoggedIn(false);
         // переходим на главную страницу
