@@ -56,7 +56,7 @@ function Movies({ addNotification }) {
   // получили ли сохраненные фильмы
   const [isRequestSavedMovies, setRequestSavedMovies] = useState(false);
   // поисковое слово
-  const [searchWord, setSearchWord] = useState(null);
+  const [searchWord, setSearchWord] = useState('');
   // нажат ли кнопка поиска
   const [isPressedSubmit, setPressedSubmit] = useState(false);
   // сколько карточек отрисовывать
@@ -78,10 +78,10 @@ function Movies({ addNotification }) {
   // достаем поисковое слово из // ? localstorage
   useEffect(() => {
     // достаем из localstorage
-    const _searchWord = localStorage.getItem(searchWordName) || null;
+    const _searchWord = localStorage.getItem(searchWordName) || '';
 
     // если не пустая
-    if (_searchWord !== null) {
+    if (_searchWord.length > 0) {
       // устанавливаем в нижнем регистре
       setSearchWord(_searchWord.toLowerCase());
 
