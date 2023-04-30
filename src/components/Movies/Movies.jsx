@@ -97,7 +97,7 @@ function Movies({ addNotification }) {
 
   // фильтруем карточки если строка поиска не пустая
   useEffect(() => {
-    if (searchWord !== null) {
+    if (searchWord.length > 0) {
       setPressedSubmit(true);
       setIsPreloaderActive(true);
       setInputReadOnly(true);
@@ -153,7 +153,6 @@ function Movies({ addNotification }) {
 
   // получаем и устанавливаем фильмы
   useEffect(() => {
-    setIsPreloaderActive(true);
     setInputReadOnly(true);
     // запрос на все фильмы
     const fetch = async () =>
@@ -228,7 +227,7 @@ function Movies({ addNotification }) {
   }, [isRequestSavedMovies]);
 
   // * function`s
-  // todo заглушка переключающая прелоадер
+  // добавляем n кол. карточек
   function moreCards() {
     setIsPreloaderActive(true);
 
