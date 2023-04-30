@@ -56,7 +56,7 @@ function Movies({ addNotification }) {
   // получили ли сохраненные фильмы
   const [isRequestSavedMovies, setRequestSavedMovies] = useState(false);
   // поисковое слово
-  const [searchWord, setSearchWord] = useState('');
+  const [searchWord, setSearchWord] = useState(null);
   // нажат ли кнопка поиска
   const [isPressedSubmit, setPressedSubmit] = useState(false);
   // сколько карточек отрисовывать
@@ -78,10 +78,10 @@ function Movies({ addNotification }) {
   // достаем поисковое слово из // ? localstorage
   useEffect(() => {
     // достаем из localstorage
-    const _searchWord = localStorage.getItem(searchWordName) || '';
+    const _searchWord = localStorage.getItem(searchWordName) || null;
 
     // если не пустая
-    if (_searchWord.length > 0) {
+    if (_searchWord !== null) {
       // устанавливаем в нижнем регистре
       setSearchWord(_searchWord.toLowerCase());
 
@@ -97,7 +97,7 @@ function Movies({ addNotification }) {
 
   // фильтруем карточки если строка поиска не пустая
   useEffect(() => {
-    if (searchWord.length > 0) {
+    if (searchWord !== null) {
       setPressedSubmit(true);
       setIsPreloaderActive(true);
       setInputReadOnly(true);
@@ -227,7 +227,6 @@ function Movies({ addNotification }) {
   }, [isRequestSavedMovies]);
 
   // * function`s
-  // добавляем n кол. карточек
   function moreCards() {
     setIsPreloaderActive(true);
 
