@@ -97,12 +97,14 @@ function Movies({ addNotification }) {
 
   // фильтруем карточки если строка поиска не пустая
   useEffect(() => {
+    setPressedSubmit(true);
+    setIsPreloaderActive(true);
+    setInputReadOnly(true);
+    // устанавливаем фильтрованные фильмы
     if (searchWord !== null) {
-      setPressedSubmit(true);
-      setIsPreloaderActive(true);
-      setInputReadOnly(true);
-      // устанавливаем фильтрованные фильмы
       filteredAndSetMovies(isActiveShortFilm, searchWord.toLowerCase());
+    } else {
+      filteredAndSetMovies(isActiveShortFilm, '');
     }
   }, [isRequestProcessed]);
 
@@ -161,10 +163,9 @@ function Movies({ addNotification }) {
 
   // получаем и устанавливаем фильмы
   useEffect(() => {
-    setInputReadOnly(true);
     // запрос на все фильмы
-    const fetch = async () =>
-      await moviesApi
+    const fetch = async () => {
+      return await moviesApi
         .getMovies()
         .then((res) => {
           if (res) {
@@ -230,6 +231,7 @@ function Movies({ addNotification }) {
             });
         })
         .finally(() => setRequestProcessed(false));
+    };
 
     if (isRequestSavedMovies) fetch();
   }, [isRequestSavedMovies]);
