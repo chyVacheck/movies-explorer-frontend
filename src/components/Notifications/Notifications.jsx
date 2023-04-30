@@ -21,13 +21,13 @@ import { status } from './../../utils/Constants';
 function Notifications({ notifications, setNotifications }) {
   // определяем, уведомления находятся ниже шапки профиля или нет
   window.onscroll = function () {
-    if (cardList.length > 0) {
+    if (notifications.length > 0) {
       if (74 - window.scrollY < 14)
-      document.getElementById('Notifications').style.top = '14px';
-    else
-      document.getElementById('Notifications').style.top = `${
-        74 - window.scrollY
-      }px`;
+        document.getElementById('Notifications').style.top = '14px';
+      else
+        document.getElementById('Notifications').style.top = `${
+          74 - window.scrollY
+        }px`;
     }
   };
 
