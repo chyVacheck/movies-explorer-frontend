@@ -1,7 +1,7 @@
 {
   "Main": {
     "BaseUrl": {
-      "prod": "https://prod",
+      "prod": "https://movies-api.nomoredomains.rocks/api",
       "dev": "http://localhost:3001/api"
     },
     "credentials": "include"
