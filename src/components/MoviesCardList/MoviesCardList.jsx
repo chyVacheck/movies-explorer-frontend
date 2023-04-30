@@ -13,21 +13,23 @@ function MoviesCardList({ isPreloaderActive, setMovies, cardList, place }) {
   return (
     <article className='MoviesCardList'>
       {cardList.length > 0 ? (
-        cardList.map((item, index) => (
-          <MoviesCard
-            key={index}
-            lang={
-              item.nameRU && item.nameEN
-                ? item.nameRU.toLowerCase() === item.nameEN.toLowerCase()
-                  ? 'en'
+        cardList.map((item, index) => {
+          return (
+            <MoviesCard
+              key={index}
+              lang={
+                item.nameRU && item.nameEN
+                  ? item.nameRU.toLowerCase() === item.nameEN.toLowerCase()
+                    ? 'en'
+                    : 'ru'
                   : 'ru'
-                : 'ru'
-            }
-            setMovies={setMovies}
-            movie={item}
-            place={place}
-          />
-        ))
+              }
+              setMovies={setMovies}
+              movie={item}
+              place={place}
+            />
+          );
+        })
       ) : (
         <p className='MoviesCardList__not-found'>
           {!isPreloaderActive &&

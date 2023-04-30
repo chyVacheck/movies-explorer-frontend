@@ -109,7 +109,15 @@ function Movies({ addNotification }) {
   // устанавливаем карточки
   useEffect(() => {
     const array = [];
-    for (let i = 0; i < numberOfMovies.start; i++) {
+    let length = 0;
+    if (numberOfMovies.start > filteredMovies.length) {
+      length = filteredMovies.length;
+      setMoreButtonAcctive(false);
+    } else {
+      length = numberOfMovies.start;
+    }
+
+    for (let i = 0; i < length; i++) {
       array[i] = filteredMovies[i];
     }
 
