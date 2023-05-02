@@ -117,6 +117,7 @@ function Movies({ addNotification }) {
       setMoreButtonAcctive(false);
     } else {
       length = numberOfMovies.start;
+      setMoreButtonAcctive(true);
     }
 
     for (let i = 0; i < length; i++) {
