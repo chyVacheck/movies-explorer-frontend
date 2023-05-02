@@ -13,18 +13,17 @@ import configSite from './../../config/configSite.json';
 // * константы
 import { paths, status } from '../../utils/Constants';
 // * utils
-
 // * Api
 
-function ProtectedRoute({ loggedIn, children, page }) {
-  // возвращает на стр авторизации + уведомляет в консоли
+function ProtectedRoute({ isActive, children, page, to = paths.aboutProject }) {
+  // перемещает на другую страницу
   // todo сделать вывод информации в поп-ап
-  function toLogin() {
+  function toAnotherPage() {
     configSite.status === status.dev &&
-      console.log(`Попытка зайти на страницу [${page}] не авторизовавшись`);
-    return <Navigate to={paths.login} />;
+      console.log(`Попытка зайти на страницу [${page}] не соблюдая правила`);
+    return <Navigate to={to} />;
   }
 
-  return loggedIn ? children : toLogin();
+  return isActive ? children : toAnotherPage();
 }
 export default ProtectedRoute;

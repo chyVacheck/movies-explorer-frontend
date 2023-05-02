@@ -121,7 +121,7 @@ function App() {
                 exact
                 path={paths.movies}
                 element={
-                  <ProtectedRoute loggedIn={loggedIn} page={page}>
+                  <ProtectedRoute isActive={loggedIn} page={page}>
                     <Movies addNotification={addNotification} />
                   </ProtectedRoute>
                 }
@@ -132,7 +132,7 @@ function App() {
                 exact
                 path={paths.savedMovies}
                 element={
-                  <ProtectedRoute loggedIn={loggedIn} page={page}>
+                  <ProtectedRoute isActive={loggedIn} page={page}>
                     <SavedMovies />
                   </ProtectedRoute>
                 }
@@ -143,7 +143,7 @@ function App() {
                 exact
                 path={paths.profile}
                 element={
-                  <ProtectedRoute loggedIn={loggedIn} page={page}>
+                  <ProtectedRoute isActive={loggedIn} page={page}>
                     <Profile
                       addNotification={addNotification}
                       setLoggedIn={setLoggedIn}
@@ -158,11 +158,13 @@ function App() {
                 exact
                 path={paths.login}
                 element={
-                  <Login
-                    addNotification={addNotification}
-                    setLoggedIn={setLoggedIn}
-                    setCurrentUser={setCurrentUser}
-                  />
+                  <ProtectedRoute isActive={!loggedIn} page={page}>
+                    <Login
+                      addNotification={addNotification}
+                      setLoggedIn={setLoggedIn}
+                      setCurrentUser={setCurrentUser}
+                    />
+                  </ProtectedRoute>
                 }
               />
 
@@ -171,11 +173,13 @@ function App() {
                 exact
                 path={paths.registration}
                 element={
-                  <Register
-                    addNotification={addNotification}
-                    setLoggedIn={setLoggedIn}
-                    setCurrentUser={setCurrentUser}
-                  />
+                  <ProtectedRoute isActive={!loggedIn} page={page}>
+                    <Register
+                      addNotification={addNotification}
+                      setLoggedIn={setLoggedIn}
+                      setCurrentUser={setCurrentUser}
+                    />
+                  </ProtectedRoute>
                 }
               />
 
