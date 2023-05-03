@@ -8,7 +8,7 @@ import './AboutProject.css';
 import { mainNavigationRouters as routers } from './../../utils/Constants';
 import LandingBlock from '../LandingBlock/LandingBlock';
 
-function AboutProject() {
+function AboutProject({ serialNumber }) {
   return (
     <LandingBlock
       id='about-project'
@@ -17,7 +17,7 @@ function AboutProject() {
         big: true,
         grey: false,
       }}
-      title={routers[0].context}
+      title={routers[serialNumber].context}
     >
       <div className='aboutProject__columns'>
         {/* 5 этапов */}

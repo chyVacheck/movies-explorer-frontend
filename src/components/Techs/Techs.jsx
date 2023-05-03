@@ -8,7 +8,7 @@ import './Techs.css';
 import { mainNavigationRouters as routers } from './../../utils/Constants';
 import LandingBlock from '../LandingBlock/LandingBlock';
 
-function Techs() {
+function Techs({ serialNumber }) {
   return (
     <LandingBlock
       id='techs'
@@ -18,7 +18,7 @@ function Techs() {
         big: false,
         grey: true,
       }}
-      title={routers[1].context}
+      title={routers[serialNumber].context}
     >
       <h3 className='techs__title'>7 технологий</h3>
 
