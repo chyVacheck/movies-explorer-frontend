@@ -23,9 +23,10 @@ import {
   status,
   localStorageNames,
   SHORT_MOVIE_DURATION,
+  NUMBER_OF_MOVIES_TO_RENDER,
 } from './../../utils/Constants';
 // * utils
-import { checkValidity, checkAnswerFromServer } from './../../utils/Utils';
+import { checkAnswerFromServer } from './../../utils/Utils';
 // * Api
 import moviesApi from '../../utils/MoviesApi';
 import mainApi from '../../utils/MainApi';
@@ -95,16 +96,17 @@ function Movies({ addNotification }) {
     handlerResize();
   }, []);
 
-  // фильтруем карточки если строка поиска не пустая
+  // фильтруем карточки
   useEffect(() => {
-    setPressedSubmit(true);
-    setIsPreloaderActive(true);
-    setInputReadOnly(true);
-    // устанавливаем фильтрованные фильмы
-    if (searchWord !== null) {
-      filteredAndSetMovies(isActiveShortFilm, searchWord.toLowerCase());
-    } else {
-      filteredAndSetMovies(isActiveShortFilm, '');
+    if (!isRequestProcessed) {
+      setPressedSubmit(true);
+      setIsPreloaderActive(true);
+      setInputReadOnly(true);
+      // устанавливаем фильтрованные фильмы
+      filteredAndSetMovies(
+        isActiveShortFilm,
+        searchWord !== null ? searchWord.toLowerCase() : '',
+      );
     }
   }, [isRequestProcessed]);
 
@@ -171,7 +173,6 @@ function Movies({ addNotification }) {
         .then((res) => {
           if (res) {
             const array = [];
-
             // редактируем пришедшие данные
             res.forEach((movie, index) => {
               // копируем значение
@@ -190,6 +191,8 @@ function Movies({ addNotification }) {
               // movieId
               array[index].movieId = movie.id;
 
+              array[index]._id = null;
+
               // добавляем _id
               savedMovies.length > 0
                 ? savedMovies.forEach((savedMovie) => {
@@ -197,9 +200,6 @@ function Movies({ addNotification }) {
                     if (savedMovie.movieId === array[index].movieId) {
                       // если одинаковые, то устанавливаем _id
                       array[index]._id = savedMovie._id;
-                    } else {
-                      // если нет, то устанавливаем null
-                      array[index]._id = null;
                     }
                   })
                 : (array[index]._id = null);
@@ -231,7 +231,9 @@ function Movies({ addNotification }) {
               text: checkAnswerFromServer('all', 'failFetch'),
             });
         })
-        .finally(() => setRequestProcessed(false));
+        .finally(() => {
+          setRequestProcessed(false);
+        });
     };
 
     if (isRequestSavedMovies) fetch();
@@ -333,22 +335,17 @@ function Movies({ addNotification }) {
   function handlerResize() {
     const _width = window.innerWidth;
 
+    let _numbOfMovies = {};
+
     if (_width >= 1282) {
-      setNumberOfMovies({
-        start: 12,
-        more: 3,
-      });
+      _numbOfMovies = NUMBER_OF_MOVIES_TO_RENDER.LAPTOP;
     } else if (1282 > _width && _width >= 762) {
-      setNumberOfMovies({
-        start: 8,
-        more: 2,
-      });
+      _numbOfMovies = NUMBER_OF_MOVIES_TO_RENDER.TABLET;
     } else if (762 > _width) {
-      setNumberOfMovies({
-        start: 5,
-        more: 2,
-      });
+      _numbOfMovies = NUMBER_OF_MOVIES_TO_RENDER.PHONE;
     }
+
+    setNumberOfMovies(_numbOfMovies);
   }
 
   // вешаем слушатель

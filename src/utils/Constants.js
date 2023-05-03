@@ -56,7 +56,7 @@ export const VALIDATION = {
     MAX: 30,
   },
   EMAIL: {
-    pattern: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
+    pattern: '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,}',
   },
   PASSWORD: {
     MIN: 4,
@@ -99,6 +99,21 @@ export const typeOfErrorFromServer = {
   },
 };
 
+export const NUMBER_OF_MOVIES_TO_RENDER = {
+  LAPTOP: {
+    start: 12,
+    more: 3,
+  },
+  TABLET: {
+    start: 8,
+    more: 2,
+  },
+  PHONE: {
+    start: 5,
+    more: 2,
+  },
+};
+
 export const SHORT_MOVIE_DURATION = 40;
 
 export const localStorageNames = {
@@ -107,7 +122,6 @@ export const localStorageNames = {
     movies: 'shortFilm-movies',
   },
   searchWordName: {
-    'saved-movies': 'searchWord-saved-movies',
     movies: 'searchWord-movies',
   },
 };
