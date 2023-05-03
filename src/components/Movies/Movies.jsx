@@ -23,7 +23,7 @@ import {
   status,
   localStorageNames,
   SHORT_MOVIE_DURATION,
-  NUMBER_OF_MOVIES_TO_RENDER,
+  NUMBER_OF_MOVIES_TO_RENDER as NUMBER_RENDER,
 } from './../../utils/Constants';
 // * utils
 import { checkAnswerFromServer } from './../../utils/Utils';
@@ -337,15 +337,21 @@ function Movies({ addNotification }) {
 
     let _numbOfMovies = {};
 
-    if (_width >= 1282) {
-      _numbOfMovies = NUMBER_OF_MOVIES_TO_RENDER.LAPTOP;
-    } else if (1282 > _width && _width >= 762) {
-      _numbOfMovies = NUMBER_OF_MOVIES_TO_RENDER.TABLET;
-    } else if (762 > _width) {
-      _numbOfMovies = NUMBER_OF_MOVIES_TO_RENDER.PHONE;
+    if (_width >= NUMBER_RENDER.LAPTOP.widthEnd) {
+      _numbOfMovies = NUMBER_RENDER.LAPTOP;
+    } else if (
+      NUMBER_RENDER.TABLET.widthStart > _width &&
+      _width >= NUMBER_RENDER.TABLET.widthEnd
+    ) {
+      _numbOfMovies = NUMBER_RENDER.TABLET;
+    } else if (NUMBER_RENDER.PHONE.widthStart > _width) {
+      _numbOfMovies = NUMBER_RENDER.PHONE;
     }
 
-    setNumberOfMovies(_numbOfMovies);
+    setNumberOfMovies({
+      start: _numbOfMovies.start,
+      more: _numbOfMovies.more,
+    });
   }
 
   // вешаем слушатель

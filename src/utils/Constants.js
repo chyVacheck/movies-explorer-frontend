@@ -101,14 +101,18 @@ export const typeOfErrorFromServer = {
 
 export const NUMBER_OF_MOVIES_TO_RENDER = {
   LAPTOP: {
+    widthEnd: 1282,
     start: 12,
     more: 3,
   },
   TABLET: {
+    widthStart: 1282,
+    widthEnd: 762,
     start: 8,
     more: 2,
   },
   PHONE: {
+    widthStart: 762,
     start: 5,
     more: 2,
   },
