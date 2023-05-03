@@ -47,8 +47,6 @@ function SavedMovies() {
   const [isRequestProcessed, setRequestProcessed] = useState(true);
   // поисковое слово
   const [searchWord, setSearchWord] = useState(null);
-  // нажат ли кнопка поиска
-  const [isPressedSubmit, setPressedSubmit] = useState(false);
 
   // * useRef`s
   const searchRef = useRef();
@@ -110,29 +108,18 @@ function SavedMovies() {
     }
   }, []);
 
-  // достаем поисковое слово из // ? localstorage
-  useEffect(() => {
-    // достаем из localstorage
-    const _searchWord = localStorage.getItem(searchWordName) || null;
-
-    // если не пустая
-    if (_searchWord !== null) {
-      // устанавливаем в нижнем регистре
-      setSearchWord(_searchWord.toLowerCase());
-
-      // устанавливаем в поисковую строку в том виде как было
-      searchRef.current.value = _searchWord;
-    }
-  }, []);
-
   // отрисовываем карточки если строка поиска не пустая
   useEffect(() => {
-    if (searchWord !== null) {
-      setPressedSubmit(true);
+    const _isSearchWordNull = searchWord === null;
+
+    if (!_isSearchWordNull) {
       setIsPreloaderActive(true);
       setInputReadOnly(true);
       // устанавливаем фильтрованные фильмы
-      filteredAndSetMovies(isActiveShortFilm, searchWord.toLowerCase());
+      filteredAndSetMovies(
+        isActiveShortFilm,
+        _isSearchWordNull ? '' : searchWord.toLowerCase(),
+      );
 
       setIsPreloaderActive(false);
       setInputReadOnly(false);
@@ -142,7 +129,7 @@ function SavedMovies() {
   // отрисовка при изменении сохраненных фильмов
   // нужно для удаления фильмов (что бы удаленный фильм не отрисовывался)
   useEffect(() => {
-    isPressedSubmit && filteredAndSetMovies(isActiveShortFilm, searchWord);
+    filteredAndSetMovies(isActiveShortFilm, searchWord);
   }, [savedMovies]);
 
   // * function`s
@@ -167,14 +154,14 @@ function SavedMovies() {
     // устанавливаем в localStorage новое значение
     localStorage.setItem(shortFilmName, !isActiveShortFilm);
 
-    // фильтруем только если была нажата кнопка поиска
-    isPressedSubmit &&
-      (!isActiveShortFilm
-        ? // устанавливаем фильтрованные фильмы
-          setFilteredMovies(filteredMovies.filter(_shortMovies))
-        : setFilteredMovies(
-            savedMovies.filter((movie) => _searchMovies(movie, searchWord)),
-          ));
+    !isActiveShortFilm
+      ? // устанавливаем фильтрованные фильмы
+        setFilteredMovies(filteredMovies.filter(_shortMovies))
+      : setFilteredMovies(
+          savedMovies.filter((movie) =>
+            _searchMovies(movie, searchWord ? searchWord : ''),
+          ),
+        );
 
     setIsActiveShortFilm(!isActiveShortFilm);
 
@@ -188,12 +175,9 @@ function SavedMovies() {
     const _searchWord = searchRef.current.value;
 
     // если поиск новый, то начинаем отрисовку
-    if (!isPressedSubmit || _searchWord.toLowerCase() !== searchWord) {
+    if (_searchWord.toLowerCase() !== searchWord) {
       setSearchWord(_searchWord.toLowerCase());
-      // устанавливаем в localStorage новое значение
-      localStorage.setItem(searchWordName, _searchWord);
 
-      setPressedSubmit(true);
       setIsPreloaderActive(true);
       setInputReadOnly(true);
       // устанавливаем фильтрованные фильмы
@@ -212,10 +196,13 @@ function SavedMovies() {
 
   // фильтруем и устанавливаем фильмы
   function filteredAndSetMovies(isActive, _searchWord) {
+    const _isSearchWordNull = _searchWord === null;
     // устанавливаем фильтрованные фильмы
     setFilteredMovies(
       savedMovies
-        .filter((movie) => _searchMovies(movie, _searchWord))
+        .filter((movie) =>
+          _searchMovies(movie, _isSearchWordNull ? '' : _searchWord),
+        )
         .filter(isActive ? _shortMovies : () => true),
     );
   }
