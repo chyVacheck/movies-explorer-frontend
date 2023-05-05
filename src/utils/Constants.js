@@ -56,7 +56,7 @@ export const VALIDATION = {
     MAX: 30,
   },
   EMAIL: {
-    pattern: '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,}',
+    pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
   },
   PASSWORD: {
     MIN: 4,

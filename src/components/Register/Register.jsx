@@ -12,7 +12,7 @@ import SignForm from './../SignForm/SignForm';
 // * константы
 import { paths, VALIDATION } from './../../utils/Constants';
 // * utils
-import { checkValidity, checkAnswerFromServer } from './../../utils/Utils';
+import { checkValidity, checkAnswerFromServer, chekPattern } from './../../utils/Utils';
 // * Api
 import mainApi from '../../utils/MainApi';
 
@@ -42,7 +42,8 @@ function Register({ addNotification, setCurrentUser, setLoggedIn }) {
 
   // смена значение в input
   function handleFieldChange(event) {
-    const isValid = event.target.checkValidity();
+    const isValid = event.target.checkValidity() && chekPattern(event.target.value, VALIDATION.EMAIL.pattern);
+    
     // смена значение валидации
     const validatedKeyPare = {
       [event.target.id]: isValid,
@@ -51,7 +52,7 @@ function Register({ addNotification, setCurrentUser, setLoggedIn }) {
     // смена валидации формы
     setIsFormValid(event.target.closest('form').checkValidity());
     // смена текста ошибки
-    setCurrentError(checkValidity(event.target.validity));
+    setCurrentError(checkValidity(event.target, VALIDATION.EMAIL.pattern));
   }
 
   // регистрация
@@ -137,7 +138,6 @@ function Register({ addNotification, setCurrentUser, setLoggedIn }) {
             id: 'email',
             required: true,
             ref: emailRef,
-            pattern: VALIDATION.EMAIL.pattern,
             isValid: validatedFields.email,
           },
           {

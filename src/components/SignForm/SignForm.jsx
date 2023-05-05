@@ -48,7 +48,6 @@ function SignForm({
                   maxLength={item.maxLength}
                   ref={item.ref}
                   onChange={onChange}
-                  pattern={item.pattern}
                 ></input>
               </div>
             );
