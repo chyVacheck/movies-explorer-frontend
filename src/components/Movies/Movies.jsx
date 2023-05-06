@@ -214,8 +214,6 @@ function Movies({ addNotification }) {
                 'Запрос на сервер с целью получить все фильмы вернул',
                 res,
               );
-
-            console.log(218, res.filter((movie) => _searchMovies(movie, 'a')))
           }
         })
         .catch((err) => {
