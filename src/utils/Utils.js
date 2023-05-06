@@ -1,7 +1,7 @@
 // ? constants
 import { typeOfErrorFromServer } from './Constants';
 
-export function chekPattern(value, pattern) {
+export function checkPattern(value, pattern) {
   var EMAIL_REGEXP = new RegExp(pattern, 'g');
   const isValid = EMAIL_REGEXP.test(value);
   return isValid;
@@ -13,7 +13,7 @@ export function checkValidity(input, pattern) {
     return 'Поле слишком короткое';
   } else if (validity.tooLong) {
     return 'Поле слишком длинное';
-  } else if (!chekPattern(input.value, pattern)) {
+  } else if (pattern && !checkPattern(input.value, pattern)) {
     return 'Поле должно быть другого формата';
   } else if (validity.valueMissing) {
     return 'Поле должно быть заполненно';

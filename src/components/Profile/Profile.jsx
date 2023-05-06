@@ -17,7 +17,7 @@ import { CurrentUserContext } from './../../contexts/CurrentUserContext';
 // * constants
 import { VALIDATION, status } from '../../utils/Constants';
 // * utils
-import { checkValidity, checkAnswerFromServer } from './../../utils/Utils';
+import { checkValidity, checkAnswerFromServer, checkPattern } from './../../utils/Utils';
 // * Api
 import mainApi from '../../utils/MainApi';
 
@@ -63,7 +63,8 @@ function Profile({ addNotification, setLoggedIn, setCurrentUser }) {
 
   // смена значение в input
   function handleFieldChange(event) {
-    const isValid = event.target.checkValidity();
+    const isValid = event.target.type === 'email' ? event.target.checkValidity() && checkPattern(event.target.value, VALIDATION.EMAIL.pattern) : event.target.checkValidity();
+
     // смена значение валидации
     const validatedKeyPare = {
       [event.target.id]: isValid,
@@ -71,8 +72,7 @@ function Profile({ addNotification, setLoggedIn, setCurrentUser }) {
     setValidatedFields({ ...validatedFields, ...validatedKeyPare });
 
     // смена текста ошибки
-    setCurrentError(checkValidity(event.target.validity));
-
+    setCurrentError(checkValidity(event.target, event.target.type === 'email' && VALIDATION.EMAIL.pattern));
     // смена валидации формы
     if (
       nameRef.current.value === user.name &&
@@ -80,7 +80,7 @@ function Profile({ addNotification, setLoggedIn, setCurrentUser }) {
     ) {
       setIsFormValid(false);
     } else {
-      setIsFormValid(event.target.closest('form').checkValidity());
+      setIsFormValid(event.target.closest('form').checkValidity() && isValid);
     }
   }
 
@@ -197,7 +197,6 @@ function Profile({ addNotification, setLoggedIn, setCurrentUser }) {
               required
               className='profile__field-input'
               readOnly={isActiveManagement}
-              pattern={VALIDATION.EMAIL.pattern}
             />
           </div>
         </div>

@@ -12,7 +12,7 @@ import SignForm from './../SignForm/SignForm';
 // * константы
 import { paths, VALIDATION } from './../../utils/Constants';
 // * utils
-import { checkValidity, checkAnswerFromServer, chekPattern } from './../../utils/Utils';
+import { checkValidity, checkAnswerFromServer, checkPattern } from './../../utils/Utils';
 // * Api
 import mainApi from '../../utils/MainApi';
 
@@ -40,17 +40,17 @@ function Login({ addNotification, setCurrentUser, setLoggedIn }) {
 
   // смена значение в input
   function handleFieldChange(event) {
-    const isValid = event.target.checkValidity() && chekPattern(event.target.value, VALIDATION.EMAIL.pattern);
-    
+    const isValid = event.target.type === 'email' ? event.target.checkValidity() && checkPattern(event.target.value, VALIDATION.EMAIL.pattern) : event.target.checkValidity();
+
     // смена значение валидации
     const validatedKeyPare = {
       [event.target.id]: isValid,
     };
     setValidatedFields({ ...validatedFields, ...validatedKeyPare });
     // смена валидации формы
-    setIsFormValid(event.target.closest('form').checkValidity());
+    setIsFormValid(event.target.closest('form').checkValidity() && isValid);
     // смена текста ошибки
-    setCurrentError(checkValidity(event.target, VALIDATION.EMAIL.pattern));
+    setCurrentError(checkValidity(event.target, event.target.type === 'email' && VALIDATION.EMAIL.pattern));
   }
 
   // авторизация
