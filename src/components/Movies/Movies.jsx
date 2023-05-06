@@ -214,6 +214,8 @@ function Movies({ addNotification }) {
                 'Запрос на сервер с целью получить все фильмы вернул',
                 res,
               );
+
+            console.log(218, res.filter((movie) => _searchMovies(movie, 'a')))
           }
         })
         .catch((err) => {
@@ -246,8 +248,8 @@ function Movies({ addNotification }) {
     const start = renderMovies.length;
     let end = start + numberOfMovies.more;
 
-    if (end >= filteredMovies.length - 1) {
-      end = filteredMovies.length - 1;
+    if (end >= filteredMovies.length) {
+      end = filteredMovies.length;
       setMoreButtonAcctive(false);
     }
 
