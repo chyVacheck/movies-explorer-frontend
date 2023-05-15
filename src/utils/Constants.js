@@ -49,3 +49,83 @@ export const mainNavigationRouters = [
     id: 'about-me',
   },
 ];
+
+export const VALIDATION = {
+  NAME: {
+    MIN: 2,
+    MAX: 30,
+  },
+  EMAIL: {
+    pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
+  },
+  PASSWORD: {
+    MIN: 4,
+    MAX: 50,
+  },
+};
+
+export const status = {
+  dev: 'dev',
+  prod: 'prod',
+};
+
+export const typeOfErrorFromServer = {
+  failFetch: {
+    all: 'Нет связи с сервером',
+  },
+  login: {
+    400: 'Вы ввели неправильный логин или пароль',
+    401: 'Вы ввели неправильный логин или пароль',
+    403: 'Вы ввели неправильный логин или пароль',
+    404: 'Пользователя с такой почтой нет',
+    409: null,
+    429: null,
+  },
+  register: {
+    400: 'Проверьте введенные данные',
+    401: null,
+    403: null,
+    404: null,
+    409: 'Пользователь с таким email уже существует',
+    429: 'Слишком большое количество запросов, на регистрацию попробуйте позже',
+  },
+  setNewInfo: {
+    400: 'Проверьте введенные данные',
+    401: null,
+    403: null,
+    404: null,
+    409: 'Пользователь с таким email уже существует',
+    429: 'Слишком большое количество запросов, на смену данных попробуйте позже',
+  },
+};
+
+export const NUMBER_OF_MOVIES_TO_RENDER = {
+  LAPTOP: {
+    widthEnd: 1282,
+    start: 12,
+    more: 3,
+  },
+  TABLET: {
+    widthStart: 1282,
+    widthEnd: 762,
+    start: 8,
+    more: 2,
+  },
+  PHONE: {
+    widthStart: 762,
+    start: 5,
+    more: 2,
+  },
+};
+
+export const SHORT_MOVIE_DURATION = 40;
+
+export const localStorageNames = {
+  shortFilm: {
+    'saved-movies': 'shortFilm-saved-movies',
+    movies: 'shortFilm-movies',
+  },
+  searchWordName: {
+    movies: 'searchWord-movies',
+  },
+};

@@ -14,7 +14,7 @@ import { mainNavigationRouters as routers } from './../../utils/Constants';
 import LandingBlock from '../LandingBlock/LandingBlock';
 import Portfolio from './../Portfolio/Portfolio';
 
-function AboutMe() {
+function AboutMe({ serialNumber }) {
   return (
     <LandingBlock
       id='about-me'
@@ -23,7 +23,7 @@ function AboutMe() {
         big: true,
         grey: false,
       }}
-      title={routers[2].context}
+      title={routers[serialNumber].context}
     >
       <div className='aboutMe__info-img'>
         <div className='aboutMe__info'>

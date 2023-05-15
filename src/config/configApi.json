@@ -1,0 +1,14 @@
+{
+  "Main": {
+    "BaseUrl": {
+      "prod": "https://movies-api.nomoredomains.rocks/api",
+      "dev": "http://localhost:3001/api"
+    },
+    "credentials": "include"
+  },
+  "Movies": {
+    "BaseUrl": "https://api.nomoreparties.co/beatfilm-movies",
+    "ImageUrl": "https://api.nomoreparties.co"
+  },
+  "Content-Type": "application/json"
+}

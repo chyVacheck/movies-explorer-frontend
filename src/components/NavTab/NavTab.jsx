@@ -1,5 +1,5 @@
 // * react
-import React, { Link } from 'react-router-dom';
+import React from 'react-router-dom';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 
 // ? стили

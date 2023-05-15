@@ -18,11 +18,11 @@ function Main() {
 
       <NavTab />
 
-      <AboutProject />
+      <AboutProject serialNumber={0} />
 
-      <Techs />
+      <Techs serialNumber={1} />
 
-      <AboutMe />
+      <AboutMe serialNumber={2} />
     </main>
   );
 }
