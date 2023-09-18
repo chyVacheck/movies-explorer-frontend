@@ -67,10 +67,10 @@
 
   --week-text-color: #000000;
   --week-bg-light-color: var(--light-bg-color);
-  --week-bg-dakr-color: #303030;
-  --button-bg-dakr-color: #343434;
+  --week-bg-dark-color: #303030;
+  --button-bg-dark-color: #343434;
 
-  --texhs-bg-dakr-color: #303030;
+  --texhs-bg-dark-color: #303030;
 
   --button-out-color: #ee3465;
   --user-icon-button-bg-color: #313131;
@@ -101,11 +101,11 @@
   /* // #A0A0A0; */
   /* // #DADADA; */
   /* // #073042; */
-  /* #272727; */
+  /* // #272727; */
   /* // #C4C4C4; */
-  /* #E6E6E6; */
-  /* #505050; */
-  /* #959595; */
+  /* // #E6E6E6; */
+  /* // #505050; */
+  /* // #959595; */
   /* // #F8F8F8; */
 }
 

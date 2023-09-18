@@ -89,7 +89,7 @@
   box-sizing: border-box;
   padding: 2px;
   border: 1px solid var(--border-color);
-  background-color: var(--button-bg-dakr-color);
+  background-color: var(--button-bg-dark-color);
   display: flex;
   align-items: center;
   transition: all 0.4s;
