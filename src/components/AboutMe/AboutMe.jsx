@@ -5,7 +5,7 @@ import React from 'react';
 import './AboutMe.css';
 
 // ? фото
-import photo from './../../images/photo_Dmytro.jpg';
+import photo from './../../images/chyVacheck_avatar.png';
 
 // ? из констант
 import { mainNavigationRouters as routers } from './../../utils/Constants';
@@ -51,7 +51,11 @@ function AboutMe({ serialNumber }) {
           </a>
         </div>
 
-        <img className='aboutMe__img' src={photo} alt='фото моей девушки' />
+        <img
+          className='aboutMe__img'
+          src={photo}
+          alt='Моя аватарка в гит хаб'
+        />
       </div>
 
       <Portfolio />
