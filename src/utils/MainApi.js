@@ -6,7 +6,7 @@ import { status } from './../utils/Constants';
 
 class MainApi {
   constructor(setting) {
-    this._adress = setting.baseUrl;
+    this._address = setting.baseUrl;
     this._credentials = setting.credentials;
     this._headers = setting.headers;
   }
@@ -18,7 +18,7 @@ class MainApi {
       // во время dev выводим в консоль
       if (configSite.status === status.dev)
         console.log(
-          `Запрос на сервер [${this._adress}]${
+          `Запрос на сервер [${this._address}]${
             message ? ' с целью [' + message + ']' : ''
           } обработан успешно`,
         );
@@ -58,7 +58,7 @@ class MainApi {
   }*/
   authorization(user) {
     return this._request(
-      `${this._adress}/signin`,
+      `${this._address}/signin`,
       {
         method: 'POST',
         credentials: this._credentials,
@@ -77,7 +77,7 @@ class MainApi {
   }*/
   registration(user) {
     return this._request(
-      `${this._adress}/signup`,
+      `${this._address}/signup`,
       {
         method: 'POST',
         credentials: this._credentials,
@@ -91,7 +91,7 @@ class MainApi {
   // получаем данные о пользователе
   getUserInfo() {
     return this._request(
-      `${this._adress}/users/me`,
+      `${this._address}/users/me`,
       {
         method: 'GET',
         credentials: this._credentials,
@@ -108,7 +108,7 @@ class MainApi {
   }*/
   setUserInfo(user) {
     return this._request(
-      `${this._adress}/users/me`,
+      `${this._address}/users/me`,
       {
         method: 'PATCH',
         credentials: this._credentials,
@@ -125,7 +125,7 @@ class MainApi {
   // выход из системы
   logOut() {
     return this._request(
-      `${this._adress}/signout`,
+      `${this._address}/signout`,
       {
         method: 'POST',
         credentials: this._credentials,
@@ -138,7 +138,7 @@ class MainApi {
   // проверка токена
   validationCookie() {
     return this._request(
-      `${this._adress}/users/me`,
+      `${this._address}/users/me`,
       {
         method: 'GET',
         credentials: this._credentials,
@@ -151,7 +151,7 @@ class MainApi {
   // получение сохраненных фильмов
   getMovies() {
     return this._request(
-      `${this._adress}/movies`,
+      `${this._address}/movies`,
       {
         method: 'GET',
         credentials: this._credentials,
@@ -164,7 +164,7 @@ class MainApi {
   // возвращает все карточки
   saveMovie(movie) {
     return this._request(
-      `${this._adress}/movies`,
+      `${this._address}/movies`,
       {
         method: 'POST',
         credentials: this._credentials,
@@ -190,7 +190,7 @@ class MainApi {
   // удаляет фильм из сохраненных
   deleteMovie(id) {
     return this._request(
-      `${this._adress}/movies/${id}`,
+      `${this._address}/movies/${id}`,
       {
         method: 'DELETE',
         credentials: this._credentials,
