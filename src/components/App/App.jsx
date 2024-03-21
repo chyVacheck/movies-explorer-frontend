@@ -92,7 +92,7 @@ function App() {
         if (err.message === 'Failed to fetch')
           // показываем пользователю уведомление
           addNotification({
-            name: 'Сервер 500',
+            name: 'Server 500',
             type: 'error',
             text: checkAnswerFromServer('all', 'failFetch'),
           });

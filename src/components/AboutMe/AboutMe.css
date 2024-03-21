@@ -15,10 +15,11 @@
   width: 52.6315789%;
   display: flex;
   flex-direction: column;
+  gap: 18px;
 }
 
 .aboutMe__title {
-  margin: 0 0 18px;
+  margin: 0;
   font-weight: 400;
   font-size: 50px;
   line-height: 58px;
@@ -26,7 +27,7 @@
 }
 
 .aboutMe__sub-title {
-  margin: 0 0 26px;
+  margin: 0;
   font-weight: 500;
   font-size: 18px;
   line-height: 20px;
@@ -40,12 +41,21 @@
   mix-blend-mode: normal;
 }
 
+.aboutMe__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
 .aboutMe__link {
   margin: auto 0 0;
   font-weight: 500;
   width: fit-content;
   font-size: 14px;
   line-height: 17px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .aboutMe__img {
@@ -97,18 +107,17 @@
   }
   .aboutMe__info {
     width: 100%;
+    gap: 20px;
   }
   .aboutMe__title {
     max-width: 348px;
     font-size: 40px;
     line-height: 40px;
-    margin: 0 0 4.395604395604396%;
   }
   .aboutMe__sub-title {
     max-width: 348px;
     font-size: 12px;
     line-height: 18px;
-    margin: 0 0 5.494505494505%;
   }
   .aboutMe__text {
     font-size: 12px;

@@ -18,7 +18,7 @@ function MoreButton({ onClick }) {
         className='button MoreButton__button'
         type='button'
       >
-        Ещё
+        More
       </button>
     </article>
   );

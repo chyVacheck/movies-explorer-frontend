@@ -23,24 +23,24 @@ function AboutProject({ serialNumber }) {
         {/* 5 этапов */}
         <div className='aboutProject__column'>
           <h3 className='aboutProject__column-title'>
-            Дипломный проект включал 5 этапов
+            Current project includes 5 steps
           </h3>
 
           <p className='aboutProject__column-text'>
-            Составление плана, работу над бэкендом, вёрстку, добавление
-            функциональности и финальные доработки.
+            Scheduling, backend work, layout, adding functionality and final
+            tweaks.
           </p>
         </div>
 
         {/* 5 недель */}
         <div className='aboutProject__column'>
           <h3 className='aboutProject__column-title'>
-            На выполнение диплома ушло 5 недель
+            It took 5 weeks to complete the diploma
           </h3>
 
           <p className='aboutProject__column-text'>
-            У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было
-            соблюдать, чтобы успешно защититься.
+            Each stage had a soft and hard deadline that had to be in order to
+            successfully defend themselves.
           </p>
         </div>
       </div>
@@ -49,14 +49,14 @@ function AboutProject({ serialNumber }) {
         {/* 1 неделя */}
         <div className='aboutProject__week'>
           <h4 className='aboutProject__week-title aboutProject__week-title_color_light'>
-            1 неделя
+            1 week
           </h4>
           <p className='aboutProject__week-text'>Back-end</p>
         </div>
 
         {/* 4 недели */}
         <div className='aboutProject__week'>
-          <h4 className='aboutProject__week-title'>4 недели</h4>
+          <h4 className='aboutProject__week-title'>4 weeks</h4>
           <p className='aboutProject__week-text'>Front-end</p>
         </div>
       </div>

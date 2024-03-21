@@ -20,11 +20,11 @@ function Techs({ serialNumber }) {
       }}
       title={routers[serialNumber].context}
     >
-      <h3 className='techs__title'>7 технологий</h3>
+      <h3 className='techs__title'>7 Techs</h3>
 
       <p className='techs__text'>
-        На курсе веб-разработки мы освоили технологии, которые применили в
-        дипломном проекте.
+        In the web development course, we learned the technologies that we
+        applied in the thesis project.
       </p>
 
       <ul className='techs__list'>

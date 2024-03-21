@@ -10,9 +10,6 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import MoreButton from '../MoreButton/MoreButton';
 import Preloader from '../Preloader/Preloader';
 
-// ? image
-import defaultPhoto from './../../images/default_movie-card.png';
-
 // ? configs
 import configSite from './../../config/configSite.json';
 import configApi from './../../config/configApi.json';
@@ -49,7 +46,7 @@ function Movies({ addNotification }) {
   // сохраненные фильмы
   const [savedMovies, setSavedMovies] = useState([]);
   // отфильтрованные фильмы
-  const [filteredMovies, setFilteredMovieds] = useState([]);
+  const [filteredMovies, setFilteredMovies] = useState([]);
   // отрисованные фильмы
   const [renderMovies, setRenderMovies] = useState([]);
   // ? отправлен ли запрос на сервер
@@ -57,28 +54,28 @@ function Movies({ addNotification }) {
   // получили ли сохраненные фильмы
   const [isRequestSavedMovies, setRequestSavedMovies] = useState(false);
   // поисковое слово
-  const [searchWord, setSearchWord] = useState(null);
+  const [searchWord, setSearchWord] = useState('');
   // нажат ли кнопка поиска
   const [isPressedSubmit, setPressedSubmit] = useState(false);
   // сколько карточек отрисовывать
   const [numberOfMovies, setNumberOfMovies] = useState({});
   // нажат ли кнопка поиска
-  const [isMoreButtonAcctive, setMoreButtonAcctive] = useState(true);
+  const [isMoreButtonActive, setMoreButtonActive] = useState(true);
 
   // * useRef`s
   const searchRef = useRef();
 
   // * useEffect`s
-  // достаем фильтр короткометражек из // ? localstorage
+  // достаем фильтр короткометражек из // ? localStorage
   useEffect(() => {
     if (['true', 'false'].includes(localStorage.getItem(shortFilmName))) {
       setIsActiveShortFilm(JSON.parse(localStorage.getItem(shortFilmName)));
     }
   }, []);
 
-  // достаем поисковое слово из // ? localstorage
+  // достаем поисковое слово из // ? localStorage
   useEffect(() => {
-    // достаем из localstorage
+    // достаем из localStorage
     const _searchWord = localStorage.getItem(searchWordName) || null;
 
     // если не пустая
@@ -116,10 +113,10 @@ function Movies({ addNotification }) {
     let length = 0;
     if (numberOfMovies.start > filteredMovies.length) {
       length = filteredMovies.length;
-      setMoreButtonAcctive(false);
+      setMoreButtonActive(false);
     } else {
       length = numberOfMovies.start;
-      setMoreButtonAcctive(true);
+      setMoreButtonActive(true);
     }
 
     for (let i = 0; i < length; i++) {
@@ -248,7 +245,7 @@ function Movies({ addNotification }) {
 
     if (end >= filteredMovies.length) {
       end = filteredMovies.length;
-      setMoreButtonAcctive(false);
+      setMoreButtonActive(false);
     }
 
     const array = [];
@@ -277,7 +274,7 @@ function Movies({ addNotification }) {
   }
 
   // переключаем значение фильтра
-  function toogleShortFilm() {
+  function toggleShortFilm() {
     // устанавливаем в localStorage новое значение
     localStorage.setItem(shortFilmName, !isActiveShortFilm);
 
@@ -285,8 +282,8 @@ function Movies({ addNotification }) {
     isPressedSubmit &&
       (!isActiveShortFilm
         ? // устанавливаем фильтрованные фильмы
-          setFilteredMovieds(filteredMovies.filter(_shortMovies))
-        : setFilteredMovieds(
+          setFilteredMovies(filteredMovies.filter(_shortMovies))
+        : setFilteredMovies(
             allMovies.filter((movie) => _searchMovies(movie, searchWord)),
           ));
 
@@ -324,7 +321,7 @@ function Movies({ addNotification }) {
   // фильтруем и устанавливаем фильмы
   function filteredAndSetMovies(isActive, _searchWord) {
     // устанавливаем фильтрованные фильмы
-    setFilteredMovieds(
+    setFilteredMovies(
       allMovies
         .filter((movie) => _searchMovies(movie, _searchWord))
         .filter(isActive ? _shortMovies : () => true),
@@ -363,7 +360,7 @@ function Movies({ addNotification }) {
       <SearchForm
         shortFilm={{
           isActive: isActiveShortFilm,
-          toogle: toogleShortFilm,
+          toggle: toggleShortFilm,
         }}
         onSubmit={handleSearchMovies}
         input={{
@@ -382,7 +379,7 @@ function Movies({ addNotification }) {
       {isPreloaderActive ? (
         <Preloader />
       ) : (
-        isMoreButtonAcctive && <MoreButton onClick={moreCards} />
+        isMoreButtonActive && <MoreButton onClick={moreCards} />
       )}
     </section>
   );

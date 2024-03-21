@@ -20,32 +20,32 @@ export const paths = {
 export const headerNavigationRouters = [
   {
     place: ['BurgerMenu'],
-    context: 'Главная',
+    context: 'Main',
     router: paths.aboutProject,
   },
   {
     place: ['header', 'BurgerMenu'],
-    context: 'Фильмы',
+    context: 'Films',
     router: paths.movies,
   },
   {
     place: ['header', 'BurgerMenu'],
-    context: 'Сохранённые фильмы',
+    context: 'Saved film',
     router: paths.savedMovies,
   },
 ];
 
 export const mainNavigationRouters = [
   {
-    context: 'О проекте',
+    context: 'About project',
     id: 'about-project',
   },
   {
-    context: 'Технологии',
+    context: 'Techs',
     id: 'techs',
   },
   {
-    context: 'Студент',
+    context: 'About me',
     id: 'about-me',
   },
 ];
@@ -71,31 +71,31 @@ export const status = {
 
 export const typeOfErrorFromServer = {
   failFetch: {
-    all: 'Нет связи с сервером',
+    all: 'No connection with server',
   },
   login: {
-    400: 'Вы ввели неправильный логин или пароль',
-    401: 'Вы ввели неправильный логин или пароль',
-    403: 'Вы ввели неправильный логин или пароль',
-    404: 'Пользователя с такой почтой нет',
+    400: 'Wrong password or email',
+    401: 'Wrong password or email',
+    403: 'Wrong password or email',
+    404: 'Do not have user with current emil',
     409: null,
     429: null,
   },
   register: {
-    400: 'Проверьте введенные данные',
+    400: 'Check entered data',
     401: null,
     403: null,
     404: null,
-    409: 'Пользователь с таким email уже существует',
-    429: 'Слишком большое количество запросов, на регистрацию попробуйте позже',
+    409: 'User with current email already registered',
+    429: 'Too many requests, to register info, try later',
   },
   setNewInfo: {
-    400: 'Проверьте введенные данные',
+    400: 'Check entered data',
     401: null,
     403: null,
     404: null,
-    409: 'Пользователь с таким email уже существует',
-    429: 'Слишком большое количество запросов, на смену данных попробуйте позже',
+    409: 'User with current email already registered',
+    429: 'Too many requests, to update info, try later',
   },
 };
 

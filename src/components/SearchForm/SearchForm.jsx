@@ -24,7 +24,7 @@ function SearchForm({ shortFilm, onSubmit, input }) {
           <input
             required
             type='text'
-            placeholder='Фильм'
+            placeholder='Film'
             className='SearchForm__input'
             id={input.id}
             ref={input.ref}
@@ -36,20 +36,20 @@ function SearchForm({ shortFilm, onSubmit, input }) {
               type='submit'
               className='button SearchForm__button-search'
             >
-              Найти
+              Search
             </button>
             <div className='SearchForm__settings SearchForm__settings_place_field'>
               <button
                 aria-label='short films'
                 type='button'
-                onClick={shortFilm.toogle}
+                onClick={shortFilm.toggle}
                 className={`button SearchForm__button-short-film ${
                   shortFilm.isActive
                     ? 'SearchForm__button-short-film_active_active'
                     : ''
                 }`}
               />
-              <p className='SearchForm__text'>Короткометражки</p>
+              <p className='SearchForm__text'>Short films</p>
             </div>
           </div>
         </form>
@@ -57,14 +57,14 @@ function SearchForm({ shortFilm, onSubmit, input }) {
           <button
             aria-label='short films'
             type='button'
-            onClick={shortFilm.toogle}
+            onClick={shortFilm.toggle}
             className={`button SearchForm__button-short-film ${
               shortFilm.isActive
                 ? 'SearchForm__button-short-film_active_active'
                 : ''
             }`}
           />
-          <p className='SearchForm__text'>Короткометражки</p>
+          <p className='SearchForm__text'>Short films</p>
         </div>
       </div>
     </article>

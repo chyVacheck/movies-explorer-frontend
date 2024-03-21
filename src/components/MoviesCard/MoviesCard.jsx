@@ -5,13 +5,7 @@ import { Link } from 'react-router-dom';
 // ? стили
 import './MoviesCard.css';
 
-// ? компоненты
-
-// ? image
-import defaultPhoto from './../../images/default_movie-card.png';
-
 // ? configs
-import configApi from './../../config/configApi.json';
 import configSite from './../../config/configSite.json';
 
 // ? utils
@@ -35,12 +29,8 @@ function MoviesCard({ setMovies, lang, movie, place = 'movies' }) {
   }`;
 
   const ariaLabel = `${
-    place === 'movies'
-      ? 'добавить'
-      : movie._id === 'null'
-      ? 'добавить'
-      : 'удалить'
-  } фильм`;
+    place === 'movies' ? 'add' : movie._id === 'null' ? 'add' : 'delete'
+  } film`;
 
   // * function`s
   // сохранить фильм
@@ -106,7 +96,7 @@ function MoviesCard({ setMovies, lang, movie, place = 'movies' }) {
       {/* // * заглавие */}
       <div className='MoviesCard__header'>
         <h2 lang={lang} className='MoviesCard__name'>
-          {movie.nameRU}
+          {movie.nameEN}
         </h2>
         <p className='MoviesCard__duration'>{`${movie.duration} ${declOfNum(
           movie.duration,
@@ -114,7 +104,7 @@ function MoviesCard({ setMovies, lang, movie, place = 'movies' }) {
       </div>
       {/* // * фото */}
       <Link to={movie.trailerLink} target='_blank' rel='noreferrer noopener'>
-        <img className='MoviesCard__img' src={movie.image} alt={movie.nameRU} />
+        <img className='MoviesCard__img' src={movie.image} alt={movie.nameEN} />
       </Link>
 
       {/* // * кнопка сохранить */}
@@ -124,9 +114,7 @@ function MoviesCard({ setMovies, lang, movie, place = 'movies' }) {
         aria-label={ariaLabel}
         onClick={action}
       >
-        {place === 'movies' && (
-          <p className='MoviesCard__button-text'>Сохранить</p>
-        )}
+        {place === 'movies' && <p className='MoviesCard__button-text'>Save</p>}
       </button>
     </article>
   );

@@ -6,7 +6,7 @@ import { status } from './../utils/Constants';
 
 class MoviesApi {
   constructor(setting) {
-    this._adress = setting.baseUrl;
+    this._address = setting.baseUrl;
     this._headers = setting.headers;
   }
 
@@ -17,9 +17,9 @@ class MoviesApi {
       // во время dev выводим в консоль
       if (configSite.status === status.dev)
         console.log(
-          `Запрос на сервер [${this._adress}]${
-            message ? ' с целью [' + message + ']' : ''
-          } обработан успешно`,
+          `Request to server [${this._address}]${
+            message ? ' to [' + message + ']' : ''
+          } successful proceed`,
         );
       return res.json();
     }
@@ -52,7 +52,7 @@ class MoviesApi {
 
   getMovies() {
     return this._request(
-      `${this._adress}`,
+      `${this._address}`,
       {
         method: 'GET',
         headers: this._headers,

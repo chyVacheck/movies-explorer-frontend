@@ -33,7 +33,7 @@ function MoviesCardList({ isPreloaderActive, setMovies, cardList, place }) {
       ) : (
         <p className='MoviesCardList__not-found'>
           {!isPreloaderActive &&
-            'К сожалению по вашему запросу ничего не нашлось'}
+            'Unfortunately, nothing was found for your request'}
         </p>
       )}
     </article>

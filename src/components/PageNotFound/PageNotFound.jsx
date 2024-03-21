@@ -11,14 +11,14 @@ function PageNotFound() {
     <section className={'pageNotFound'}>
       <div className='pageNotFound__status'>
         <h1 className='pageNotFound__status-code'>404</h1>
-        <p className='pageNotFound__status-message'>Страница не найдена</p>
+        <p className='pageNotFound__status-message'>Page not Found</p>
       </div>
 
       <NavLink
         onClick={() => navigate(-1)}
         className={'pageNotFound__link link'}
       >
-        Назад
+        Back
       </NavLink>
     </section>
   );

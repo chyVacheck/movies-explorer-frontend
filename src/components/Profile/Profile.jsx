@@ -17,14 +17,18 @@ import { CurrentUserContext } from './../../contexts/CurrentUserContext';
 // * constants
 import { VALIDATION, status } from '../../utils/Constants';
 // * utils
-import { checkValidity, checkAnswerFromServer, checkPattern } from './../../utils/Utils';
+import {
+  checkValidity,
+  checkAnswerFromServer,
+  checkPattern,
+} from './../../utils/Utils';
 // * Api
 import mainApi from '../../utils/MainApi';
 
 function Profile({ addNotification, setLoggedIn, setCurrentUser }) {
   const forNotification = {
-    patch: 'Профиль',
-    logOut: 'Выход из сети',
+    patch: 'Profile',
+    logOut: 'logout',
   };
 
   // ? сontext
@@ -38,7 +42,7 @@ function Profile({ addNotification, setLoggedIn, setCurrentUser }) {
   const [currentError, setCurrentError] = useState('');
   // ? текст кнопки submit
   const [currentTextSubmitButton, setCurrentTextSubmitButton] =
-    useState('Сохранить');
+    useState('Save changes');
 
   const navigate = useNavigate();
 
@@ -63,7 +67,11 @@ function Profile({ addNotification, setLoggedIn, setCurrentUser }) {
 
   // смена значение в input
   function handleFieldChange(event) {
-    const isValid = event.target.type === 'email' ? event.target.checkValidity() && checkPattern(event.target.value, VALIDATION.EMAIL.pattern) : event.target.checkValidity();
+    const isValid =
+      event.target.type === 'email'
+        ? event.target.checkValidity() &&
+          checkPattern(event.target.value, VALIDATION.EMAIL.pattern)
+        : event.target.checkValidity();
 
     // смена значение валидации
     const validatedKeyPare = {
@@ -72,7 +80,12 @@ function Profile({ addNotification, setLoggedIn, setCurrentUser }) {
     setValidatedFields({ ...validatedFields, ...validatedKeyPare });
 
     // смена текста ошибки
-    setCurrentError(checkValidity(event.target, event.target.type === 'email' && VALIDATION.EMAIL.pattern));
+    setCurrentError(
+      checkValidity(
+        event.target,
+        event.target.type === 'email' && VALIDATION.EMAIL.pattern,
+      ),
+    );
     // смена валидации формы
     if (
       nameRef.current.value === user.name &&
@@ -104,14 +117,14 @@ function Profile({ addNotification, setLoggedIn, setCurrentUser }) {
         addNotification({
           name: forNotification.logOut,
           type: 'successfully',
-          text: 'Вы вышли из сети',
+          text: 'You successfully logout',
         });
       })
       .catch((err) => {
         addNotification({
           name: forNotification.logOut,
           type: 'error',
-          text: 'Не удалось выйти из аккаунта',
+          text: 'Can not logout',
         });
         if (configSite.status === status.dev)
           console.log(
@@ -122,7 +135,7 @@ function Profile({ addNotification, setLoggedIn, setCurrentUser }) {
 
   function submit(event) {
     event.preventDefault();
-    setCurrentTextSubmitButton('Сохраняем...');
+    setCurrentTextSubmitButton('Saving...');
     const user = {
       name: nameRef.current.value,
       email: emailRef.current.value,
@@ -133,7 +146,7 @@ function Profile({ addNotification, setLoggedIn, setCurrentUser }) {
       .then((res) => {
         if (configSite.status === status.dev)
           console.log(
-            'Запрос на сервер с целью редактирования профиля вернул обьект:,',
+            'Request for server to change profile info return object: ',
             res,
           );
         setCurrentUser({
@@ -145,7 +158,7 @@ function Profile({ addNotification, setLoggedIn, setCurrentUser }) {
         addNotification({
           name: forNotification.patch,
           type: 'successfully',
-          text: 'Вы отредактировали профиль',
+          text: 'You successfully change info',
         });
       })
       .catch((err) => {
@@ -160,19 +173,19 @@ function Profile({ addNotification, setLoggedIn, setCurrentUser }) {
         setIsFormValid(false);
       })
       .finally(() => {
-        setCurrentTextSubmitButton('Сохранить');
+        setCurrentTextSubmitButton('Save');
       });
   }
 
   return (
     <section className='profile'>
       {/* // ? Заглавие */}
-      <h1 className='profile__title'>{`Привет, ${user.name}!`}</h1>
+      <h1 className='profile__title'>{`Hello, ${user.name}!`}</h1>
       {/* // ? форма */}
       <form onSubmit={submit} className='profile__form'>
         <div className='profile__fields'>
           <div className='profile__field'>
-            <h2 className='profile__field-name'>Имя</h2>
+            <h2 className='profile__field-name'>Name</h2>
             <input
               onChange={handleFieldChange}
               ref={nameRef}
@@ -208,14 +221,14 @@ function Profile({ addNotification, setLoggedIn, setCurrentUser }) {
               type='button'
               className='button profile__management-button'
             >
-              Редактировать
+              Change
             </button>
             <button
               type='button'
               className='button profile__management-button profile__management-button_type_out'
               onClick={logOut}
             >
-              Выйти из аккаунта
+              Logout
             </button>
           </div>
         ) : (

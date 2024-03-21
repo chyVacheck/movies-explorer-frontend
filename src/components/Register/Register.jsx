@@ -12,7 +12,11 @@ import SignForm from './../SignForm/SignForm';
 // * константы
 import { paths, VALIDATION } from './../../utils/Constants';
 // * utils
-import { checkValidity, checkAnswerFromServer, checkPattern } from './../../utils/Utils';
+import {
+  checkValidity,
+  checkAnswerFromServer,
+  checkPattern,
+} from './../../utils/Utils';
 // * Api
 import mainApi from '../../utils/MainApi';
 
@@ -21,7 +25,7 @@ function Register({ addNotification, setCurrentUser, setLoggedIn }) {
   const [currentError, setCurrentError] = useState('');
   // ? текст кнопки submit
   const [currentTextSubmitButton, setCurrentTextSubmitButton] =
-    useState('Зарегистрироваться');
+    useState('Register');
 
   const navigate = useNavigate();
 
@@ -42,7 +46,11 @@ function Register({ addNotification, setCurrentUser, setLoggedIn }) {
 
   // смена значение в input
   function handleFieldChange(event) {
-    const isValid = event.target.type === 'email' ? event.target.checkValidity() && checkPattern(event.target.value, VALIDATION.EMAIL.pattern) : event.target.checkValidity();
+    const isValid =
+      event.target.type === 'email'
+        ? event.target.checkValidity() &&
+          checkPattern(event.target.value, VALIDATION.EMAIL.pattern)
+        : event.target.checkValidity();
 
     // смена значение валидации
     const validatedKeyPare = {
@@ -52,13 +60,18 @@ function Register({ addNotification, setCurrentUser, setLoggedIn }) {
     // смена валидации формы
     setIsFormValid(event.target.closest('form').checkValidity() && isValid);
     // смена текста ошибки
-    setCurrentError(checkValidity(event.target, event.target.type === 'email' && VALIDATION.EMAIL.pattern));
+    setCurrentError(
+      checkValidity(
+        event.target,
+        event.target.type === 'email' && VALIDATION.EMAIL.pattern,
+      ),
+    );
   }
 
   // регистрация
   function handleSubmit(event) {
     event.preventDefault();
-    setCurrentTextSubmitButton('Регистрируем...');
+    setCurrentTextSubmitButton('Registering...');
     const user = {
       name: nameRef.current.value,
       email: emailRef.current.value,
@@ -81,9 +94,9 @@ function Register({ addNotification, setCurrentUser, setLoggedIn }) {
               email: res.data.email,
             });
             addNotification({
-              name: 'Регистрация',
+              name: 'Registration',
               type: 'successfully',
-              text: 'Вы успешно зарегистрировались',
+              text: 'You have successfully registered',
             });
             // устанавливаем "вход" в систему
             setLoggedIn(true);
@@ -98,30 +111,30 @@ function Register({ addNotification, setCurrentUser, setLoggedIn }) {
         setIsFormValid(false);
       })
       .finally(() => {
-        setCurrentTextSubmitButton('Зарегистрироваться');
+        setCurrentTextSubmitButton('Register');
       });
   }
 
   return (
     <section className='register'>
       <SignForm
-        title='Добро пожаловать!'
+        title='Welcome !'
         submitButton={{
           text: currentTextSubmitButton,
         }}
         onSubmit={handleSubmit}
         onChange={handleFieldChange}
         error={currentError}
-        textUnderSubmit='Уже зарегистрированы?'
+        textUnderSubmit='Already register?'
         isValid={isFormValid}
         link={{
-          text: 'Войти',
+          text: 'Login',
           to: paths.login,
         }}
         inputs={[
           {
-            name: 'Имя',
-            placeholder: 'Сергей Басов',
+            name: 'Name',
+            placeholder: 'Dmytro',
             type: 'text',
             id: 'name',
             minLength: VALIDATION.NAME.MIN,
@@ -133,7 +146,7 @@ function Register({ addNotification, setCurrentUser, setLoggedIn }) {
           {
             name: 'E-mail',
             lang: 'en',
-            placeholder: 'pochta@yandex.ru',
+            placeholder: 'mail@gmail.com',
             type: 'email',
             id: 'email',
             required: true,
@@ -141,7 +154,7 @@ function Register({ addNotification, setCurrentUser, setLoggedIn }) {
             isValid: validatedFields.email,
           },
           {
-            name: 'Пароль',
+            name: 'Password',
             placeholder: 'qwerty123',
             type: 'password',
             id: 'password',

@@ -29,18 +29,29 @@
   justify-content: space-between;
 }
 
-.portfolio__web-site_last_last {
+.portfolio__list-web-sites li:last-child .portfolio__web-site {
   padding: 0;
   border: none;
 }
 
+.portfolio__web-site-first-part {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
 .portfolio__web-site-name {
   width: 77.1929825%;
-  margin: 0 0 10px;
+  margin: 0;
   font-weight: 400;
   font-size: 30px;
   line-height: 50px;
   letter-spacing: -0.04em;
+}
+
+.portfolio__web-site-logo {
+  width: 40px;
+  height: 40px;
 }
 
 .portfolio__web-site-arrow {

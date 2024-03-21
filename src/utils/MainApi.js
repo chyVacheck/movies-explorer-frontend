@@ -18,9 +18,9 @@ class MainApi {
       // во время dev выводим в консоль
       if (configSite.status === status.dev)
         console.log(
-          `Запрос на сервер [${this._address}]${
-            message ? ' с целью [' + message + ']' : ''
-          } обработан успешно`,
+          `Request to server [${this._address}]${
+            message ? ' to [' + message + ']' : ''
+          } successful proceed`,
         );
       return res.json();
     }

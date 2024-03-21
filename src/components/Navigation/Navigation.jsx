@@ -41,7 +41,7 @@ function Navigation({ loggedIn, place, closeBurgerMenu }) {
         </ul>
       ) : (
         <NavLink to='/signup' className='navigation__navlink-registration link'>
-          Регистрация
+          Register
         </NavLink>
       )}
     </article>

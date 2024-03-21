@@ -150,7 +150,7 @@ function SavedMovies() {
   }
 
   // переключаем значение фильтра
-  function toogleShortFilm() {
+  function toggleShortFilm() {
     // устанавливаем в localStorage новое значение
     localStorage.setItem(shortFilmName, !isActiveShortFilm);
 
@@ -189,7 +189,7 @@ function SavedMovies() {
       // ! dev
       if (configSite.status === status.dev)
         console.log(
-          `Поисковое слово сохраненно в localStorage: [${_searchWord}]`,
+          `Поисковое слово сохранено в localStorage: [${_searchWord}]`,
         );
     }
   }
@@ -212,7 +212,7 @@ function SavedMovies() {
       <SearchForm
         shortFilm={{
           isActive: isActiveShortFilm,
-          toogle: toogleShortFilm,
+          toggle: toggleShortFilm,
         }}
         onSubmit={handleSearchMovies}
         input={{

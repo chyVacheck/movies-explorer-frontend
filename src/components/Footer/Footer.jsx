@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import './Footer.css';
 
 // ? constants
-import { YEAR, activeFooterRoutes as activ } from './../../utils/Constants.js';
+import { YEAR, activeFooterRoutes as active } from './../../utils/Constants.js';
 
 function Footer({ page }) {
   const [year, setYear] = useState(`${YEAR}`);
@@ -25,7 +25,7 @@ function Footer({ page }) {
 
   // Проверка на отрисовку элемента
   useEffect(() => {
-    if (activ.includes(page)) {
+    if (active.includes(page)) {
       setIsActive(true);
     } else {
       setIsActive(false);
@@ -36,7 +36,7 @@ function Footer({ page }) {
     isActive && (
       <footer className='footer'>
         <h6 className='footer__title'>
-          Учебный проект Яндекс.Практикум х BeatFilm.
+          Yandex.Praktikum training project х BeatFilm.
         </h6>
 
         <div className='footer__info'>
@@ -46,7 +46,7 @@ function Footer({ page }) {
           </p>
 
           <div className='footer__info-texts'>
-            <p className='footer__info-text'>Яндекс.Практикум</p>
+            <p className='footer__info-text'>Yandex.Praktikum</p>
 
             <a
               href='https://github.com/chyVacheck'

@@ -45,7 +45,7 @@ function ButtonProfile({ place, loggedIn, closeBurgerMenu }) {
           className='buttonProfile__enter-profile button'
           onClick={toProfile}
         >
-          <p className='buttonProfile__text'>Аккаунт</p>
+          <p className='buttonProfile__text'>Account</p>
           <img
             className='buttonProfile__user-icon'
             src={userIcon}
@@ -54,7 +54,7 @@ function ButtonProfile({ place, loggedIn, closeBurgerMenu }) {
         </button>
       ) : (
         <button className='buttonProfile__enter-login button' onClick={toLogin}>
-          Войти
+          Login
         </button>
       )}
     </article>
